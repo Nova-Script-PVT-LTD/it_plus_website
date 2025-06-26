@@ -246,7 +246,7 @@ export default function AboutUsPage() {
       }
 
       .working-card:nth-child(1) .working-icon {
-        background: #3B82F6;
+        background: #7A4ADF;
       }
 
       .working-card:nth-child(2) .working-icon {

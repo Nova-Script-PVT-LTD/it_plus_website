@@ -135,7 +135,7 @@ export default function Home() {
         }
         
         .section-title {
-          color: var(--dark-blue);
+          color: #360065;
           font-size: 70px;
           font-weight: 500;
           text-align: center;
@@ -147,7 +147,8 @@ export default function Home() {
           font-size: 36px;
           font-weight: 300;
           text-align: center;
-          margin-bottom: 60px;
+          margin-top: 10px;
+          margin-bottom: 0px;
         }
         
         .decorative-line {
@@ -1074,7 +1075,7 @@ export default function Home() {
         <div className="service-bg" style={{backgroundImage: 'url(/images/services/technology-bg.png)'}}></div>
         <div className="service-overlay"></div>
         <div className="service-content">
-          <h3 className="service-title">Technology</h3>
+          <h3 className="service-title">TECHNOLOGY</h3>
           <div className="service-arrow-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1091,7 +1092,7 @@ export default function Home() {
         <div className="service-bg" style={{backgroundImage: 'url(/images/services/cloud-bg.png)'}}></div>
         <div className="service-overlay"></div>
         <div className="service-content">
-          <h3 className="service-title">Cloud</h3>
+          <h3 className="service-title">CLOUD</h3>
           <div className="service-arrow-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1108,7 +1109,7 @@ export default function Home() {
         <div className="service-bg" style={{backgroundImage: 'url(/images/services/software-bg.png)'}}></div>
         <div className="service-overlay"></div>
         <div className="service-content">
-          <h3 className="service-title">Software</h3>
+          <h3 className="service-title">SOFTWARE</h3>
           <div className="service-arrow-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1125,7 +1126,7 @@ export default function Home() {
         <div className="service-bg" style={{backgroundImage: 'url(/images/services/technology-bg.png)'}}></div>
         <div className="service-overlay"></div>
         <div className="service-content">
-          <h3 className="service-title">IT Support</h3>
+          <h3 className="service-title">IT SUPPORT</h3>
           <div className="service-arrow-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1142,7 +1143,7 @@ export default function Home() {
         <div className="service-bg" style={{backgroundImage: 'url(/images/services/technology-bg.png)'}}></div>
         <div className="service-overlay"></div>
         <div className="service-content">
-          <h3 className="service-title">IT Products</h3>
+          <h3 className="service-title">IT PRODUCTS</h3>
           <div className="service-arrow-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1159,7 +1160,7 @@ export default function Home() {
         <div className="service-bg" style={{backgroundImage: 'url(/images/services/technology-bg.png)'}}></div>
         <div className="service-overlay"></div>
         <div className="service-content">
-          <h3 className="service-title">Academic</h3>
+          <h3 className="service-title"> ACADEMIC</h3>
           <div className="service-arrow-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -1341,6 +1342,18 @@ export default function Home() {
         </div>
       </div>
       
+      <div className="col-md-4">
+        <div className="news-card">
+          <div className="news-image">
+            <img src="/images/news/news.png" alt="Cloud Solutions News" />
+          </div>
+          <div className="news-content">
+            <div className="news-title">Cloud Solutions Drive Digital Transformation in 2025</div>
+            <button className="btn btn-read-article">Read article</button>
+          </div>
+        </div>
+      </div>
+
       <div className="col-md-4">
         <div className="news-card">
           <div className="news-image">
