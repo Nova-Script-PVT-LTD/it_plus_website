@@ -190,7 +190,7 @@ export default function ServicesPage() {
       id: 'itplus-virtual-cloud-virtual',
       title: 'ITPlus Virtual - Cloud Virtual',
       description: 'Flexible cloud virtualization services enabling rapid deployment and scaling of your IT infrastructure.',
-      image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=180&fit=crop',
+      image: 'images/services/cloudvirtual.jpg',h
     }
   ];
 
