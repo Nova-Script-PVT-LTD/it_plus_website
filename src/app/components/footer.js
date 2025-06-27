@@ -262,7 +262,7 @@ const Footer = () => {
         }
 
         .footer-links a:hover {
-          color: #33FF94;
+          color: rgb(245, 149, 32) ;
           transform: translateX(8px);
         }
 
@@ -287,7 +287,7 @@ const Footer = () => {
         .contact-item i {
           font-size: 14px;
           width: 16px;
-          color: #33FF94;
+          color: rgb(245, 149, 32) ;
         }
 
         .newsletter-title {
@@ -314,7 +314,7 @@ const Footer = () => {
         }
 
         .newsletter-form:focus-within {
-          border-color: #33FF94;
+          border-color: rgb(245, 149, 32) ;
           box-shadow: 0 0 0 2px rgba(51, 255, 148, 0.2);
         }
 
@@ -341,7 +341,7 @@ const Footer = () => {
           top: 2px;
           height: 36px;
           padding: 0 18px;
-          background: linear-gradient(135deg, #33FF94, #00E676);
+          background: linear-gradient(135deg, rgb(245, 149, 32) , rgb(245, 149, 32) );
           color: #1a1a2e;
           border: none;
           border-radius: 18px;
@@ -354,7 +354,7 @@ const Footer = () => {
         }
 
         .subscribe-btn:hover {
-          background: linear-gradient(135deg, #00E676, #1DE9B6);
+          background: linear-gradient(135deg, rgb(245, 149, 32) , rgb(245, 149, 32) );
           transform: translateY(-1px);
           box-shadow: 0 4px 12px rgba(51, 255, 148, 0.3);
         }
@@ -398,7 +398,7 @@ const Footer = () => {
         }
 
         .footer-bottom-links a:hover {
-          color: #33FF94;
+          color: rgb(245, 149, 32) ;
         }
 
         /* Mobile Responsive Design (up to 768px) */

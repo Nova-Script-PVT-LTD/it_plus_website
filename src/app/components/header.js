@@ -163,7 +163,7 @@ export default function Header() {
         }
         
         .nav-link:hover {
-          color: #33FF94 !important;
+          color:rgb(245, 149, 32) !important;
         }
         
         .dropdown-arrow {
@@ -183,7 +183,7 @@ export default function Header() {
         }
         
         .btn-contact {
-          border: 4px solid #33FF94;
+          border: 4px solid rgb(245, 149, 32) ;
           border-radius: 50px;
           color: white;
           font-size: 16px;
@@ -196,14 +196,14 @@ export default function Header() {
         }
         
         .btn-contact:hover {
-          background: #33FF94;
+          background: rgb(245, 149, 32) ;
           color: #360065;
         }
         
         .search-icon {
           width: 47px;
           height: 47px;
-          background: #33FF94;
+          background: rgb(245, 149, 32) ;
           border-radius: 10px;
           display: flex;
           align-items: center;
@@ -219,7 +219,7 @@ export default function Header() {
         }
         
         .green-bar {
-          background: #33FF94;
+          background: rgb(245, 149, 32) ;
           height: 36px;
           display: flex;
           align-items: center;
@@ -286,12 +286,12 @@ export default function Header() {
         }
         
         .dropdown-column h6 {
-          color: #33FF94;
+          color: rgb(245, 149, 32) ;
           font-size: 18px;
           font-weight: 600;
           font-family: 'Outfit', sans-serif;
           margin-bottom: 15px;
-          border-bottom: 2px solid #33FF94;
+          border-bottom: 2px solid rgb(245, 149, 32) ;
           padding-bottom: 8px;
           cursor: pointer;
           transition: color 0.3s ease;
@@ -315,13 +315,13 @@ export default function Header() {
         }
         
         .dropdown-item-custom:hover {
-          color: #33FF94;
+          color: rgb(245, 149, 32) ;
           padding-left: 10px;
         }
         
         .dropdown-item-custom:before {
           content: '▶';
-          color: #33FF94;
+          color: rgb(245, 149, 32) ;
           font-size: 8px;
           margin-right: 8px;
           opacity: 0;

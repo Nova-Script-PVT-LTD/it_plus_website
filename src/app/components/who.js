@@ -151,7 +151,7 @@ const WhoSection = () => {
 
         /* Our Story Button */
         .btn-our-story-centered {
-          background: linear-gradient(45deg, #10F981, #22C55E);
+          background: linear-gradient(45deg, rgb(245, 149, 32) , rgb(245, 149, 32) );
           color: #2D1B69;
           border: none;
           padding: 16px 40px;
@@ -167,8 +167,8 @@ const WhoSection = () => {
 
         .btn-our-story-centered:hover {
           transform: translateY(-3px);
-          box-shadow: 0 15px 35px rgba(16, 249, 129, 0.4);
-          background: linear-gradient(45deg, #22C55E, #10F981);
+          box-shadow: 0 15px 35px rgb(245, 149, 32) );
+          background: linear-gradient(45deg, rgb(245, 149, 32) , rgb(245, 149, 32) );
         }
 
         /* Responsive Design */

@@ -43,7 +43,7 @@ export default function Home() {
     ':root': {
       '--primary-purple': '#360065',
       '--secondary-purple': '#7A4ADF',
-      '--accent-green': '#33FF94',
+      '--accent-green': 'rgb(245, 149, 32) ',
       '--dark-blue': '#15145F',
       '--dark-purple': '#440B44'
     },
@@ -61,7 +61,7 @@ export default function Home() {
         :root {
           --primary-purple: #360065;
           --secondary-purple: #7A4ADF;
-          --accent-green: #33FF94;
+          --accent-green: rgb(245, 149, 32) ;
           --dark-blue: #15145F;
           --dark-purple: #440B44;
         }
@@ -255,6 +255,7 @@ export default function Home() {
         }
         
         .feature-icon {
+        display: flex;
           width: 120px;
           height: 120px;
           border-radius: 10px;
@@ -380,9 +381,9 @@ export default function Home() {
 }
 
 .btn-read-article:hover {
-  background: #2dd87a;
+  background: rgb(245, 149, 32) ;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(51, 255, 148, 0.3);
+  box-shadow: 0 4px 12px rgb(245, 149, 32) ;
 }
 
 /* Responsive Design */
@@ -509,9 +510,9 @@ export default function Home() {
 }
 
 .btn-inquiry:hover {
-  background: #2dd87a;
+  background: rgb(245, 149, 32) ;
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(51, 255, 148, 0.3);
+  box-shadow: 0 8px 25px rgb(245, 149, 32) ;
 }
 
 /* Responsive Design */
@@ -945,7 +946,7 @@ export default function Home() {
 
 /* Our Story Button */
 .btn-our-story-centered {
-  background: linear-gradient(45deg, #10F981, #22C55E);
+  background: linear-gradient(45deg, rgb(245, 149, 32) , rgb(245, 149, 32) );
   color: #2D1B69;
   border: none;
   padding: 16px 40px;
@@ -954,15 +955,15 @@ export default function Home() {
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(16, 249, 129, 0.3);
+  box-shadow: 0 8px 25px rgb(245, 149, 32) ;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .btn-our-story-centered:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(16, 249, 129, 0.4);
-  background: linear-gradient(45deg, #22C55E, #10F981);
+  box-shadow: 0 15px 35px rgb(245, 149, 32) ;
+  background: linear-gradient(45deg, rgb(245, 149, 32) , rgb(240, 136, 9) );
 }
 
 /* Responsive Design */
@@ -1068,6 +1069,7 @@ export default function Home() {
       <div className="dot"></div>
     </div>
     <p className="section-subtitle">Expert to Make IT Perfect</p>
+    
     
     <div className="services-grid">
       {/* Technology Service */}
@@ -1179,7 +1181,7 @@ export default function Home() {
 
       {/* Why Choose Us Section */}
       <section className="why-choose-section">
-        <div className="container">
+        <div className="container px-xxl-5 px-lg-4 px-3">
           <div className="decorative-line">
             <div className="dot"></div>
             <div className="line"></div>
@@ -1187,13 +1189,13 @@ export default function Home() {
             <div className="line"></div>
             <div className="dot"></div>
           </div>
-          <p className="section-subtitle">Your Trusted IT Partner in Sri Lanka</p>
+          <p className="section-subtitle" style={{ marginBottom: '100px' }}>Your Trusted IT Partner in Sri Lanka</p>
           
-          <div className="row">
+          <div className="row justify-content-center ">
   <div className="col-lg-2">
     <div className="feature-card tall-card">
       <div className="feature-icon">
-        <img src="/images/icons/expert-team.png" alt="Expert Team" />
+        <img src="/images/icons/2.png" alt="Expert Team" style={{ width: '130px', height: '130px' }} />
       </div>
       <div className="feature-title">Expert Team</div>
     </div>
@@ -1202,7 +1204,7 @@ export default function Home() {
   <div className="col-lg-2" style={{marginTop: '114px'}}>
     <div className="feature-card tall-card">
       <div className="feature-icon">
-        <img src="/images/icons/quality-focus.png" alt="Focus on Quality" />
+        <img src="/images/icons/3.png" alt="Focus on Quality" style={{ width: '130px', height: '130px' }} />
       </div>
       <div className="feature-title">Focus on Quality</div>
     </div>
@@ -1211,13 +1213,13 @@ export default function Home() {
   <div className="col-lg-2">
     <div className="feature-card short-card mb-4">
       <div className="feature-icon">
-        <img src="/images/icons/innovative-solutions.png" alt="Innovative Solutions" />
+        <img src="/images/icons/4.png" alt="Innovative Solutions" style={{ width: '130px', height: '130px' }} />
       </div>
       <div className="feature-title">Innovative Solutions</div>
     </div>
     <div className="feature-card short-card">
       <div className="feature-icon">
-        <img src="/images/icons/job-placement.png" alt="Job Placement" />
+        <img src="/images/icons/5.png" alt="Job Placement" style={{ width: '130px', height: '130px' }} />
       </div>
       <div className="feature-title">Job Placement</div>
     </div>
@@ -1226,7 +1228,7 @@ export default function Home() {
   <div className="col-lg-2" style={{marginTop: '114px'}}>
     <div className="feature-card tall-card">
       <div className="feature-icon">
-        <img src="/images/icons/certified-trainers.png" alt="Certified Trainers" />
+        <img src="/images/icons/6.png" alt="Certified Trainers" style={{ width: '130px', height: '130px' }} />
       </div>
       <div className="feature-title">Certified Trainers</div>
     </div>
@@ -1235,7 +1237,7 @@ export default function Home() {
   <div className="col-lg-2">
     <div className="feature-card tall-card">
       <div className="feature-icon">
-        <img src="/images/icons/24x7-support.png" alt="24x7 Support" />
+        <img src="/images/icons/3.png" alt="24x7 Support" style={{ width: '130px', height: '130px' }} />
       </div>
       <div className="feature-title">24x7 Support</div>
     </div>
@@ -1252,49 +1254,49 @@ export default function Home() {
       <div className="row justify-content-center mb-4">
         <div className="col-auto">
           <div className="client-logo">
-            <img src="/images/clients/1.png" alt="Client 1" />
+            <img src="/images/clients/castle.svg" alt="Client 1" />
           </div>
         </div>
         <div className="col-auto">
           <div className="client-logo">
-            <img src="/images/clients/2.png" alt="Client 2" />
+            <img src="/images/clients/clever.svg" alt="Client 2" />
           </div>
         </div>
         <div className="col-auto">
           <div className="client-logo">
-            <img src="/images/clients/3.png" alt="Client 3" />
+            <img src="/images/clients/doo.svg" alt="Client 3" />
           </div>
         </div>
         <div className="col-auto">
           <div className="client-logo">
-            <img src="/images/clients/4.png" alt="Client 4" />
+            <img src="/images/clients/durd.svg" alt="Client 4" />
           </div>
         </div>
         <div className="col-auto">
           <div className="client-logo">
-            <img src="/images/clients/5.png" alt="Client 5" />
+            <img src="/images/clients/ella.svg" alt="Client 5" />
           </div>
         </div>
         <div className="col-auto">
           <div className="client-logo">
-            <img src="/images/clients/6.png" alt="Client 6" />
+            <img src="/images/clients/fire.svg" alt="Client 6" />
           </div>
         </div>
       </div>
       <div className="row justify-content-center">
         <div className="col-auto">
           <div className="client-logo">
-            <img src="/images/clients/7.png" alt="Client 7" />
+            <img src="/images/clients/swiss.svg" alt="Client 7" />
           </div>
         </div>
         <div className="col-auto">
           <div className="client-logo">
-            <img src="/images/clients/8.png" alt="Client 8" />
+            <img src="/images/clients/tra.svg" alt="Client 8" />
           </div>
         </div>
         <div className="col-auto">
           <div className="client-logo">
-            <img src="/images/clients/9.png" alt="Client 9" />
+            <img src="/images/clients/vision.svg" alt="Client 9" />
           </div>
         </div>
         <div className="col-auto">

@@ -181,7 +181,7 @@ export default function CareersPage() {
       }
 
       .hero-content .highlight {
-        background: linear-gradient(135deg, #33FF94 0%, #00D4AA 100%);
+        background: linear-gradient(135deg, rgb(233, 176, 105) 0%, rgb(245, 149, 32) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -233,7 +233,7 @@ export default function CareersPage() {
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, #7A4ADF 0%, #33FF94 50%, #7A4ADF 100%);
+        background: linear-gradient(90deg, #7A4ADF 0%, rgb(245, 149, 32) 50%, #7A4ADF 100%);
         border-radius: clamp(15px, 2vw, 20px) clamp(15px, 2vw, 20px) 0 0;
       }
 
@@ -346,7 +346,7 @@ export default function CareersPage() {
         transform: translateX(-50%);
         width: clamp(60px, 10vw, 80px);
         height: 3px;
-        background: linear-gradient(90deg, #7A4ADF, #33FF94);
+        background: linear-gradient(90deg, #7A4ADF, rgb(245, 149, 32));
         border-radius: 2px;
       }
 
