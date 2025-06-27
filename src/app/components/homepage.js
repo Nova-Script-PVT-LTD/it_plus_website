@@ -279,15 +279,18 @@ export default function Home() {
           height: 363px;
         }
         
-        .clients-section {
-          padding: 80px 0;
-        }
+        .clients-container {
+  padding: 80px; /* increase from 60px */
+}
         
         .clients-container {
-          background: #F1F1F1;
-          border-radius: 30px;
-          padding: 60px;
-        }
+  background: #F1F1F1;
+  border-radius: 30px;
+  padding: 60px;
+  width: 100%; /* or set a larger fixed width like 1200px */
+  max-width: 1400px; /* optional: expand limit */
+  margin: 0 auto;
+}
         
         .client-logo {
   width: 120px;
