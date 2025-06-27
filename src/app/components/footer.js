@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Footer = () => {
   return (
     <footer className="footer-wrapper">
@@ -27,9 +25,6 @@ const Footer = () => {
 
       {/* Footer Content */}
       <div className="footer-content">
-        
-
-
         <div className="container">
           <div className="footer-grid">
             {/* Brand Column */}
@@ -162,13 +157,12 @@ const Footer = () => {
           justify-content: center;
           padding-top: 80px;
           padding-bottom: 40px;
-         
         }
 
         .container {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 0 40px;
+          padding: 10px 10px;
           width: 100%;
         }
 
@@ -407,174 +401,269 @@ const Footer = () => {
           color: #33FF94;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-          .container {
-            padding: 0 30px;
-          }
-          
-          .footer-grid {
-            gap: 40px;
-          }
-        }
-
-        @media (max-width: 992px) {
+        /* Mobile Responsive Design (up to 768px) */
+        @media (max-width: 768px) {
           .footer-wrapper {
-            min-height: 450px;
+            min-height: clamp(400px, 100vw, 600px);
           }
-          
+
+          .footer-svg svg {
+            min-height: clamp(400px, 100vw, 600px);
+          }
+
           .footer-content {
-            padding-top: 70px;
+            padding-top: clamp(40px, 10vw, 60px);
+            padding-bottom: clamp(20px, 5vw, 30px);
           }
-          
+
+          .container {
+            padding: 0 clamp(12px, 3vw, 20px);
+          }
+
           .footer-grid {
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-          }
-          
-          .footer-brand {
-            grid-column: 1 / -1;
+            grid-template-columns: 1fr;
+            gap: clamp(20px, 5vw, 35px);
             text-align: center;
+            margin-bottom: clamp(20px, 5vw, 40px);
+          }
+
+          .footer-brand {
             padding-right: 0;
             max-width: none;
           }
-          
-          .brand-description {
-            max-width: 500px;
-            margin: 0 auto 35px;
+
+          .brand-logo {
+            font-size: clamp(24px, 6vw, 32px);
           }
-          
+
+          .brand-description {
+            font-size: clamp(13px, 3.5vw, 15px);
+            max-width: clamp(250px, 80vw, 400px);
+            margin: 0 auto clamp(15px, 4vw, 25px);
+          }
+
           .social-icons {
             justify-content: center;
+            gap: clamp(10px, 2.5vw, 15px);
           }
-        }
 
-        @media (max-width: 768px) {
-          .footer-wrapper {
-            min-height: 400px;
+          .social-icon {
+            width: clamp(40px, 10vw, 45px);
+            height: clamp(40px, 10vw, 45px);
+            font-size: clamp(16px, 4vw, 18px);
           }
-          
-          .footer-content {
-            padding-top: 60px;
-            padding-bottom: 30px;
+
+          .footer-section {
+            padding-top: clamp(5px, 1vw, 10px);
           }
-          
-          .container {
-            padding: 0 20px;
+
+          .footer-heading {
+            font-size: clamp(13px, 3.5vw, 15px);
+            margin-bottom: clamp(15px, 4vw, 25px);
           }
-          
-          .footer-grid {
-            grid-template-columns: 1fr;
-            gap: 35px;
-            text-align: center;
+
+          .footer-links li {
+            margin-bottom: clamp(8px, 2vw, 12px);
           }
-          
-          .footer-brand {
-            grid-column: auto;
+
+          .footer-links a {
+            font-size: clamp(13px, 3.5vw, 15px);
           }
-          
+
           .footer-contact {
             max-width: none;
           }
-          
+
+          .contact-info {
+            margin-bottom: clamp(15px, 4vw, 25px);
+          }
+
+          .contact-item {
+            font-size: clamp(13px, 3.5vw, 15px);
+            gap: clamp(8px, 2vw, 12px);
+            justify-content: center;
+          }
+
+          .contact-item i {
+            font-size: clamp(12px, 3vw, 14px);
+            width: clamp(12px, 3vw, 16px);
+          }
+
+          .newsletter-title {
+            font-size: clamp(15px, 4vw, 18px);
+            margin-bottom: clamp(10px, 2.5vw, 15px);
+          }
+
           .newsletter-form {
-            width: 260px;
-            height: 36px;
+            width: clamp(220px, 80vw, 300px);
+            height: clamp(36px, 9vw, 44px);
             margin: 0 auto;
+            border-radius: clamp(16px, 4vw, 20px);
           }
-          
+
           .email-input {
-            padding: 0 80px 0 14px;
-            font-size: 12px;
+            font-size: clamp(12px, 3vw, 14px);
+            padding: 0 clamp(70px, 20vw, 90px) 0 clamp(10px, 2.5vw, 14px);
+            border-radius: clamp(16px, 4vw, 20px);
           }
-          
+
           .subscribe-btn {
+            height: clamp(32px, 8vw, 40px);
+            padding: 0 clamp(12px, 3vw, 16px);
+            font-size: clamp(10px, 2.5vw, 12px);
+            border-radius: clamp(14px, 3.5vw, 18px);
             right: 2px;
             top: 2px;
-            height: 32px;
-            padding: 0 14px;
-            font-size: 10px;
-            border-radius: 16px;
           }
-          
+
+          .footer-bottom {
+            padding-top: clamp(15px, 4vw, 25px);
+          }
+
           .footer-bottom-content {
             flex-direction: column;
             text-align: center;
-            gap: 15px;
+            gap: clamp(10px, 2.5vw, 15px);
           }
-          
+
+          .copyright {
+            font-size: clamp(12px, 3vw, 14px);
+          }
+
           .footer-bottom-links {
             flex-wrap: wrap;
             justify-content: center;
+            gap: clamp(15px, 4vw, 25px);
+          }
+
+          .footer-bottom-links a {
+            font-size: clamp(12px, 3vw, 14px);
+          }
+        }
+
+        /* Preserve Original Styles for Larger Screens */
+        @media (min-width: 769px) {
+          .footer-wrapper {
+            min-height: 500px;
+          }
+
+          .footer-svg svg {
+            min-height: 100%;
+          }
+
+          .footer-content {
+            padding-top: 80px;
+            padding-bottom: 40px;
+          }
+
+          .container {
+            padding: 10px 10px;
+          }
+
+          .footer-grid {
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 60px;
+            margin-bottom: 60px;
+          }
+
+          .footer-brand {
+            padding-right: 20px;
+          }
+
+          .brand-logo {
+            font-size: 36px;
+          }
+
+          .brand-description {
+            font-size: 15px;
+            max-width: 300px;
+            margin-bottom: 35px;
+          }
+
+          .social-icons {
+            gap: 18px;
+          }
+
+          .social-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+          }
+
+          .footer-heading {
+            font-size: 15px;
+            margin-bottom: 30px;
+          }
+
+          .footer-links li {
+            margin-bottom: 14px;
+          }
+
+          .footer-links a {
+            font-size: 15px;
+          }
+
+          .footer-contact {
+            max-width: 280px;
+          }
+
+          .contact-info {
+            margin-bottom: 35px;
+          }
+
+          .contact-item {
+            font-size: 15px;
+            gap: 12px;
+          }
+
+          .contact-item i {
+            font-size: 14px;
+            width: 16px;
+          }
+
+          .newsletter-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+          }
+
+          .newsletter-form {
+            width: 280px;
+            height: 40px;
+            border-radius: 20px;
+          }
+
+          .email-input {
+            font-size: 13px;
+            padding: 0 90px 0 16px;
+            border-radius: 20px;
+          }
+
+          .subscribe-btn {
+            height: 36px;
+            padding: 0 18px;
+            font-size: 11px;
+            border-radius: 18px;
+          }
+
+          .footer-bottom {
+            padding-top: 30px;
+          }
+
+          .footer-bottom-content {
+            flex-direction: row;
             gap: 20px;
           }
-        }
 
-        @media (max-width: 480px) {
-          .footer-wrapper {
-            min-height: 350px;
+          .footer-bottom-links {
+            gap: 35px;
           }
-          
-          .footer-content {
-            padding-top: 50px;
-          }
-          
-          .container {
-            padding: 0 15px;
-          }
-          
-          .brand-logo {
-            font-size: 32px;
-          }
-          
-          .brand-description {
+
+          .footer-bottom-links a {
             font-size: 14px;
           }
-          
-          .social-icon {
-            width: 45px;
-            height: 45px;
-            font-size: 18px;
-          }
-          
-          .footer-grid {
-            gap: 30px;
-          }
-          
-          .contact-item {
-            font-size: 14px;
-          }
-          
-          .newsletter-form {
-            width: 240px;
-          }
-        }
 
-        @media (max-width: 360px) {
-          .footer-wrapper {
-            min-height: 320px;
-          }
-          
-          .footer-content {
-            padding-top: 40px;
-          }
-          
-          .brand-logo {
-            font-size: 28px;
-          }
-          
-          .social-icon {
-            width: 40px;
-            height: 40px;
-            font-size: 16px;
-          }
-          
-          .social-icons {
-            gap: 15px;
-          }
-          
-          .newsletter-form {
-            width: 220px;
+          .copyright {
+            font-size: 14px;
           }
         }
       `}</style>
