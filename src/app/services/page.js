@@ -453,7 +453,7 @@ export default function ServicesPage() {
       .divider-line {
         flex: 1;
         height: 2px;
-        background: linear-gradient(90deg, #7A4ADF, #33FF94);
+        background: linear-gradient(90deg, #7A4ADF, rgb(245, 149, 32));
       }
 
       .divider-dot {
@@ -471,7 +471,7 @@ export default function ServicesPage() {
         left: -4px;
         width: 20px;
         height: 20px;
-        border: 2px solid #33FF94;
+        border: 2px solid rgb(245, 149, 32);
         border-radius: 50%;
       }
 
