@@ -423,6 +423,12 @@ export default function Home() {
   .news-content {
     padding: 20px;
   }
+  
+  .feature-card {
+    margin-bottom: 20px; /* Add vertical space between cards */
+    border-radius: 20px;  /* Optional: reduce border-radius for small screens */
+    padding: 24px 10px;   /* Optional: adjust padding for smaller screens */
+  }
 }
         .btn-read-article {
           background: var(--accent-green);

@@ -3,21 +3,37 @@ const Footer = () => {
     <footer className="footer-wrapper">
       {/* Wave SVG Background */}
       <div className="footer-svg">
-        <svg 
-          width="100%" 
-          height="100%" 
-          viewBox="0 0 1441 612" 
-          fill="none" 
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 1441 612"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
         >
-          <path d="M1441 45.6056V104.32L1300.03 72.0271L1180.56 45.6056L1025.59 28.4805H891.62L798.14 37.2877L738.653 45.6056C738.653 45.6056 641.514 59.795 705.5 45.6056C769.486 31.4162 881.206 7.82941 944.5 3.03781C1003.09 -1.39742 1032.3 0.350856 1091 3.03765C1142.29 5.38532 1174.93 5.84826 1225.55 14.2911C1264.9 20.855 1289.79 21.3083 1329 28.4805C1374.47 36.7984 1441 45.6056 1441 45.6056Z" fill="#33FF94"/>
-          <path d="M0 29V83C0 83 73.776 84.0927 121.5 90.5C164.288 96.2446 188.367 99.662 231.5 101.5C263.689 102.872 282.235 106.888 314 101.5C330.716 98.6645 412.5 83 412.5 83C412.5 83 330.374 91.4589 314 90.5C285.767 88.8466 250.82 88.0899 223 83C186.873 76.3902 157.454 68.4935 121.5 61C62.7929 48.7642 0 29 0 29Z" fill="#33FF94"/>
-          <path d="M1441 612H0V74.9049C168.5 89.3064 123.806 89.3063 271 89.3064C418.194 89.3064 752.817 24.8466 979.96 28.1206C1164.35 30.7784 1441 74.9049 1441 74.9049V612Z" fill="url(#paint0_linear_520_269)"/>
+          <path
+            d="M1441 45.6056V104.32L1300.03 72.0271L1180.56 45.6056L1025.59 28.4805H891.62L798.14 37.2877L738.653 45.6056C738.653 45.6056 641.514 59.795 705.5 45.6056C769.486 31.4162 881.206 7.82941 944.5 3.03781C1003.09 -1.39742 1032.3 0.350856 1091 3.03765C1142.29 5.38532 1174.93 5.84826 1225.55 14.2911C1264.9 20.855 1289.79 21.3083 1329 28.4805C1374.47 36.7984 1441 45.6056 1441 45.6056Z"
+            fill="#33FF94"
+          />
+          <path
+            d="M0 29V83C0 83 73.776 84.0927 121.5 90.5C164.288 96.2446 188.367 99.662 231.5 101.5C263.689 102.872 282.235 106.888 314 101.5C330.716 98.6645 412.5 83 412.5 83C412.5 83 330.374 91.4589 314 90.5C285.767 88.8466 250.82 88.0899 223 83C186.873 76.3902 157.454 68.4935 121.5 61C62.7929 48.7642 0 29 0 29Z"
+            fill="#33FF94"
+          />
+          <path
+            d="M1441 612H0V74.9049C168.5 89.3064 123.806 89.3063 271 89.3064C418.194 89.3064 752.817 24.8466 979.96 28.1206C1164.35 30.7784 1441 74.9049 1441 74.9049V612Z"
+            fill="url(#paint0_linear_520_269)"
+          />
           <defs>
-            <linearGradient id="paint0_linear_520_269" x1="720.5" y1="12.6746" x2="720.5" y2="612" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#7A4ADF"/>
-              <stop offset="1" stopColor="#15145F"/>
+            <linearGradient
+              id="paint0_linear_520_269"
+              x1="720.5"
+              y1="12.6746"
+              x2="720.5"
+              y2="612"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#7A4ADF" />
+              <stop offset="1" stopColor="#15145F" />
             </linearGradient>
           </defs>
         </svg>
@@ -31,7 +47,9 @@ const Footer = () => {
             <div className="footer-brand">
               <h2 className="brand-logo">IT PLUS</h2>
               <p className="brand-description">
-                Global destination for specialized IT solutions, ideal for startups and businesses seeking to enhance their digital presence.
+                Global destination for specialized IT solutions, ideal for
+                startups and businesses seeking to enhance their digital
+                presence.
               </p>
               <div className="social-icons">
                 <div className="social-icon facebook">
@@ -53,10 +71,18 @@ const Footer = () => {
             <div className="footer-section">
               <h3 className="footer-heading">COMPANY</h3>
               <ul className="footer-links">
-                <li><a href="/about">About us</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/careers">Careers</a></li>
-                <li><a href="/blog">Blog</a></li>
+                <li>
+                  <a href="/about">About us</a>
+                </li>
+                <li>
+                  <a href="/contact">Contact</a>
+                </li>
+                <li>
+                  <a href="/careers">Careers</a>
+                </li>
+                <li>
+                  <a href="/blog">Blog</a>
+                </li>
               </ul>
             </div>
 
@@ -64,12 +90,24 @@ const Footer = () => {
             <div className="footer-section">
               <h3 className="footer-heading">SERVICES</h3>
               <ul className="footer-links">
-                <li><a href="/technology">Technology</a></li>
-                <li><a href="/cloud">Cloud Solutions</a></li>
-                <li><a href="/software">Software</a></li>
-                <li><a href="/support">IT Support</a></li>
-                <li><a href="/products">IT Products</a></li>
-                <li><a href="/academic">Academic</a></li>
+                <li>
+                  <a href="/technology">Technology</a>
+                </li>
+                <li>
+                  <a href="/cloud">Cloud Solutions</a>
+                </li>
+                <li>
+                  <a href="/software">Software</a>
+                </li>
+                <li>
+                  <a href="/support">IT Support</a>
+                </li>
+                <li>
+                  <a href="/products">IT Products</a>
+                </li>
+                <li>
+                  <a href="/academic">Academic</a>
+                </li>
               </ul>
             </div>
 
@@ -94,8 +132,8 @@ const Footer = () => {
               <div className="newsletter">
                 <h4 className="newsletter-title">Stay Updated</h4>
                 <div className="newsletter-form">
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     placeholder="Enter your email"
                     className="email-input"
                   />
@@ -123,12 +161,11 @@ const Footer = () => {
         .footer-wrapper {
           position: relative;
           width: 100vw;
-          min-height: 500px;
+          min-height: auto;
           overflow: hidden;
           color: white;
-          font-family: 'Outfit', 'Segoe UI', sans-serif;
-          margin-left: calc(-50vw + 50%);
-          margin-right: calc(-50vw + 50%);
+          font-family: "Outfit", "Segoe UI", sans-serif;
+          box-sizing: border-box;
         }
 
         .footer-svg {
@@ -151,19 +188,20 @@ const Footer = () => {
           position: relative;
           z-index: 1;
           width: 100%;
-          height: 100%;
-          display: flex;
+          display: block;
           flex-direction: column;
           justify-content: center;
           padding-top: 80px;
           padding-bottom: 40px;
+          box-sizing: border-box;
         }
 
         .container {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 10px 10px;
+          padding: 0 20px;
           width: 100%;
+          box-sizing: border-box;
         }
 
         .footer-grid {
@@ -220,13 +258,22 @@ const Footer = () => {
           border-color: rgba(255, 255, 255, 0.4);
         }
 
-        .facebook:hover { background: #1877F2; border-color: #1877F2; }
-        .twitter:hover { background: #1DA1F2; border-color: #1DA1F2; }
-        .instagram:hover { 
-          background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF); 
-          border-color: #DD2A7B; 
+        .facebook:hover {
+          background: #1877f2;
+          border-color: #1877f2;
         }
-        .linkedin:hover { background: #0A66C2; border-color: #0A66C2; }
+        .twitter:hover {
+          background: #1da1f2;
+          border-color: #1da1f2;
+        }
+        .instagram:hover {
+          background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af);
+          border-color: #dd2a7b;
+        }
+        .linkedin:hover {
+          background: #0a66c2;
+          border-color: #0a66c2;
+        }
 
         /* Footer Sections */
         .footer-section {
@@ -262,7 +309,7 @@ const Footer = () => {
         }
 
         .footer-links a:hover {
-          color: rgb(245, 149, 32) ;
+          color: rgb(245, 149, 32);
           transform: translateX(8px);
         }
 
@@ -287,7 +334,7 @@ const Footer = () => {
         .contact-item i {
           font-size: 14px;
           width: 16px;
-          color: rgb(245, 149, 32) ;
+          color: rgb(245, 149, 32);
         }
 
         .newsletter-title {
@@ -314,7 +361,7 @@ const Footer = () => {
         }
 
         .newsletter-form:focus-within {
-          border-color: rgb(245, 149, 32) ;
+          border-color: rgb(245, 149, 32);
           box-shadow: 0 0 0 2px rgba(51, 255, 148, 0.2);
         }
 
@@ -341,7 +388,11 @@ const Footer = () => {
           top: 2px;
           height: 36px;
           padding: 0 18px;
-          background: linear-gradient(135deg, rgb(245, 149, 32) , rgb(245, 149, 32) );
+          background: linear-gradient(
+            135deg,
+            rgb(245, 149, 32),
+            rgb(245, 149, 32)
+          );
           color: #1a1a2e;
           border: none;
           border-radius: 18px;
@@ -354,7 +405,11 @@ const Footer = () => {
         }
 
         .subscribe-btn:hover {
-          background: linear-gradient(135deg, rgb(245, 149, 32) , rgb(245, 149, 32) );
+          background: linear-gradient(
+            135deg,
+            rgb(245, 149, 32),
+            rgb(245, 149, 32)
+          );
           transform: translateY(-1px);
           box-shadow: 0 4px 12px rgba(51, 255, 148, 0.3);
         }
@@ -398,7 +453,7 @@ const Footer = () => {
         }
 
         .footer-bottom-links a:hover {
-          color: rgb(245, 149, 32) ;
+          color: rgb(245, 149, 32);
         }
 
         /* Mobile Responsive Design (up to 768px) */
