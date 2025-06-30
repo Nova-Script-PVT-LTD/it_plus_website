@@ -788,9 +788,16 @@ export default function BlogPage() {
           .main-featured-post-card .post-title {
             font-size: 1.5em;
           }
+          
         }
 
         @media (max-width: 480px) {
+          .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:80px
+        }
           .blog-hero-section {
             padding: 80px 20px 60px;
           }
@@ -814,6 +821,7 @@ export default function BlogPage() {
           .regular-post-card .post-info {
             padding: 20px;
           }
+          
         }
       `}</style>
     </div>

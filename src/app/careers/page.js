@@ -739,6 +739,12 @@ export default function CareersPage() {
           font-size: clamp(16px, 2.2vw, 20px);
           padding: clamp(5px, 0.8vw, 7px);
         }
+        .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:80px
+        }
       }
     `;
     

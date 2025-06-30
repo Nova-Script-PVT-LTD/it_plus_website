@@ -729,6 +729,13 @@ System: .lightbox-close:hover {
           .lightbox-image-container {
             max-height: clamp(50vh, 65vh, 75vh);
           }
+          
+          .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:80px
+        }
         }
       `}</style>
     </div>

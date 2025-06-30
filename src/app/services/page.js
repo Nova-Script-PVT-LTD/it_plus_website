@@ -741,6 +741,13 @@ export default function ServicesPage() {
         .section-text p {
           font-size: 16px;
         }
+        
+        .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:80px
+        }
       }
     `;
 
