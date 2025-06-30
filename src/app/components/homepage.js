@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import Footer from "./footer";
 import Header from "./header";
 import HeroSection from "./hero_section";
-import Footer from "./footer";
 import WhoSection from "./who";
 
 export default function Home() {
@@ -1317,7 +1317,7 @@ export default function Home() {
               <div className="feature-card tall-card">
                 <div className="feature-icon">
                   <img
-                    src="/images/icons/2.png"
+                    src="/images/icons/2.svg"
                     alt="Expert Team"
                     style={{ width: "130px", height: "130px" }}
                   />
@@ -1330,7 +1330,7 @@ export default function Home() {
               <div className="feature-card tall-card">
                 <div className="feature-icon">
                   <img
-                    src="/images/icons/3.png"
+                    src="/images/icons/3.svg"
                     alt="Focus on Quality"
                     style={{ width: "130px", height: "130px" }}
                   />
@@ -1343,7 +1343,7 @@ export default function Home() {
               <div className="feature-card short-card mb-4">
                 <div className="feature-icon">
                   <img
-                    src="/images/icons/4.png"
+                    src="/images/icons/4.svg"
                     alt="Innovative Solutions"
                     style={{ width: "130px", height: "130px" }}
                   />
@@ -1353,7 +1353,7 @@ export default function Home() {
               <div className="feature-card short-card">
                 <div className="feature-icon">
                   <img
-                    src="/images/icons/5.png"
+                    src="/images/icons/5.svg"
                     alt="Job Placement"
                     style={{ width: "130px", height: "130px" }}
                   />
@@ -1366,7 +1366,7 @@ export default function Home() {
               <div className="feature-card tall-card">
                 <div className="feature-icon">
                   <img
-                    src="/images/icons/6.png"
+                    src="/images/icons/6.svg"
                     alt="Certified Trainers"
                     style={{ width: "130px", height: "130px" }}
                   />
@@ -1379,7 +1379,7 @@ export default function Home() {
               <div className="feature-card tall-card">
                 <div className="feature-icon">
                   <img
-                    src="/images/icons/3.png"
+                    src="/images/icons/7.svg"
                     alt="24x7 Support"
                     style={{ width: "130px", height: "130px" }}
                   />
