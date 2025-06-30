@@ -1,8 +1,69 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Header from '../components/header';
 import Footer from '../components/footer';
+
+// Counter component that animates numbers
+const AnimatedCounter = ({ end, duration = 2000, suffix = '' }) => {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const counterRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => {
+      if (counterRef.current) {
+        observer.unobserve(counterRef.current);
+      }
+    };
+  }, [isVisible]);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTime;
+    const startCount = 0;
+    const endCount = parseInt(end);
+
+    const animateCount = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      
+      // Easing function for smooth animation
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentCount = Math.floor(startCount + (endCount - startCount) * easeOutQuart);
+      
+      setCount(currentCount);
+
+      if (progress < 1) {
+        requestAnimationFrame(animateCount);
+      } else {
+        setCount(endCount);
+      }
+    };
+
+    requestAnimationFrame(animateCount);
+  }, [isVisible, end, duration]);
+
+  return (
+    <h3 ref={counterRef}>
+      {count}{suffix}
+    </h3>
+  );
+};
 
 export default function AboutUsPage() {
   // Inject CSS using useEffect
@@ -73,10 +134,43 @@ export default function AboutUsPage() {
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-item::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        transition: all 0.6s ease;
+        opacity: 0;
       }
 
       .stat-item:hover {
-        transform: translateY(-5px);
+        transform: translateY(-5px) scale(1.02);
+      }
+
+      .stat-item:hover::before {
+        animation: shimmer 0.6s ease-in-out;
+      }
+
+      @keyframes shimmer {
+        0% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+          opacity: 0;
+        }
       }
 
       .stat-item h3 {
@@ -84,14 +178,17 @@ export default function AboutUsPage() {
         font-weight: 700;
         color: black; /* Gold color for numbers */
         margin-bottom: 8px;
+        position: relative;
+        z-index: 1;
       }
 
       .stat-item p {
         font-size: 16px;
         color: black;
         margin: 0;
+        position: relative;
+        z-index: 1;
       }
-
 
       /* About Section (keeping the existing structure for "About Us" heading and main text) */
       .about-section {
@@ -238,7 +335,6 @@ export default function AboutUsPage() {
       .address-tag.address-1 { top: 35%; left: 25%; }
       .address-tag.address-2 { top: 60%; left: 65%; }
       .address-tag.address-3 { top: 75%; left: 85%; }
-
 
       /* Mission Vision Section */
       .mission-vision-section {
@@ -587,6 +683,13 @@ export default function AboutUsPage() {
         .working-card {
           padding: 25px 20px;
         }
+        
+        .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:80px
+        }
       }
     `;
     
@@ -621,27 +724,27 @@ export default function AboutUsPage() {
             </div>
             <div className="stats-grid">
               <div className="stat-item">
-                <h3>10+</h3>
+                <AnimatedCounter end="10" suffix="+" />
                 <p>Years</p>
               </div>
               <div className="stat-item">
-                <h3>800+</h3>
+                <AnimatedCounter end="800" suffix="+" />
                 <p>Clients</p>
               </div>
               <div className="stat-item">
-                <h3>300+</h3>
+                <AnimatedCounter end="300" suffix="+" />
                 <p>Projects</p>
               </div>
               <div className="stat-item">
-                <h3>50+</h3>
+                <AnimatedCounter end="50" suffix="+" />
                 <p>Staff</p>
               </div>
               <div className="stat-item">
-                <h3>100+</h3>
+                <AnimatedCounter end="100" suffix="+" />
                 <p>Brands</p>
               </div>
               <div className="stat-item">
-                <h3>200+</h3>
+                <AnimatedCounter end="200" suffix="+" />
                 <p>Training</p>
               </div>
             </div>
