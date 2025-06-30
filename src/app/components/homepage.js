@@ -867,6 +867,13 @@ export default function Home() {
     width: 40px;
     height: 40px;
   }
+  
+  .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:80px
+        }
 }
 
 

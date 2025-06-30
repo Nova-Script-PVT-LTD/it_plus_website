@@ -223,9 +223,9 @@ export default function Header() {
           height: 36px; /* Default height */
           display: flex;
           align-items: center;
-          justify-content: center; /* Center the text when it's the only item */
+          justify-content: space-between; /* Center the text when it's the only item */
           padding: 0 58px;
-          flex-wrap: nowrap; /* Prevent wrapping by default */
+          
         }
         
         .green-bar-text {
@@ -586,6 +586,7 @@ export default function Header() {
         {/* Green Bar */}
         <div className="green-bar">
           <p className="green-bar-text">Join ITPlus at Connect Brasil and discover how you can transform your business</p>
+          <p className="green-bar-text">{'====>'}Learn More</p>
           {/* REMOVED "Contact Now" button as per your instruction */}
         </div>
       </div>
