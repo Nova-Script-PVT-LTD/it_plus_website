@@ -45,7 +45,11 @@ const Footer = () => {
           <div className="footer-grid">
             {/* Brand Column */}
             <div className="footer-brand">
-              <h2 className="brand-logo">IT PLUS</h2>
+              <img 
+               src="/images/it_plus_logo.png" 
+               alt="IT Plus Logo" 
+               className="logo-image"
+               />
               <p className="brand-description">
                 Global destination for specialized IT solutions, ideal for
                 startups and businesses seeking to enhance their digital
