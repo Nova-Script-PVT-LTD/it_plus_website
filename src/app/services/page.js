@@ -742,12 +742,14 @@ export default function ServicesPage() {
           font-size: 16px;
         }
         
-        .footer-brand {
-          font-size: 26px;
-          font-weight: 400;
-          margin-bottom: 20px;
-          padding-top:80px
-        }
+       .footer-brand {
+        font-size: 26px;
+        font-weight: 400;
+        margin-bottom: 20px;
+        padding-top: 80px;
+        color: #7A4ADF;
+        text-align: center;
+      }
       }
     `;
 

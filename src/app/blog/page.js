@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-
 export default function BlogPage() {
   const [selectedBlog, setSelectedBlog] = useState(null);
 
   const latestPosts = [
     {
       id: 1,
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop",
       date: "May 9th, 2023",
       title: "The most Popular Business Of the Year",
       readTime: "2 Min Read",
@@ -34,11 +34,12 @@ export default function BlogPage() {
         
         <h2>Future Outlook</h2>
         <p>As we look ahead, these businesses continue to set trends and influence industry standards. Their success stories provide valuable insights for other organizations looking to achieve similar growth and recognition in their respective markets.</p>
-      `
+      `,
     },
     {
       id: 2,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=150&h=100&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=150&h=100&fit=crop",
       date: "Apr 19th, 2023",
       title: "Digital Transformation Trends",
       readTime: "3 Min Read",
@@ -50,11 +51,12 @@ export default function BlogPage() {
         
         <h2>Emerging Technologies</h2>
         <p>From artificial intelligence to blockchain, emerging technologies are reshaping industries and creating new opportunities for innovation and growth.</p>
-      `
+      `,
     },
     {
       id: 3,
-      image: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=150&h=100&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=150&h=100&fit=crop",
       date: "Apr 12th, 2023",
       title: "Sustainable Business Practices",
       readTime: "4 Min Read",
@@ -66,65 +68,71 @@ export default function BlogPage() {
         
         <h2>Implementation Strategies</h2>
         <p>Learn practical approaches to implementing sustainable practices in your organization, from energy efficiency to waste reduction.</p>
-      `
+      `,
     },
   ];
 
   const regularPosts = [
     {
       id: 4,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop",
       date: "May 9th, 2023",
       title: "Remote Work Revolution",
       readTime: "5 Min Read",
       author: "Sarah Wilson",
-      content: `<h2>The Future of Work</h2><p>Remote work has transformed from a temporary solution to a permanent fixture in the modern workplace...</p>`
+      content: `<h2>The Future of Work</h2><p>Remote work has transformed from a temporary solution to a permanent fixture in the modern workplace...</p>`,
     },
     {
       id: 5,
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop",
       date: "Apr 27th, 2023",
       title: "Data Analytics in Business",
       readTime: "6 Min Read",
       author: "David Chen",
-      content: `<h2>Making Data-Driven Decisions</h2><p>In today's competitive landscape, businesses that leverage data analytics gain significant advantages...</p>`
+      content: `<h2>Making Data-Driven Decisions</h2><p>In today's competitive landscape, businesses that leverage data analytics gain significant advantages...</p>`,
     },
     {
       id: 6,
-      image: "https://images.unsplash.com/photo-1553484771-371a605b060b?w=400&h=250&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1553484771-371a605b060b?w=400&h=250&fit=crop",
       date: "Apr 20th, 2023",
       title: "Cybersecurity Best Practices",
       readTime: "4 Min Read",
       author: "Lisa Rodriguez",
-      content: `<h2>Protecting Your Business</h2><p>As cyber threats evolve, businesses must stay ahead with robust security measures...</p>`
+      content: `<h2>Protecting Your Business</h2><p>As cyber threats evolve, businesses must stay ahead with robust security measures...</p>`,
     },
     {
       id: 7,
-      image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop",
       date: "May 9th, 2023",
       title: "Team Collaboration Tools",
       readTime: "3 Min Read",
       author: "Tom Anderson",
-      content: `<h2>Enhancing Productivity</h2><p>Discover the latest tools and strategies for improving team collaboration in modern workplaces...</p>`
+      content: `<h2>Enhancing Productivity</h2><p>Discover the latest tools and strategies for improving team collaboration in modern workplaces...</p>`,
     },
     {
       id: 8,
-      image: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=250&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=250&fit=crop",
       date: "Apr 27th, 2023",
       title: "Customer Experience Excellence",
       readTime: "5 Min Read",
       author: "Emily Davis",
-      content: `<h2>Delighting Customers</h2><p>Learn how leading companies create exceptional customer experiences that drive loyalty and growth...</p>`
+      content: `<h2>Delighting Customers</h2><p>Learn how leading companies create exceptional customer experiences that drive loyalty and growth...</p>`,
     },
     {
       id: 9,
-      image: "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=250&fit=crop",
+      image:
+        "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=250&fit=crop",
       date: "Apr 20th, 2023",
       title: "Innovation in Startups",
       readTime: "4 Min Read",
       author: "Alex Thompson",
-      content: `<h2>Startup Success Stories</h2><p>Explore how innovative startups are disrupting traditional industries and creating new markets...</p>`
-    }
+      content: `<h2>Startup Success Stories</h2><p>Explore how innovative startups are disrupting traditional industries and creating new markets...</p>`,
+    },
   ];
 
   const allPosts = [...latestPosts, ...regularPosts];
@@ -145,37 +153,41 @@ export default function BlogPage() {
             ← Back to Blog
           </button>
         </div>
-        
+
         <article className="blog-detail-content">
           <div className="container">
             <div className="blog-detail-meta">
               <span className="blog-detail-date">{selectedBlog.date}</span>
-              <span className="blog-detail-author">By {selectedBlog.author}</span>
-              <span className="blog-detail-read-time">{selectedBlog.readTime}</span>
+              <span className="blog-detail-author">
+                By {selectedBlog.author}
+              </span>
+              <span className="blog-detail-read-time">
+                {selectedBlog.readTime}
+              </span>
             </div>
-            
+
             <h1 className="blog-detail-title">{selectedBlog.title}</h1>
-            
+
             <div className="blog-detail-image-container">
-              <img 
-                src={selectedBlog.image} 
+              <img
+                src={selectedBlog.image}
                 alt={selectedBlog.title}
                 className="blog-detail-image"
               />
             </div>
-            
-            <div 
+
+            <div
               className="blog-detail-text"
               dangerouslySetInnerHTML={{ __html: selectedBlog.content }}
             />
-            
+
             <div className="blog-detail-footer">
               <div className="blog-tags">
                 <span className="tag">Business</span>
                 <span className="tag">Technology</span>
                 <span className="tag">Innovation</span>
               </div>
-              
+
               <div className="blog-share">
                 <span>Share:</span>
                 <div className="share-buttons">
@@ -355,9 +367,15 @@ export default function BlogPage() {
             transform: scale(1.1);
           }
 
-          .facebook { background: #1877f2; }
-          .twitter { background: #1da1f2; }
-          .linkedin { background: #0077b5; }
+          .facebook {
+            background: #1877f2;
+          }
+          .twitter {
+            background: #1da1f2;
+          }
+          .linkedin {
+            background: #0077b5;
+          }
 
           @media (max-width: 768px) {
             .container {
@@ -384,15 +402,16 @@ export default function BlogPage() {
   }
 
   return (
-   
-
     <div className="blog-page-container">
-        <Header />
+      <Header />
       {/* Blog Hero Section - Clean Design */}
       <section className="blog-hero-section">
         <div className="blog-hero-content">
           <h1>Blog</h1>
-          <p>Insights, trends, and stories from the world of business and technology</p>
+          <p>
+            Insights, trends, and stories from the world of business and
+            technology
+          </p>
         </div>
       </section>
 
@@ -404,7 +423,10 @@ export default function BlogPage() {
             <h2 className="latest-post-title">Latest Post</h2>
           </div>
           <div className="latest-post-grid">
-            <div className="main-featured-post-card" onClick={() => handlePostClick(latestPosts[0])}>
+            <div
+              className="main-featured-post-card"
+              onClick={() => handlePostClick(latestPosts[0])}
+            >
               <img
                 src={latestPosts[0].image}
                 alt={latestPosts[0].title}
@@ -414,14 +436,20 @@ export default function BlogPage() {
                 <span className="post-date">{latestPosts[0].date}</span>
                 <h3 className="post-title">{latestPosts[0].title}</h3>
                 <div className="post-meta-bottom">
-                  <span className="post-read-time">{latestPosts[0].readTime}</span>
+                  <span className="post-read-time">
+                    {latestPosts[0].readTime}
+                  </span>
                   <div className="read-more">Read More</div>
                 </div>
               </div>
             </div>
             <div className="side-recent-posts">
               {latestPosts.slice(1).map((post) => (
-                <div key={post.id} className="small-post-card" onClick={() => handlePostClick(post)}>
+                <div
+                  key={post.id}
+                  className="small-post-card"
+                  onClick={() => handlePostClick(post)}
+                >
                   <img
                     src={post.image}
                     alt={post.title}
@@ -431,7 +459,9 @@ export default function BlogPage() {
                     <span className="small-post-date">{post.date}</span>
                     <h4 className="small-post-title">{post.title}</h4>
                     <div className="small-post-meta-bottom">
-                      <span className="small-post-read-time">{post.readTime}</span>
+                      <span className="small-post-read-time">
+                        {post.readTime}
+                      </span>
                       <div className="small-read-more">Read More</div>
                     </div>
                   </div>
@@ -451,7 +481,11 @@ export default function BlogPage() {
           </div>
           <div className="regular-posts-grid">
             {regularPosts.map((post) => (
-              <div key={post.id} className="regular-post-card" onClick={() => handlePostClick(post)}>
+              <div
+                key={post.id}
+                className="regular-post-card"
+                onClick={() => handlePostClick(post)}
+              >
                 <img src={post.image} alt={post.title} className="post-image" />
                 <div className="post-info">
                   <span className="post-date">{post.date}</span>
@@ -467,7 +501,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      <Footer/>
+      <Footer />
 
       <style jsx>{`
         .blog-page-container {
@@ -754,13 +788,24 @@ export default function BlogPage() {
           font-weight: 600;
         }
 
+        /* Footer Brand Styles */
+        .footer-brand {
+          font-family: "Inter", sans-serif;
+          font-size: 30px;
+          font-weight: 500;
+          margin-bottom: 30px;
+          padding-top: 100px;
+          color: #4a00e0;
+          text-align: center;
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 992px) {
           .latest-post-grid {
             grid-template-columns: 1fr;
             gap: 30px;
           }
-          
+
           .side-recent-posts {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -788,16 +833,9 @@ export default function BlogPage() {
           .main-featured-post-card .post-title {
             font-size: 1.5em;
           }
-          
         }
 
         @media (max-width: 480px) {
-          .footer-brand {
-          font-size: 26px;
-          font-weight: 400;
-          margin-bottom: 20px;
-          padding-top:80px
-        }
           .blog-hero-section {
             padding: 80px 20px 60px;
           }
@@ -821,7 +859,14 @@ export default function BlogPage() {
           .regular-post-card .post-info {
             padding: 20px;
           }
-          
+          .footer-brand {
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            padding-top: 80px;
+            color: #4a00e0;
+            text-align: center;
+          }
         }
       `}</style>
     </div>
