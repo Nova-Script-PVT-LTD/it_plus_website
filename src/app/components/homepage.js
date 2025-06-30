@@ -1532,7 +1532,7 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="col-auto">
+              {/* <div className="col-auto">
                 <div className="client-logo">
                   <img src="/images/clients/10.png" alt="Client 10" />
                 </div>
@@ -1541,7 +1541,7 @@ export default function Home() {
                 <div className="client-logo">
                   <img src="/images/clients/11.png" alt="Client 11" />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
