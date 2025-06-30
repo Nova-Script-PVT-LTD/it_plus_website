@@ -106,12 +106,13 @@ const WhoSection = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 20px;
-          flex-wrap: wrap;
+          gap: 0.5rem; 
+          flex-wrap: nowrap;
         }
 
         /* Logo integrated in title */
         .logo-in-title {
+        height: 1em;
           display: inline-flex;
           align-items: center;
         }
