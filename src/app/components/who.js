@@ -31,7 +31,7 @@ const WhoSection = () => {
             {/* Title with integrated logo */}
             <div className="who-title-container">
               <h2 className="who-main-title">
-                Who is 
+                Who <span style={{ color: '#ef8f11' }}>is</span> 
                 <span className="logo-in-title">
                   <img src="/images/it_plus.png" alt="ItPlus" className="title-logo" />
                 </span>
@@ -117,8 +117,8 @@ const WhoSection = () => {
         }
 
         .title-logo {
-          width: 80px;
-          height: 80px;
+          width: 120px;
+          height: 120px;
           object-fit: contain;
           border-radius: 10px;
           padding: 8px;

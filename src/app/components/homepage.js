@@ -1092,7 +1092,7 @@ export default function Home() {
           <div className="decorative-line">
             <div className="dot"></div>
             <div className="line"></div>
-            <h2 className="section-title mx-4">What We Do</h2>
+            <h2 className="section-title mx-4">What <span style={{ color: '#ef8f11' }}>We</span> Do</h2>
             <div className="line"></div>
             <div className="dot"></div>
           </div>
@@ -1304,7 +1304,7 @@ export default function Home() {
           <div className="decorative-line">
             <div className="dot"></div>
             <div className="line"></div>
-            <h2 className="section-title mx-4">Why Choose Us</h2>
+            <h2 className="section-title mx-4">Why <span style={{ color: '#ef8f11' }}>Choose</span> Us</h2>
             <div className="line"></div>
             <div className="dot"></div>
           </div>
@@ -1394,7 +1394,7 @@ export default function Home() {
       {/* Our Clients Section */}
       <section className="clients-section">
         <div className="container">
-          <h2 className="section-title">Our Clients In Success</h2>
+          <h2 className="section-title">Our Clients In <span style={{ color: '#ef8f11' }}>Success</span></h2>
           <div className="clients-container">
             <div className="row justify-content-center mb-4">
               <div className="col-auto">
@@ -1543,7 +1543,7 @@ export default function Home() {
       {/* News Section */}
       <section className="news-section">
         <div className="container">
-          <h2 className="section-title">News and Updates</h2>
+          <h2 className="section-title">News and <span style={{ color: '#ef8f11' }}>Updates</span></h2>
           <div className="row">
             <div className="col-md-4">
               <div className="news-card">
@@ -1614,7 +1614,7 @@ export default function Home() {
       {/* Testimonials Section */}
       <section className="testimonials-section">
         <div className="container">
-          <h2 className="section-title">What Our Clients Say</h2>
+          <h2 className="section-title">What Our <span style={{ color: '#ef8f11' }}>Clients</span> Say</h2>
           <div className="row">
             <div className="col-md-4">
               <div className="testimonial-card">

@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 
 export default function HeroSection() {
   return (
@@ -240,7 +239,7 @@ export default function HeroSection() {
         
         <div className="hero-content">
           <h1 className="hero-title">
-            SIMPLYFYING IT WITH
+            SIMPLYFYING <span style={{ color: '#ef8f11' }}>IT</span> WITH
             <img 
               src="/images/hero_logo.png" 
               alt="IT Plus Logo" 
