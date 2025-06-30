@@ -70,8 +70,8 @@ export default function HeroSection() {
 }
         
         .hero-logo-image {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
   
   padding: 15px;

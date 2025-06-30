@@ -1,132 +1,130 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Footer from '../components/footer';
 import Header from '../components/header';
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [galleryImages, setGalleryImages] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const galleryImages = [
-    { 
-      id: 1, 
-      src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop', 
-      alt: 'Modern office space', 
-      category: 'office',
-      title: 'Modern Office Design'
-    },
-    { 
-      id: 2, 
-      src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=600&fit=crop', 
-      alt: 'Team collaboration', 
-      category: 'team',
-      title: 'Team Collaboration'
-    },
-    { 
-      id: 3, 
-      src: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop', 
-      alt: 'Technology workspace', 
-      category: 'technology',
-      title: 'Technology Workspace'
-    },
-    { 
-      id: 4, 
-      src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop', 
-      alt: 'Business meeting', 
-      category: 'business',
-      title: 'Business Strategy Meeting'
-    },
-    { 
-      id: 5, 
-      src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop', 
-      alt: 'Creative brainstorming', 
-      category: 'team',
-      title: 'Creative Brainstorming'
-    },
-    { 
-      id: 6, 
-      src: 'https://images.unsplash.com/photo-1553484771-047a44eee27a?w=800&h=600&fit=crop', 
-      alt: 'Data analytics', 
-      category: 'technology',
-      title: 'Data Analytics Dashboard'
-    },
-    { 
-      id: 7, 
-      src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=600&fit=crop', 
-      alt: 'Modern workspace', 
-      category: 'office',
-      title: 'Contemporary Workspace'
-    },
-    { 
-      id: 8, 
-      src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop', 
-      alt: 'Project planning', 
-      category: 'business',
-      title: 'Strategic Project Planning'
-    },
-    { 
-      id: 9, 
-      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&h=600&fit=crop', 
-      alt: 'Cloud computing', 
-      category: 'technology',
-      title: 'Cloud Computing Solutions'
-    },
-    { 
-      id: 10, 
-      src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-      alt: 'Team leadership', 
-      category: 'team',
-      title: 'Leadership Development'
-    },
-    { 
-      id: 11, 
-      src: 'https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=800&h=600&fit=crop', 
-      alt: 'Innovation hub', 
-      category: 'office',
-      title: 'Innovation Hub Design'
-    },
-    { 
-      id: 12, 
-      src: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=800&h=600&fit=crop', 
-      alt: 'Digital transformation', 
-      category: 'technology',
-      title: 'Digital Transformation'
-    },
-    { 
-      id: 13, 
-      src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop', 
-      alt: 'Business growth', 
-      category: 'business',
-      title: 'Business Growth Analytics'
-    },
-    { 
-      id: 14, 
-      src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop', 
-      alt: 'Team success', 
-      category: 'team',
-      title: 'Team Success Celebration'
-    },
-    { 
-      id: 15, 
-      src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop', 
-      alt: 'Executive office', 
-      category: 'office',
-      title: 'Executive Office Suite'
-    },
-  ];
+  // PocketBase API configuration
+  const POCKETBASE_URL = 'http://127.0.0.1:8090';
 
-  const categories = [
-    { id: 'all', name: 'All Images', count: galleryImages.length },
-    { id: 'office', name: 'Office Spaces', count: galleryImages.filter(img => img.category === 'office').length },
-    { id: 'team', name: 'Team Work', count: galleryImages.filter(img => img.category === 'team').length },
-    { id: 'technology', name: 'Technology', count: galleryImages.filter(img => img.category === 'technology').length },
-    { id: 'business', name: 'Business', count: galleryImages.filter(img => img.category === 'business').length },
-  ];
+  // Fetch gallery images from PocketBase
+  useEffect(() => {
+    const fetchGalleryImages = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(`${POCKETBASE_URL}/api/collections/gallary/records?sort=-created`);
+        console.log('🌐 API Response Status:', response.status);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('✅ Successfully fetched', data.items.length, 'gallery images');
+        
+        // Transform data to match component structure - DIRECTLY use external URLs
+        const transformedImages = data.items.map((image, index) => {
+          console.log(`🔄 Processing image ${index + 1}:`, {
+            id: image.id,
+            originalSrc: image.src,
+            category: image.category,
+            title: image.title
+          });
+          
+          // DIRECTLY use the src field since it contains external URLs
+          const finalImageUrl = image.src; // No processing needed for external URLs
+          
+          console.log(`✅ Final URL for image ${index + 1}:`, finalImageUrl);
+          
+          return {
+            id: image.id,
+            src: finalImageUrl, // Direct external URL
+            alt: image.alt || `Gallery image ${index + 1}`,
+            category: image.category || 'general',
+            title: image.title || `Image ${index + 1}`
+          };
+        });
+
+        console.log('📊 Total transformed images:', transformedImages.length);
+        setGalleryImages(transformedImages);
+
+        // Generate categories dynamically from the fetched data
+        const uniqueCategories = [...new Set(transformedImages.map(img => img.category))];
+        console.log('📂 Found categories:', uniqueCategories);
+        
+        const categoriesWithCounts = [
+          { id: 'all', name: 'All Images', count: transformedImages.length },
+          ...uniqueCategories.map(cat => ({
+            id: cat,
+            name: cat.charAt(0).toUpperCase() + cat.slice(1),
+            count: transformedImages.filter(img => img.category === cat).length
+          }))
+        ];
+
+        console.log('🏷️ Categories with counts:', categoriesWithCounts);
+        setCategories(categoriesWithCounts);
+        setError(null);
+      } catch (err) {
+        console.error('❌ Error fetching gallery images:', err);
+        setError('Failed to load gallery images. Please try again later.');
+        
+        // Fallback to default data if API fails
+        const fallbackImages = [
+          { 
+            id: 1, 
+            src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop', 
+            alt: 'Modern office space', 
+            category: 'office',
+            title: 'Modern Office Design'
+          },
+          { 
+            id: 2, 
+            src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=600&fit=crop', 
+            alt: 'Team collaboration', 
+            category: 'team',
+            title: 'Team Collaboration'
+          },
+          { 
+            id: 3, 
+            src: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop', 
+            alt: 'Technology workspace', 
+            category: 'technology',
+            title: 'Technology Workspace'
+          }
+        ];
+
+        setGalleryImages(fallbackImages);
+        setCategories([
+          { id: 'all', name: 'All Images', count: fallbackImages.length },
+          { id: 'office', name: 'Office', count: 1 },
+          { id: 'team', name: 'Team', count: 1 },
+          { id: 'technology', name: 'Technology', count: 1 }
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchGalleryImages();
+  }, []);
 
   const filteredImages = selectedCategory === 'all' 
     ? galleryImages 
     : galleryImages.filter(image => image.category === selectedCategory);
+
+  console.log('🔍 Current filter state:', {
+    selectedCategory,
+    totalImages: galleryImages.length,
+    filteredCount: filteredImages.length
+  });
 
   const openLightbox = (image) => {
     setSelectedImage(image);
@@ -147,6 +145,122 @@ export default function GalleryPage() {
     const prevIndex = (currentIndex - 1 + filteredImages.length) % filteredImages.length;
     setSelectedImage(filteredImages[prevIndex]);
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="gallery-page-container">
+        <Header />
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <p>Loading gallery images...</p>
+        </div>
+        <Footer />
+        
+        <style jsx>{`
+          .gallery-page-container {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+          }
+          
+          .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+            gap: 20px;
+          }
+          
+          .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4a00e0;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+          }
+          
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="gallery-page-container">
+        <Header />
+        <div className="error-container">
+          <div className="error-message">
+            <h2>Oops! Something went wrong</h2>
+            <p>{error}</p>
+            <button onClick={() => window.location.reload()} className="retry-button">
+              Try Again
+            </button>
+          </div>
+        </div>
+        <Footer />
+        
+        <style jsx>{`
+          .gallery-page-container {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+          }
+          
+          .error-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50vh;
+            padding: 20px;
+          }
+          
+          .error-message {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+          }
+          
+          .error-message h2 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+          }
+          
+          .error-message p {
+            color: #666;
+            margin-bottom: 25px;
+          }
+          
+          .retry-button {
+            background: #4a00e0;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+          }
+          
+          .retry-button:hover {
+            background: #3a00b0;
+          }
+        `}</style>
+      </div>
+    );
+  }
 
   return (
     <div className="gallery-page-container">
@@ -172,7 +286,10 @@ export default function GalleryPage() {
               <button
                 key={category.id}
                 className={`filter-tab ${selectedCategory === category.id ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(category.id)}
+                onClick={() => {
+                  console.log('🎯 Clicked category:', category.id);
+                  setSelectedCategory(category.id);
+                }}
               >
                 {category.name}
                 <span className="count">({category.count})</span>
@@ -185,23 +302,69 @@ export default function GalleryPage() {
       {/* Gallery Grid Section */}
       <section className="gallery-grid-section">
         <div className="container">
-          <div className="image-grid">
-            {filteredImages.map((image) => (
-              <div 
-                key={image.id} 
-                className="image-item"
-                onClick={() => openLightbox(image)}
-              >
-                <div className="image-overlay">
-                  <img src={image.src} alt={image.alt} />
-                  <div className="image-info">
-                    <h3>{image.title}</h3>
-                    <div className="zoom-icon">🔍</div>
+          {/* Debug info for troubleshooting */}
+          <div style={{
+            marginBottom: '20px', 
+            padding: '15px', 
+            background: '#f0f0f0', 
+            borderRadius: '8px',
+            fontSize: '14px',
+            border: '1px solid #ddd'
+          }}>
+            <strong>🔧 Debug Info:</strong><br/>
+            Selected Category: <strong>{selectedCategory}</strong><br/>
+            Total Images: <strong>{galleryImages.length}</strong><br/>
+            Filtered Images: <strong>{filteredImages.length}</strong><br/>
+            Available Categories: <strong>{categories.map(c => `${c.id}(${c.count})`).join(', ')}</strong>
+          </div>
+          
+          {filteredImages.length > 0 ? (
+            <div className="image-grid">
+              {filteredImages.map((image, index) => (
+                <div 
+                  key={image.id} 
+                  className="image-item"
+                  onClick={() => openLightbox(image)}
+                >
+                  <div className="image-overlay">
+                    <img 
+                      src={image.src} 
+                      alt={image.alt}
+                      onError={(e) => {
+                        console.log('❌ Image failed to load:', image.src);
+                        // Use a different fallback for each image
+                        const fallbacks = [
+                          "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop",
+                          "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=600&fit=crop",
+                          "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
+                          "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop"
+                        ];
+                        e.target.src = fallbacks[index % fallbacks.length];
+                      }}
+                      onLoad={() => {
+                        console.log('✅ Image loaded successfully:', image.src.substring(0, 50) + '...');
+                      }}
+                    />
+                    <div className="image-info">
+                      <h3>{image.title}</h3>
+                      <p style={{fontSize: '0.8em', margin: '5px 0', opacity: 0.8}}>
+                        {image.category}
+                      </p>
+                      <div className="zoom-icon">🔍</div>
+                    </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          ) : (
+            <div className="no-images-message">
+              <h3>No images found in this category</h3>
+              <p>Try selecting a different category or check back later.</p>
+              <div style={{fontSize: '0.9em', color: '#999', marginTop: '10px'}}>
+                <strong>Available:</strong> {categories.map(c => c.id).join(', ')}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -214,7 +377,13 @@ export default function GalleryPage() {
             <button className="lightbox-next" onClick={nextImage}>›</button>
             
             <div className="lightbox-image-container">
-              <img src={selectedImage.src} alt={selectedImage.alt} />
+              <img 
+                src={selectedImage.src} 
+                alt={selectedImage.alt}
+                onError={(e) => {
+                  e.target.src = "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop";
+                }}
+              />
             </div>
             
             <div className="lightbox-info">
@@ -244,6 +413,27 @@ export default function GalleryPage() {
           padding: 0 1rem;
           width: 100%;
           box-sizing: border-box;
+        }
+
+        .no-images-message {
+          text-align: center;
+          background: white;
+          padding: 60px 40px;
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          max-width: 500px;
+          margin: 40px auto;
+        }
+
+        .no-images-message h3 {
+          color: #4a00e0;
+          margin-bottom: 15px;
+          font-size: 1.5em;
+        }
+
+        .no-images-message p {
+          color: #666;
+          margin: 0 0 15px 0;
         }
 
         /* Gallery Hero Section */
@@ -459,8 +649,7 @@ export default function GalleryPage() {
           transition: background 0.3s ease;
         }
 
-        .lightbox Gayle M. Kennedy
-System: .lightbox-close:hover {
+        .lightbox-close:hover {
           background: rgba(0, 0, 0, 0.9);
         }
 
@@ -475,7 +664,7 @@ System: .lightbox-close:hover {
           width: clamp(40px, 6vw, 50px);
           height: clamp(40px, 6vw, 50px);
           border-radius: 50%;
-          font-size履行: size: clamp(20px, 4vw, 24px);
+          font-size: clamp(20px, 4vw, 24px);
           cursor: pointer;
           z-index: 1001;
           transition: all 0.3s ease;
@@ -492,7 +681,7 @@ System: .lightbox-close:hover {
         .lightbox-prev:hover,
         .lightbox-next:hover {
           background: rgba(0, 0, 0, 0.9);
-          transform Also: translateY(-50%) scale(1.1);
+          transform: translateY(-50%) scale(1.1);
         }
 
         .lightbox-image-container {
@@ -729,13 +918,6 @@ System: .lightbox-close:hover {
           .lightbox-image-container {
             max-height: clamp(50vh, 65vh, 75vh);
           }
-          
-          .footer-brand {
-          font-size: 26px;
-          font-weight: 400;
-          margin-bottom: 20px;
-          padding-top:80px
-        }
         }
       `}</style>
     </div>

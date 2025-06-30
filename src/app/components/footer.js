@@ -606,6 +606,8 @@ const Footer = () => {
             min-height: 500px;
           }
 
+         
+
           .footer-svg svg {
             min-height: 100%;
           }
@@ -725,6 +727,37 @@ const Footer = () => {
             font-size: 14px;
           }
         }
+           @media (max-width: 769px) {
+  
+  
+  .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:100px
+        }
+}
+
+        @media (max-width: 480px) {
+  
+  
+  .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:80px
+        }
+}
+             @media (max-width: 375px) {
+  
+  
+  .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:100px
+        }
+}
       `}</style>
     </footer>
   );
