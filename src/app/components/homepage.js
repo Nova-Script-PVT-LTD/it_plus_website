@@ -824,7 +824,7 @@ export default function Home() {
 }
 
 .service-description p {
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.9);
   margin: 0;
