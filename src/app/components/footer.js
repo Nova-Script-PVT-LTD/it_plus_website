@@ -21,7 +21,7 @@ const Footer = () => {
           />
           <path
             d="M1441 612H0V74.9049C168.5 89.3064 123.806 89.3063 271 89.3064C418.194 89.3064 752.817 24.8466 979.96 28.1206C1164.35 30.7784 1441 74.9049 1441 74.9049V612Z"
-            fill="#360065"
+            fill="url(#paint0_linear_520_269)"
           />
           <defs>
             <linearGradient
@@ -45,11 +45,11 @@ const Footer = () => {
           <div className="footer-grid">
             {/* Brand Column */}
             <div className="footer-brand">
-              <img
-                src="/images/it_plus_logo.png"
-                alt="IT Plus Logo"
-                className="logo-image"
-              />
+              <img 
+               src="/images/it_plus_logo.png" 
+               alt="IT Plus Logo" 
+               className="logo-image"
+               />
               <p className="brand-description">
                 Global destination for specialized IT solutions, ideal for
                 startups and businesses seeking to enhance their digital
@@ -606,6 +606,8 @@ const Footer = () => {
             min-height: 500px;
           }
 
+         
+
           .footer-svg svg {
             min-height: 100%;
           }
@@ -725,31 +727,37 @@ const Footer = () => {
             font-size: 14px;
           }
         }
-        @media (max-width: 769px) {
-          .footer-brand {
-            font-size: 26px;
-            font-weight: 400;
-            margin-bottom: 20px;
-            padding-top: 100px;
-          }
+           @media (max-width: 769px) {
+  
+  
+  .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:100px
         }
+}
 
         @media (max-width: 480px) {
-          .footer-brand {
-            font-size: 26px;
-            font-weight: 400;
-            margin-bottom: 20px;
-            padding-top: 80px;
-          }
+  
+  
+  .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:80px
         }
-        @media (max-width: 375px) {
-          .footer-brand {
-            font-size: 26px;
-            font-weight: 400;
-            margin-bottom: 20px;
-            padding-top: 100px;
-          }
+}
+             @media (max-width: 380px) {
+  
+  
+  .footer-brand {
+          font-size: 26px;
+          font-weight: 400;
+          margin-bottom: 20px;
+          padding-top:130px
         }
+}
       `}</style>
     </footer>
   );
