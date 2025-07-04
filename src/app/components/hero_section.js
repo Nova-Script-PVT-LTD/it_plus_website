@@ -31,7 +31,7 @@ export default function HeroSection() {
           left: 0;
           width: 100%;
           height: 100%;
-          background: rgba(54, 0, 101, 0.7);
+          
           z-index: 2;
         }
         
@@ -229,7 +229,7 @@ export default function HeroSection() {
           loop 
           playsInline
         >
-          <source src="/videos/Modern Letter RS Logo.mp4" type="video/mp4" />
+          <source src="/videos/main banner vedio.mp4" type="video/mp4" />
           
           Your browser does not support the video tag.
         </video>
