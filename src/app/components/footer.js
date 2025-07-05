@@ -14,14 +14,22 @@ const Footer = () => {
           <path
             d="M1441 45.6056V104.32L1300.03 72.0271L1180.56 45.6056L1025.59 28.4805H891.62L798.14 37.2877L738.653 45.6056C738.653 45.6056 641.514 59.795 705.5 45.6056C769.486 31.4162 881.206 7.82941 944.5 3.03781C1003.09 -1.39742 1032.3 0.350856 1091 3.03765C1142.29 5.38532 1174.93 5.84826 1225.55 14.2911C1264.9 20.855 1289.79 21.3083 1329 28.4805C1374.47 36.7984 1441 45.6056 1441 45.6056Z"
             fill="rgb(245, 149, 32)"
+            stroke="rgb(245, 149, 32)"
+            strokeWidth={3.0}
+            stroke-linejoin="round"
+            stroke-linecap="round"
           />
           <path
             d="M0 29V83C0 83 73.776 84.0927 121.5 90.5C164.288 96.2446 188.367 99.662 231.5 101.5C263.689 102.872 282.235 106.888 314 101.5C330.716 98.6645 412.5 83 412.5 83C412.5 83 330.374 91.4589 314 90.5C285.767 88.8466 250.82 88.0899 223 83C186.873 76.3902 157.454 68.4935 121.5 61C62.7929 48.7642 0 29 0 29Z"
             fill="rgb(245, 149, 32)"
+            stroke="rgb(245, 149, 32)"
+            strokeWidth={3.0}
+            stroke-linejoin="round"
+            stroke-linecap="round"
           />
           <path
             d="M1441 612H0V74.9049C168.5 89.3064 123.806 89.3063 271 89.3064C418.194 89.3064 752.817 24.8466 979.96 28.1206C1164.35 30.7784 1441 74.9049 1441 74.9049V612Z"
-            fill="url(#paint0_linear_520_269)"
+            fill="#360065"
           />
           <defs>
             <linearGradient
@@ -45,11 +53,11 @@ const Footer = () => {
           <div className="footer-grid">
             {/* Brand Column */}
             <div className="footer-brand">
-              <img 
-               src="/images/it_plus_logo.png" 
-               alt="IT Plus Logo" 
-               className="logo-image"
-               />
+              <img
+                src="/images/it_plus_logo.png"
+                alt="IT Plus Logo"
+                className="logo-image"
+              />
               <p className="brand-description">
                 Global destination for specialized IT solutions, ideal for
                 startups and businesses seeking to enhance their digital
@@ -606,8 +614,6 @@ const Footer = () => {
             min-height: 500px;
           }
 
-         
-
           .footer-svg svg {
             min-height: 100%;
           }
@@ -727,37 +733,31 @@ const Footer = () => {
             font-size: 14px;
           }
         }
-           @media (max-width: 769px) {
-  
-  
-  .footer-brand {
-          font-size: 26px;
-          font-weight: 400;
-          margin-bottom: 20px;
-          padding-top:100px
+        @media (max-width: 769px) {
+          .footer-brand {
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            padding-top: 100px;
+          }
         }
-}
 
         @media (max-width: 480px) {
-  
-  
-  .footer-brand {
-          font-size: 26px;
-          font-weight: 400;
-          margin-bottom: 20px;
-          padding-top:80px
+          .footer-brand {
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            padding-top: 80px;
+          }
         }
-}
-             @media (max-width: 380px) {
-  
-  
-  .footer-brand {
-          font-size: 26px;
-          font-weight: 400;
-          margin-bottom: 20px;
-          padding-top:130px
+        @media (max-width: 380px) {
+          .footer-brand {
+            font-size: 26px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            padding-top: 130px;
+          }
         }
-}
       `}</style>
     </footer>
   );
