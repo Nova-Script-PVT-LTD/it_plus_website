@@ -332,7 +332,7 @@ export default function Home() {
 
 .client-logo:hover {
   transform: scale(1.1) translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  
 }
 
 .client-logo img {
@@ -2132,8 +2132,9 @@ export default function Home() {
               <div className="service-description">
                 <p>
                   Experience cloud flexibility with our Cloud Solutions,
-                  including servers,<br /> security, and backup, <br />enhancing your
-                  business efficiency.
+                  including servers,
+                  <br /> security, and backup, <br />
+                  enhancing your business efficiency.
                 </p>
               </div>
             </a>
@@ -2165,7 +2166,9 @@ export default function Home() {
               <div className="service-description">
                 <p>
                   Custom software development solutions to streamline your
-                  <br />business processes and <br />enhance operational efficiency.
+                  <br />
+                  business processes and <br />
+                  enhance operational efficiency.
                 </p>
               </div>
             </a>
@@ -2197,7 +2200,9 @@ export default function Home() {
               <div className="service-description">
                 <p>
                   Comprehensive IT support services including helpdesk,
-                  maintenance,<br /> and project management <br />for optimized systems.
+                  maintenance,
+                  <br /> and project management <br />
+                  for optimized systems.
                 </p>
               </div>
             </a>
@@ -2229,7 +2234,9 @@ export default function Home() {
               <div className="service-description">
                 <p>
                   Quality IT hardware and products to support your business
-                  infrastructure<br /> and<br /> technology requirements.
+                  infrastructure
+                  <br /> and
+                  <br /> technology requirements.
                 </p>
               </div>
             </a>
@@ -2260,8 +2267,10 @@ export default function Home() {
               </div>
               <div className="service-description">
                 <p>
-                  Educational technology solutions <br />and training programs to
-                  enhance<br /> learning and<br /> skill development.
+                  Educational technology solutions <br />
+                  and training programs to enhance
+                  <br /> learning and
+                  <br /> skill development.
                 </p>
               </div>
             </a>
