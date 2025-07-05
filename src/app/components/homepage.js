@@ -308,10 +308,12 @@ export default function Home() {
         .clients-container {
   background: #F1F1F1;
   border-radius: 30px;
-  padding: 60px;
+  padding: 80px;
   width: 100%; /* or set a larger fixed width like 1200px */
   max-width: 1400px; /* optional: expand limit */
   margin: 0 auto;
+
+  margin-bottom: 110px; /* Add bottom margin for spacing */
 }
         
         .client-logo {
@@ -405,6 +407,7 @@ export default function Home() {
 }
 
 .news-title {
+
   color: black;
   font-size: 18px;
   font-weight: 500;
@@ -1565,8 +1568,8 @@ export default function Home() {
   }
   
   .btn-show-more {
-    font-size: 14px;
-    padding: 10px 25px;
+    padding: 16px 35px;
+    font-size: 18px;
     margin-top: 20px;
     margin-bottom: 30px;
   }

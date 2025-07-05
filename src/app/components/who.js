@@ -324,7 +324,7 @@ const WhoSection = () => {
           }
 
           .btn-our-story-centered {
-          margin-top: 10px;
+            margin-top: 10px;
             padding: 10px 20px;
             font-size: 12px;
           }
