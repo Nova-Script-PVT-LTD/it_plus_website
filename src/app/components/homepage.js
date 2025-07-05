@@ -243,45 +243,63 @@ export default function Home() {
         }
         
         .why-choose-section {
-          padding: 80px 0;
-        }
-        
-        .feature-card {
-          background: linear-gradient(180deg, #7A4ADF 0%, #360065 100%);
-          border-radius: 50px;
-          box-shadow: 4px 4px 10px #7A4ADF;
-          color: white;
-          text-align: center;
-          padding: 40px 20px;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 30px;
-        }
-        
-        .feature-icon {
-        display: flex;
-          width: 120px;
-          height: 120px;
-          border-radius: 10px;
-          margin-bottom: 30px;
-        }
-        
-        .feature-title {
-          font-size: 36px;
-          font-weight: 600;
-          text-align: center;
-        }
-        
-        .tall-card {
-          height: 607px;
-        }
-        
-        .short-card {
-          height: 363px;
-        }
+  padding: 80px 0;
+}
+
+.feature-card {
+  background: linear-gradient(180deg, #7A4ADF 0%, #360065 100%);
+  border-radius: 50px;
+  box-shadow: 4px 4px 10px #7A4ADF;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+
+  /* ADDITIONS FOR HOVER ANIMATION */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for transform and shadow */
+  cursor: pointer; /* Indicate it's interactive */
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.02); /* Lifts the card up slightly and makes it a bit larger */
+  box-shadow: 8px 8px 20px rgba(122, 74, 223, 0.7); /* Enhance shadow on hover */
+}
+
+.feature-icon {
+  display: flex;
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  /* ADDITIONS FOR HOVER ANIMATION (on the icon itself) */
+  transition: transform 0.3s ease-in-out; /* Smooth transition for icon */
+  /* If the icon is an <img> or <svg>, you might also want to add: */
+  /* filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); */ /* Example for a subtle glow */
+}
+
+/* We'll make the icon animate when its parent card is hovered */
+.feature-card:hover .feature-icon {
+  transform: rotate(5deg) scale(1.1); /* Rotates slightly and scales up the icon */
+}
+
+.feature-title {
+  font-size: 36px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.tall-card {
+  height: 607px;
+}
+
+.short-card {
+  height: 363px;
+}
         
         .clients-container {
   padding: 80px; /* increase from 60px */
