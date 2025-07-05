@@ -1280,7 +1280,7 @@ export default function Header() {
 
         {/* Green Bar */}
         <div className="green-bar">
-          <p className="green-bar-text left">Join ITPlus at Connect Brasil and discover how you can transform your business</p>
+          <p className="green-bar-text left" style={{marginLeft: '8px'}}> Join ITPlus and confidently transform your business and career.</p>
           <p className="green-bar-text right">
             <i className="fas fa-arrow-right" style={{marginRight: '8px'}}></i>
             Learn More
