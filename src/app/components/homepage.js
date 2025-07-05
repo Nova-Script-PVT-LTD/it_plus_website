@@ -152,7 +152,7 @@ export default function Home() {
           font-size: 36px;
           font-weight: 300;
           text-align: center;
-          margin-top: 10px;
+          margin-top: 8px;
           margin-bottom: 0px;
         }
         
@@ -160,7 +160,8 @@ export default function Home() {
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: -19px;
+          margin-bottom: -16px;
+          margin-top: 50px;
         }
         
         .line {
@@ -202,7 +203,7 @@ export default function Home() {
           align-items: center;
           justify-content: center;
           box-shadow: 7px 7px 5px 4px #7A4ADF;
-          border-radius: 40px;
+          border-radius: 20px;
         }
         
         .service-title {
@@ -988,7 +989,7 @@ export default function Home() {
   }
   
   .who-description-centered {
-    font-size: 13px;
+    font-size: 1513px;
     padding: 0 5px;
     margin-bottom: 25px;
     line-height: 1.5;
