@@ -267,16 +267,7 @@ export default function AboutUsPage() {
        color: rgb(245, 149, 32); /* This is your orange color */
     }
 
-      .about-content h2::after {
-       content: '';
-       position: absolute;
-       bottom: -8px; /* Positions the line 8px below the h2 */
-       left: 0; /* Starts the line from the left edge of the h2 */
-       width: 60px; /* Sets the width of the line */
-       height: 3px; /* Sets the thickness of the line */
-       background: #360065; /* Sets the color of the line */
-       border-radius: 2px;
-     }
+      
 
       .about-content p {
         font-size: 16px;
@@ -288,17 +279,33 @@ export default function AboutUsPage() {
 
       /* Locations Section */
       .locations-section {
-        background-color: #31086C; /* Dark purple from the image */
-        padding: 80px 0;
-        color: white;
-        text-align: center;
-      }
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-      .locations-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 60px;
-      }
+.locations-container {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.locations-heading {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px; /* Space for the underline */
+}
+
+
+
+.our-locations-text {
+  margin-right: 10px; /* Space between "Our" and "Locations" */
+  color:  #360065;
+}
+
+
 
       .locations-container h2 {
         font-size: 42px;
@@ -329,43 +336,20 @@ export default function AboutUsPage() {
       }
 
       .world-map-container {
-        position: relative;
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
+  width: 100%;
+  height: 100%;
+}
 
-      .world-map-container img {
-        width: 100%;
-        height: auto;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      }
+.world-map {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire container */
+  display: block;
+}
 
-      .address-tag {
-        position: absolute;
-        background: rgb(245, 149, 32);
-        color: #31086C;
-        padding: 8px 15px;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 600;
-        white-space: nowrap;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        transform: translate(-50%, -50%);
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
+      
 
-      .address-tag:hover {
-        transform: translate(-50%, -50%) scale(1.05);
-        background: white;
-        color: #7A4ADF;
-      }
-
-      .address-tag.address-1 { top: 35%; left: 25%; }
-      .address-tag.address-2 { top: 60%; left: 65%; }
-      .address-tag.address-3 { top: 75%; left: 85%; }
+      
 
       /* Mission Vision Section */
       .mission-vision-section {
@@ -421,18 +405,7 @@ export default function AboutUsPage() {
       color: rgb(245, 149, 32); /* Your orange color */
      }
 
-      .mission-card h3::after,
-      .vision-card h3::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 50px;
-        height: 3px;
-        background: #31086C;
-        border-radius: 2px;
-      }
+      
 
       .mission-card p,
       .vision-card p {
@@ -481,17 +454,7 @@ export default function AboutUsPage() {
         color: rgb(245, 149, 32); /* Your orange color */
      }
 
-      .working-header h2::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: #31086C;
-        border-radius: 2px;
-      }
+      
 
       .working-header p {
         font-size: 16px;
@@ -846,16 +809,16 @@ export default function AboutUsPage() {
         {/* Locations Section */}
         <section className="locations-section">
           <div className="locations-container">
-            <h2>
-              <span class="our-locations-text">Our</span>&nbsp;
-              <span class="locations-text">Locations</span>
+            <h2 className="locations-heading">
+              <span className="our-locations-text">Our</span>
+              <span className="locations-text">Locations</span>
             </h2>
             <div className="world-map-container">
-              <img src="images/about/map.jpg" alt="World Map" />
-              {/* These positions are illustrative and would need fine-tuning */}
-              <div className="address-tag address-1">Address 1</div>
-              <div className="address-tag address-2">Address 2</div>
-              <div className="address-tag address-3">Address 3</div>
+              <img
+                src="images/about/map2.png"
+                alt="World Map"
+                className="world-map"
+              />
             </div>
           </div>
         </section>
