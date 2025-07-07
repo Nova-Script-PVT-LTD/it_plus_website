@@ -195,6 +195,9 @@ const Footer = () => {
           display: block;
           min-height: 100%;
         }
+        .logo-image {
+          margin-left: -23px;
+        }
 
         .footer-content {
           position: relative;

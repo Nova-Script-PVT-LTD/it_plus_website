@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Footer from "./footer";
+import Footer from "./homefooter";
 import Header from "./header";
 import HeroSection from "./hero_section";
 import WhoSection from "./who";
@@ -469,20 +469,36 @@ export default function Home() {
         }
         
         .btn-show-more {
-          background: linear-gradient(45deg, rgb(245, 149, 32) , rgb(245, 149, 32) );
-          color: #2D1B69;
-          border: none;
-          padding: 16px 40px;
-          font-size: 16px;
-          font-weight: 600;
-          border-radius: 50px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          margin-bottom: 50px;
-        }
+  background: linear-gradient(45deg, rgb(245, 149, 32), rgb(245, 149, 32));
+  color: #2D1B69;
+  border: none;
+  padding: 16px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: scale(1);
+}
+
+/* Hover Animation */
+.btn-show-more:hover {
+  background: linear-gradient(45deg, #ff9f1a, #f59a1f);
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Optional: Click Animation */
+.btn-show-more:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
         
        /* Testimonials Section */
 .testimonials-section {
