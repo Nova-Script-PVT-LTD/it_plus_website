@@ -143,7 +143,7 @@ export default function Home() {
           font-weight: 500;
           text-align: center;
           margin-bottom: 20px;
-          margin-top:30px !important;
+          margin-top:17px !important;
           white-space: nowrap;
         }
         
@@ -168,6 +168,8 @@ export default function Home() {
           width: 376px;
           height: 3px;
           background: #9F91B2;
+          margin: 0 30px;
+
         }
         
         .dot {
@@ -467,14 +469,19 @@ export default function Home() {
         }
         
         .btn-show-more {
-          background: var(--accent-green);
-          color: var(--dark-blue);
+          background: linear-gradient(45deg, rgb(245, 149, 32) , rgb(245, 149, 32) );
+          color: #2D1B69;
           border: none;
-          border-radius: 30px;
+          padding: 16px 40px;
           font-size: 16px;
-          font-weight: 400;
-          padding: 10px 30px;
-          margin-bottom: 30px;
+          font-weight: 600;
+          border-radius: 50px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin-bottom: 50px;
         }
         
        /* Testimonials Section */
@@ -798,7 +805,10 @@ export default function Home() {
 .service-card-image:hover .service-content {
   transform: translate(-50%, -70%);
 }
-
+.service-card-image:hover .service-content .service-title {
+  color: #ef8f11; /* This is the orange color from your snippet */
+  transition: color 0.3s ease; /* Optional: Adds a smooth transition effect */
+}
 .service-title {
   font-size: 32px;
   font-weight: 600;
@@ -945,8 +955,10 @@ export default function Home() {
 
   /* Decorative Line */
   .line {
-    width: 100px;
-    height: 2px;
+    width: 376px;
+    height: 3px;
+    background: #9F91B2;
+    margin: 0 30px;
   }
   
   .dot {
@@ -1409,9 +1421,10 @@ export default function Home() {
   }
   
   .line {
-    width: 150px;
-    height: 2px;
-    margin: 10px 0;
+    width: 376px;
+    height: 3px;
+    background: #9F91B2;
+    margin: 0 30px;
   }
   
   .dot {
