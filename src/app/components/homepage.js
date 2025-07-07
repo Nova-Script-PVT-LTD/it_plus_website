@@ -469,7 +469,7 @@ export default function Home() {
         }
         
         .btn-show-more {
-  background: linear-gradient(45deg, rgb(245, 149, 32), rgb(245, 149, 32));
+        background: linear-gradient(45deg, rgb(245, 149, 32), rgb(245, 149, 32));
   color: #2D1B69;
   border: none;
   padding: 16px 40px;

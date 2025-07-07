@@ -425,7 +425,7 @@ const HomeFooter = () => {
         }
 
         .submit-button {
-          background: #4c1d95;
+          background: #360065;
           color: white;
           border: none;
           border-radius: 12px;
@@ -445,7 +445,7 @@ const HomeFooter = () => {
         }
 
         .submit-button:hover {
-          background: #3c1a78;
+          background: #360065;
           transform: translateY(-1px);
           box-shadow: 0 8px 24px rgba(76, 29, 149, 0.3);
         }
