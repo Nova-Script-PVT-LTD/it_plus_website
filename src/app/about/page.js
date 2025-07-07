@@ -86,54 +86,70 @@ export default function AboutUsPage() {
     const style = document.createElement("style");
     style.textContent = `
       .about-us-page {
-        font-family: 'Outfit', sans-serif;
-        background: white;
-        overflow-x: hidden;
-      }
-
-      /* Main Content Section */
-      .main-content {
-        background: white;
-        min-height: 100vh;
-        position: relative;
-      }
-
-      /* Hero Section (incorporating "Our Story" from image) */
-      .hero-section-about {
-        background-color: #31086C; /* Dark purple from the image */
-        color: white;
-        padding: 80px 0;
-        text-align: center;
-      }
-
-      .hero-container-about {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 60px;
-      }
-
-      .hero-content-about h1 .our-text {
-        color: white; /* Sets the color of "Our" to white */
-     }
-
-     /* Styles for the "Story" part of the heading */
-      .hero-content-about h1 .story-text {
-      color: rgb(245, 149, 32); /* Sets the color of "Story" to the orange you're using elsewhere */
+      font-family: 'Outfit', sans-serif;
+      background: white;
+      overflow-x: hidden;
     }
 
-      .hero-content-about h1 {
-     /* Example: Add some margin below the heading */
+    /* Main Content Section */
+    .main-content {
+      background: white;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Hero Section */
+    .hero-section-about {
+      background-color: #31086C;
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .hero-container-about {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px; /* Retain the gap from your previous request */
+    }
+
+    .hero-image-content {
+      margin-bottom: 40px; /* Retain the gap */
+    }
+
+    .hero-image-content img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: none;
+      border-radius: 0; /* Remove rounded corners */
+      padding: 0;
+      margin: 0;
+      background: #31086C; /* Match the section background */
+      object-fit: cover; /* Ensure no edges from scaling */
+    }
+
+    .hero-content-about h1 .our-text {
+      color: white;
+    }
+
+    .hero-content-about h1 .story-text {
+      color: rgb(245, 149, 32);
+    }
+
+    .hero-content-about h1 {
       margin-bottom: 20px;
     }
 
-      .hero-content-about p {
-        font-size: 18px;
-        line-height: 1.8;
-        max-width: 900px;
-        margin: 0 auto 40px;
-        color: #e0e0e0;
-      }
-
+    .hero-content-about p {
+      font-size: 18px;
+      line-height: 1.8;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      color: #e0e0e0;
+    }
       .stats-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -317,7 +333,7 @@ export default function AboutUsPage() {
         text-align: center;
       }
         .loactions-container h2 .our-locations-text {
-        color: white;
+        color: #360065;
       }
       .locations-container h2 .locations-text {
         color: rgb(245, 149, 32); /* This is your orange color */
@@ -729,25 +745,39 @@ export default function AboutUsPage() {
       <div className="main-content">
         {/* Hero Section - Our Story & Stats */}
         <section className="hero-section-about">
+           {/* Main Image */}
+              <div className="hero-image-content">
+                <img src="images\about_image.png" alt="About Us" />
+              </div>
           <div className="hero-container-about">
             <div className="hero-content-about">
-              <h1>
+             
+              {/* Header */}
+              <div className="hero-header">
                 <h1>
-                  <span class="our-text">Our</span>&nbsp;
-                  <span class="story-text">Story</span>
+                  <span className="our-text">Our</span>&nbsp;
+                  <span className="story-text">Story</span>
                 </h1>
-              </h1>
-              <p>
-                Established in 2015, ITPlus is a leading technology company in
-                Sri Lanka, dedicated to empowering businesses and individuals
-                through innovative and expert-driven IT solutions. We specialize
-                in services including Enterprise IT Solutions, Cloud Services,
-                System and Hardware Development, Contract-based IT Support, and
-                a wide range of IT Products. Our specialized IT Training Academy
-                is recognized for developing industry- focused human skills,
-                enabling a digitally advanced IT community across the nation.
-              </p>
+              </div>
+              
+              
+              
+              {/* Text Content */}
+              <div className="hero-text-content">
+                <p>
+                  Established in 2015, ITPlus is a leading technology company in
+                  Sri Lanka, dedicated to empowering businesses and individuals
+                  through innovative and expert-driven IT solutions. We specialize
+                  in services including Enterprise IT Solutions, Cloud Services,
+                  System and Hardware Development, Contract-based IT Support, and
+                  a wide range of IT Products. Our specialized IT Training Academy
+                  is recognized for developing industry-focused human skills,
+                  enabling a digitally advanced IT community across the nation.
+                </p>
+              </div>
             </div>
+            
+            {/* Stats Grid */}
             <div className="stats-grid">
               <div className="stat-item">
                 <AnimatedCounter end="10" suffix="+" />
@@ -776,6 +806,7 @@ export default function AboutUsPage() {
             </div>
           </div>
         </section>
+
 
         {/* About Section - Existing "About Us" content */}
         <section className="about-section">
