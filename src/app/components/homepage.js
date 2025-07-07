@@ -481,16 +481,13 @@ export default function Home() {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 50px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transform: scale(1);
 }
 
-/* Hover Animation */
+/* Apply .btn-inquiry hover animation here */
 .btn-show-more:hover {
-  background: linear-gradient(45deg, #ff9f1a, #f59a1f);
-  color: #fff;
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(45deg, rgb(245, 149, 32), rgb(245, 149, 32)); /* fallback to solid for consistency */
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgb(245, 149, 32);
 }
 
 /* Optional: Click Animation */
