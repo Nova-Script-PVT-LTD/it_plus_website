@@ -86,79 +86,82 @@ export default function AboutUsPage() {
     const style = document.createElement("style");
     style.textContent = `
       .about-us-page {
-      font-family: 'Outfit', sans-serif;
-      background: white;
-      overflow-x: hidden;
-    }
+        font-family: 'Outfit', sans-serif;
+        background: white;
+        overflow-x: hidden;
+      }
 
-    /* Main Content Section */
-    .main-content {
-      background: white;
-      min-height: 100vh;
-      position: relative;
-    }
+      /* Main Content Section */
+      .main-content {
+        background: white;
+        min-height: 100vh;
+        position: relative;
+      }
 
-    /* Hero Section */
-    .hero-section-about {
-      background-color: #31086C;
-      color: white;
-      padding: 80px 0;
-      text-align: center;
-    }
+      /* Hero Section */
+      .hero-section-about {
+        background-color: #31086C;
+        color: white;
+        padding: 0 0 80px 0;
+        text-align: center;
+        margin-bottom: 80px;
+      }
 
-    .hero-container-about {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 60px;
-      display: flex;
-      flex-direction: column;
-      gap: 40px; /* Retain the gap from your previous request */
-    }
+      .hero-container-about {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 60px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
 
-    .hero-image-content {
-      margin-bottom: 40px; /* Retain the gap */
-    }
+      .hero-image-content {
+        margin-bottom: 40px;
+        width: 100%;
+      }
 
-    .hero-image-content img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border: none;
-      border-radius: 0; /* Remove rounded corners */
-      padding: 0;
-      margin: 0;
-      background: #31086C; /* Match the section background */
-      object-fit: cover; /* Ensure no edges from scaling */
-    }
+      .hero-image-content img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
+        background: #31086C;
+        object-fit: cover;
+      }
 
-    .hero-content-about h1 .our-text {
-      color: white;
-    }
+      .hero-content-about h1 .our-text {
+        color: white;
+      }
 
-    .hero-content-about h1 .story-text {
-      color: rgb(245, 149, 32);
-    }
+      .hero-content-about h1 .story-text {
+        color: rgb(245, 149, 32);
+      }
 
-    .hero-content-about h1 {
-      margin-bottom: 20px;
-    }
+      .hero-content-about h1 {
+        margin-bottom: 20px;
+      }
 
-    .hero-content-about p {
-      font-size: 18px;
-      line-height: 1.8;
-      max-width: 900px;
-      margin: 0 auto 40px;
-      color: #e0e0e0;
-    }
+      .hero-content-about p {
+        font-size: 25px;
+        line-height: 1.8;
+        max-width: 900px;
+        margin: 0 auto 10px;
+        color: #e0e0e0;
+      }
+
       .stats-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 20px;
+        gap: 10px;
         margin-top: 40px;
       }
 
       .stat-item {
-        background: rgb(245, 149, 32); /* Slightly lighter purple for stat backgrounds */
+        background: rgb(245, 149, 32);
         padding: 20px 15px;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -204,139 +207,63 @@ export default function AboutUsPage() {
 
       .stat-item h3 {
         font-size: 32px;
-        font-weight: 700;
-        color: black; /* Gold color for numbers */
+        font-weight: 600;
+        color: black;
         margin-bottom: 8px;
         position: relative;
         z-index: 1;
       }
 
       .stat-item p {
-        font-size: 16px;
-        color: black;
+        font-size: 20px;
+        font-weight: 700;
+        color: white;
         margin: 0;
         position: relative;
         z-index: 1;
       }
 
-      /* About Section (keeping the existing structure for "About Us" heading and main text) */
-      .about-section {
-        padding: 80px 0;
-        background: white;
-      }
-
-      .about-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 60px;
-        display: flex;
-        align-items: center;
-        gap: 80px;
-      }
-
-      .about-image {
-        flex: 0 0 400px;
-        height: 280px;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        position: relative;
-      }
-
-      .about-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .about-content {
-        flex: 1;
-        background: white;
-        padding: 50px 45px;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e2e8f0;
-        transition: all 0.3s ease;
-      }
-
-      .about-content:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-      }
-
-      .about-content h2 {
-        font-size: 42px;
-        font-weight: 700;
-        /* The color property here is for any text in h2 NOT covered by spans.
-        It's good practice to keep it, but the span colors will override it. */
-        color: #360065;
-        margin-bottom: 28px;
-        line-height: 1.2;
-        position: relative; /* Essential for positioning the ::after element */
-       }
-
-      .about-content h2 .about-text {
-       color: #360065;
-      }
-
-      .about-content h2 .us-text {
-       color: rgb(245, 149, 32); /* This is your orange color */
-    }
-
-      
-
-      .about-content p {
-        font-size: 16px;
-        line-height: 1.7;
-        color: #4a5568;
-        margin: 0;
-        text-align: justify;
-      }
-
       /* Locations Section */
       .locations-section {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-.locations-container {
-  width: 100%;
-  max-width: 1200px;
-  text-align: center;
-}
+      .locations-container {
+        width: 100%;
+        max-width: 1200px;
+        text-align: center;
+      }
 
-.locations-heading {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 10px; /* Space for the underline */
-}
+      .locations-heading {
+        position: relative;
+        display: inline-block;
+        padding-bottom: 10px;
+      }
 
-
-
-.our-locations-text {
-  margin-right: 10px; /* Space between "Our" and "Locations" */
-  color:  #360065;
-}
-
-
+      .our-locations-text {
+        margin-right: 10px;
+        color: #360065;
+      }
 
       .locations-container h2 {
         font-size: 42px;
         font-weight: 700;
-        
         margin-bottom: 28px;
         line-height: 1.2;
         position: relative;
         text-align: center;
       }
-        .loactions-container h2 .our-locations-text {
+
+      .locations-container h2 .our-locations-text {
         color: #360065;
       }
+
       .locations-container h2 .locations-text {
-        color: rgb(245, 149, 32); /* This is your orange color */
+        color: rgb(245, 149, 32);
       }
 
       .locations-container h2::after {
@@ -352,20 +279,16 @@ export default function AboutUsPage() {
       }
 
       .world-map-container {
-  width: 100%;
-  height: 100%;
-}
+        width: 100%;
+        height: 100%;
+      }
 
-.world-map {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the image covers the entire container */
-  display: block;
-}
-
-      
-
-      
+      .world-map {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
 
       /* Mission Vision Section */
       .mission-vision-section {
@@ -404,24 +327,18 @@ export default function AboutUsPage() {
         font-size: 36px;
         font-weight: 700;
         margin-bottom: 20px;
-        
-        
         position: relative;
       }
-      
-      /* Style for the "Our" part of "Our Mission" and "Our Vision" */
+
       .mission-card h3 .our-prefix-text,
       .vision-card h3 .our-prefix-text {
-      color: #31086C; /* The specified dark purple color */
+        color: #31086C;
       }
 
-     /* Style for the "Mission" and "Vision" part of the headers */
       .mission-card h3 .mission-vision-main-text,
       .vision-card h3 .mission-vision-main-text {
-      color: rgb(245, 149, 32); /* Your orange color */
-     }
-
-      
+        color: rgb(245, 149, 32);
+      }
 
       .mission-card p,
       .vision-card p {
@@ -453,26 +370,22 @@ export default function AboutUsPage() {
       .working-header h2 {
         font-size: 42px;
         font-weight: 700;
-        
         line-height: 1.2;
         margin-bottom: 20px;
         position: relative;
         text-align: center;
       }
 
-      /* Style for the "Working With" part of the header */
       .working-header h2 .working-with-text {
-        color: #31086C; /* The specified dark purple color */
+        color: #31086C;
       }
 
-      /* Style for the "ItPlus" part of the header */
       .working-header h2 .itplus-text {
-        color: rgb(245, 149, 32); /* Your orange color */
-     }
-
-      
+        color: rgb(245, 149, 32);
+      }
 
       .working-header p {
+        font-size union
         font-size: 16px;
         color: #4a5568;
         max-width: 750px;
@@ -546,20 +459,10 @@ export default function AboutUsPage() {
       /* Responsive Design */
       @media (max-width: 1200px) {
         .hero-container-about,
-        .about-container,
         .locations-container,
         .mission-vision-container,
         .working-container {
           padding: 0 40px;
-        }
-
-        .about-container {
-          gap: 50px;
-        }
-
-        .about-image {
-          flex: 0 0 350px;
-          height: 250px;
         }
 
         .mission-vision-container {
@@ -568,19 +471,6 @@ export default function AboutUsPage() {
       }
 
       @media (max-width: 992px) {
-        .about-container {
-          flex-direction: column;
-          text-align: center;
-          gap: 40px;
-        }
-
-        .about-image {
-          flex: none;
-          width: 100%;
-          max-width: 400px;
-          margin: 0 auto;
-        }
-
         .mission-vision-container {
           grid-template-columns: 1fr;
           gap: 50px;
@@ -592,7 +482,6 @@ export default function AboutUsPage() {
         }
 
         .hero-content-about h1,
-        .about-content h2,
         .locations-container h2,
         .mission-card h3,
         .vision-card h3,
@@ -619,7 +508,6 @@ export default function AboutUsPage() {
 
       @media (max-width: 768px) {
         .hero-container-about,
-        .about-container,
         .locations-container,
         .mission-vision-container,
         .working-container {
@@ -627,11 +515,7 @@ export default function AboutUsPage() {
         }
 
         .hero-section-about {
-          padding: 60px 0 50px;
-        }
-
-        .about-section {
-          padding: 60px 0 50px;
+          padding: 0 0 50px 0;
         }
 
         .locations-section {
@@ -646,19 +530,14 @@ export default function AboutUsPage() {
           padding: 0 0 80px;
         }
 
-        .about-content {
-          padding: 30px 25px;
-        }
-
         .hero-content-about h1,
-        .about-content h2,
         .locations-container h2,
         .mission-card h3,
         .vision-card h3,
         .working-header h2 {
           font-size: 32px;
         }
-        
+
         .hero-content-about p {
           font-size: 16px;
         }
@@ -679,7 +558,6 @@ export default function AboutUsPage() {
 
       @media (max-width: 480px) {
         .hero-container-about,
-        .about-container,
         .locations-container,
         .mission-vision-container,
         .working-container {
@@ -687,7 +565,6 @@ export default function AboutUsPage() {
         }
 
         .hero-content-about h1,
-        .about-content h2,
         .locations-container h2,
         .mission-card h3,
         .vision-card h3,
@@ -696,7 +573,6 @@ export default function AboutUsPage() {
         }
 
         .hero-content-about p,
-        .about-content p,
         .mission-card p,
         .vision-card p,
         .working-header p {
@@ -704,33 +580,32 @@ export default function AboutUsPage() {
         }
 
         .stats-grid {
-          grid-template-columns: 1fr; /* Stack stats on very small screens */
+          grid-template-columns: 1fr;
         }
 
         .stat-item h3 {
-          font-size: 24px;
+          font-size: 50px;
         }
 
         .stat-item p {
-          font-size: 14px;
+          font-size: 35px;
         }
 
         .working-card {
           padding: 25px 20px;
         }
-        
+
         .footer-brand {
           font-size: 26px;
           font-weight: 400;
           margin-bottom: 20px;
-          padding-top:80px
+          padding-top: 80px;
         }
       }
     `;
 
     document.head.appendChild(style);
 
-    // Cleanup function to remove the style when component unmounts
     return () => {
       if (style.parentNode) {
         style.parentNode.removeChild(style);
@@ -745,24 +620,17 @@ export default function AboutUsPage() {
       <div className="main-content">
         {/* Hero Section - Our Story & Stats */}
         <section className="hero-section-about">
-           {/* Main Image */}
-              <div className="hero-image-content">
-                <img src="images\about_image.png" alt="About Us" />
-              </div>
+          <div className="hero-image-content">
+            <img src="images/about_image.png" alt="About Us" />
+          </div>
           <div className="hero-container-about">
             <div className="hero-content-about">
-             
-              {/* Header */}
               <div className="hero-header">
                 <h1>
-                  <span className="our-text">Our</span>&nbsp;
+                  <span className="our-text">Our</span> 
                   <span className="story-text">Story</span>
                 </h1>
               </div>
-              
-              
-              
-              {/* Text Content */}
               <div className="hero-text-content">
                 <p>
                   Established in 2015, ITPlus is a leading technology company in
@@ -776,63 +644,31 @@ export default function AboutUsPage() {
                 </p>
               </div>
             </div>
-            
-            {/* Stats Grid */}
             <div className="stats-grid">
               <div className="stat-item">
+                <p>YEARS</p>
                 <AnimatedCounter end="10" suffix="+" />
-                <p>Years</p>
               </div>
               <div className="stat-item">
+                <p>CLIENTS</p>
                 <AnimatedCounter end="800" suffix="+" />
-                <p>Clients</p>
               </div>
               <div className="stat-item">
+                <p>PROJECTS</p>
                 <AnimatedCounter end="300" suffix="+" />
-                <p>Projects</p>
               </div>
               <div className="stat-item">
-                <AnimatedCounter end="50" suffix="+" />
-                <p>Staff</p>
+                <p>STAFF</p>
+                <AnimatedCounter end="40" suffix="+" />
               </div>
               <div className="stat-item">
+                <p>BRANDS</p>
                 <AnimatedCounter end="100" suffix="+" />
-                <p>Brands</p>
               </div>
               <div className="stat-item">
+                <p>TRAINING</p>
                 <AnimatedCounter end="200" suffix="+" />
-                <p>Training</p>
               </div>
-            </div>
-          </div>
-        </section>
-
-
-        {/* About Section - Existing "About Us" content */}
-        <section className="about-section">
-          <div className="about-container">
-            <div className="about-image">
-              <img
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=280&fit=crop"
-                alt="IT Team Meeting"
-              />
-            </div>
-            <div className="about-content">
-              <h2>
-                <span class="about-text">About</span>&nbsp;
-                <span class="us-text">Us</span>
-              </h2>
-              <p>
-                OneAccess Technologies is a trusted team of experts specializing
-                in Network Solutions, Wi-Fi Systems, VoIP, CCTV, and IT Support
-                Services in Sri Lanka. Established in 2015 by K.M. Erandi
-                Rodrigo, we bring over 10 years of expertise in system
-                architecture, network engineering, telecommunications, and
-                project management to deliver cutting-edge solutions. Whether
-                you need enterprise networking, wireless connectivity, or all
-                the IT related support and solutions, we're here to meet all
-                your technology needs with reliability and professionalism.
-              </p>
             </div>
           </div>
         </section>
@@ -859,8 +695,8 @@ export default function AboutUsPage() {
           <div className="mission-vision-container">
             <div className="mission-card">
               <h3>
-                <span class="our-prefix-text">Our</span>&nbsp;
-                <span class="mission-vision-main-text">Mission</span>
+                <span className="our-prefix-text">Our</span> 
+                <span className="mission-vision-main-text">Mission</span>
               </h3>
               <p>
                 To empower businesses across Sri Lanka with reliable,
@@ -871,8 +707,8 @@ export default function AboutUsPage() {
             </div>
             <div className="vision-card">
               <h3>
-                <span class="our-prefix-text">Our</span>&nbsp;
-                <span class="mission-vision-main-text">Vision</span>
+                <span className="our-prefix-text">Our</span> 
+                <span className="mission-vision-main-text">Vision</span>
               </h3>
               <p>
                 To become Sri Lanka's most trusted and innovative technology
@@ -891,8 +727,8 @@ export default function AboutUsPage() {
           <div className="working-container">
             <div className="working-header">
               <h2>
-                <span class="working-with-text">Working With</span>&nbsp;
-                <span class="itplus-text">ItPlus</span>
+                <span className="working-with-text">Working With</span> 
+                <span className="itplus-text">ItPlus</span>
               </h2>
               <p>
                 For your Network and leave over 30 projects, OneAccess will find
