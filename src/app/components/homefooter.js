@@ -392,10 +392,10 @@ const HomeFooter = () => {
         .form-group input,
         .form-group textarea {
           background: white;
-          border: 2px solidrgba(152, 150, 153, 0.77);
+          border: 2px solid rgba(152, 150, 153, 0.77);
           border-radius: 12px;
           padding: 14px 16px;
-          color:rgb(168, 173, 185);
+          color:rgb(100, 101, 104);
           font-size: 14px;
           transition: all 0.2s ease;
           font-family: inherit;
@@ -414,8 +414,8 @@ const HomeFooter = () => {
         .form-group input:focus,
         .form-group textarea:focus {
           outline: none;
-          border-color:rgba(177, 173, 180, 0.54);
-          box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+          border-color: rgb(106, 104, 110);
+          box-shadow: 0 0 0 4px rgba(190, 164, 241, 0.86);
         }
 
         .form-group textarea {
@@ -447,7 +447,7 @@ const HomeFooter = () => {
         .submit-button:hover {
           background: rgb(235, 145, 61);
           transform: translateY(-1px);
-          box-shadow: 0 8px 24px rgba(76, 29, 149, 0.3);
+          box-shadow: 0 8px 24px rgb(235, 145, 61);
         }
 
         .arrow {
