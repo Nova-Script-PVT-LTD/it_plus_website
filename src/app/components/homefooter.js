@@ -39,7 +39,7 @@ const HomeFooter = () => {
           />
           <path
             d="M1444 1620H3V603.751C171.5 631 126.806 631 274 631C421.194 631 755.817 509.034 982.96 515.229C1167.35 520.258 1444 603.751 1444 603.751V1620Z"
-            fill="url(#paint1_linear_547_378)"
+            fill="#360065"
           />
           <defs>
             <linearGradient
@@ -392,10 +392,10 @@ const HomeFooter = () => {
         .form-group input,
         .form-group textarea {
           background: white;
-          border: 2px solid #360065;
+          border: 2px solidrgba(152, 150, 153, 0.77);
           border-radius: 12px;
           padding: 14px 16px;
-          color: #111827;
+          color:rgb(168, 173, 185);
           font-size: 14px;
           transition: all 0.2s ease;
           font-family: inherit;
@@ -414,7 +414,7 @@ const HomeFooter = () => {
         .form-group input:focus,
         .form-group textarea:focus {
           outline: none;
-          border-color: #360065;
+          border-color:rgba(177, 173, 180, 0.54);
           box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
         }
 
@@ -425,7 +425,7 @@ const HomeFooter = () => {
         }
 
         .submit-button {
-          background: #360065;
+          background:rgb(235, 145, 61);
           color: white;
           border: none;
           border-radius: 12px;
@@ -445,7 +445,7 @@ const HomeFooter = () => {
         }
 
         .submit-button:hover {
-          background: #360065;
+          background: rgb(235, 145, 61);
           transform: translateY(-1px);
           box-shadow: 0 8px 24px rgba(76, 29, 149, 0.3);
         }
