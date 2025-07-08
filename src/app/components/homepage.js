@@ -2407,7 +2407,7 @@ export default function Home() {
       {/* Our Clients Section */}
       <section className="clients-section">
         <div className="container">
-          <h2 className="section-title">
+          <h2 className="section-title" style={{ marginBottom: "60px" }}>
             Our Clients In <span style={{ color: "#ef8f11" }}>Success</span>
           </h2>
           <div className="clients-container">
@@ -2558,7 +2558,7 @@ export default function Home() {
       {/* News Section */}
       <section className="news-section">
         <div className="container">
-          <h2 className="section-title">
+          <h2 className="section-title" style={{ marginBottom: "60px" }}>
             News and <span style={{ color: "#ef8f11" }}>Updates</span>
           </h2>
           <div className="row">
