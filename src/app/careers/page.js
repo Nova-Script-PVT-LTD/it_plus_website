@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Footer from '../components/footer';
-import Header from '../components/header';
+import { useEffect, useState } from "react";
+import Footer from "../components/footer";
+import Header from "../components/header";
 
 export default function CareersPage() {
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [selectedJob, setSelectedJob] = useState(null);
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    experience: '',
-    coverLetter: '',
-    resume: null
+    fullName: "",
+    email: "",
+    phone: "",
+    experience: "",
+    coverLetter: "",
+    resume: null,
   });
 
   // Job listings data
@@ -25,7 +25,7 @@ export default function CareersPage() {
       type: "On-site",
       schedule: "Trainee",
       experience: null,
-      vacancies: null
+      vacancies: null,
     },
     {
       id: 2,
@@ -34,7 +34,7 @@ export default function CareersPage() {
       type: "On-site",
       schedule: "Full Time",
       experience: "Minimum 1+ year/s of experience",
-      vacancies: null
+      vacancies: null,
     },
     {
       id: 3,
@@ -43,7 +43,7 @@ export default function CareersPage() {
       type: "On-site",
       schedule: "Full Time",
       experience: "Minimum 1 year/s of experience",
-      vacancies: "04"
+      vacancies: "04",
     },
     {
       id: 4,
@@ -52,7 +52,7 @@ export default function CareersPage() {
       type: "On-site",
       schedule: "Full Time",
       experience: "Minimum 5+ year/s of experience",
-      vacancies: null
+      vacancies: null,
     },
     {
       id: 5,
@@ -61,7 +61,7 @@ export default function CareersPage() {
       type: "On-site",
       schedule: "Full Time",
       experience: null,
-      vacancies: "02"
+      vacancies: "02",
     },
     {
       id: 6,
@@ -70,65 +70,68 @@ export default function CareersPage() {
       type: "On-site",
       schedule: "Full Time",
       experience: "Minimum 1 year/s of experience",
-      vacancies: "02"
-    }
+      vacancies: "02",
+    },
   ];
 
   const handleApplyClick = (job) => {
     setSelectedJob(job);
     setShowApplicationForm(true);
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
+    document.body.style.overflow = "hidden"; // Prevent background scroll
   };
 
   const closeApplicationForm = () => {
     setShowApplicationForm(false);
     setSelectedJob(null);
     setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      experience: '',
-      coverLetter: '',
-      resume: null
+      fullName: "",
+      email: "",
+      phone: "",
+      experience: "",
+      coverLetter: "",
+      resume: null,
     });
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleFileChange = (e) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      resume: e.target.files[0]
+      resume: e.target.files[0],
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
-    console.log('Application submitted:', formData);
-    alert('Your application has been submitted successfully!');
+    console.log("Application submitted:", formData);
+    alert("Your application has been submitted successfully!");
     closeApplicationForm();
   };
 
   // Inject CSS using useEffect
   useEffect(() => {
     // Load Font Awesome if not already loaded
-    const fontAwesomeLink = document.querySelector('link[href*="font-awesome"]');
+    const fontAwesomeLink = document.querySelector(
+      'link[href*="font-awesome"]'
+    );
     if (!fontAwesomeLink) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href =
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css";
       document.head.appendChild(link);
     }
 
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       .careers-page {
         font-family: 'Outfit', sans-serif;
@@ -224,6 +227,10 @@ export default function CareersPage() {
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         position: relative;
         overflow: hidden;
+        display: flex; /* Make the job card a flex container */
+  flex-direction: column; /* Stack items vertically */
+  justify-content: space-between; /* Distribute space, pushing the button to the bottom */
+  align-items: flex-start; /* Align items to the start (left) */
       }
 
       .job-card::before {
@@ -263,15 +270,16 @@ export default function CareersPage() {
       }
 
       .job-detail i {
-        width: clamp(15px, 2vw, 20px);
-        color: #7A4ADF;
-        margin-right: clamp(8px, 1vw, 10px);
-        font-size: clamp(14px, 2vw, 16px);
+         width: 20px; /* You can adjust this value as needed */
+  text-align: center; /* This will center the icon within its allocated width */
+  color: rgb(238, 111, 26);
+  margin-right: clamp(8px, 1vw, 10px);
+  font-size: clamp(14px, 2vw, 16px);
       }
 
       .apply-btn {
         width: 100%;
-        background: linear-gradient(135deg, #7A4ADF 0%, #533a7b 100%);
+        background: rgb(245, 149, 32);
         color: white;
         border: none;
         border-radius: 50px;
@@ -280,13 +288,14 @@ export default function CareersPage() {
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 8px 25px rgba(122, 74, 223, 0.3);
+        box-shadow: 0 8px 25px rgba(236, 155, 49, 0.72);
+        margin-top: auto; /* This pushes the button to the bottom */
       }
 
       .apply-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 12px 35px rgba(122, 74, 223, 0.4);
-        background: linear-gradient(135deg, #533a7b 0%, #7A4ADF 100%);
+        box-shadow: 0 12px 35px rgba(230, 156, 45, 0.69);
+        /*background: linear-gradient(135deg, #533a7b 0%, #7A4ADF 100%);*/
       }
 
       /* Application Form Modal */
@@ -747,7 +756,7 @@ export default function CareersPage() {
         }
       }
     `;
-    
+
     document.head.appendChild(style);
 
     // Cleanup function to remove the style when component unmounts
@@ -761,31 +770,34 @@ export default function CareersPage() {
   // Close modal when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (e.target.classList.contains('modal-overlay')) {
+      if (e.target.classList.contains("modal-overlay")) {
         closeApplicationForm();
       }
     };
 
     if (showApplicationForm) {
-      document.addEventListener('click', handleClickOutside);
+      document.addEventListener("click", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, [showApplicationForm]);
 
   return (
     <div className="careers-page">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <h1>Job <span className="highlight">Vacancies</span></h1>
+          <h1>
+            Job <span className="highlight">Vacancies</span>
+          </h1>
           <p>
-            Join our innovative team and be part of Sri Lanka's leading technology solutions provider. 
-            We offer exciting career opportunities in a dynamic, growth-oriented environment.
+            Join our innovative team and be part of Sri Lanka's leading
+            technology solutions provider. We offer exciting career
+            opportunities in a dynamic, growth-oriented environment.
           </p>
         </div>
       </section>
@@ -823,7 +835,7 @@ export default function CareersPage() {
                     </div>
                   )}
                 </div>
-                <button 
+                <button
                   className="apply-btn"
                   onClick={() => handleApplyClick(job)}
                 >
@@ -836,12 +848,12 @@ export default function CareersPage() {
       </section>
 
       {/* Application Form Modal */}
-      <div className={`modal-overlay ${showApplicationForm ? 'show' : ''}`}>
+      <div className={`modal-overlay ${showApplicationForm ? "show" : ""}`}>
         <div className="application-form">
           <button className="close-btn" onClick={closeApplicationForm}>
             <i className="fas fa-times"></i>
           </button>
-          
+
           <div className="form-header">
             <h2>Apply for Position</h2>
             <p>{selectedJob?.title}</p>
@@ -894,9 +906,7 @@ export default function CareersPage() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="experience">
-                Years of Experience
-              </label>
+              <label htmlFor="experience">Years of Experience</label>
               <select
                 id="experience"
                 name="experience"
@@ -926,15 +936,15 @@ export default function CareersPage() {
                 />
                 <label htmlFor="resume" className="file-input-label">
                   <i className="fas fa-upload"></i>
-                  {formData.resume ? formData.resume.name : 'Choose file (PDF, DOC, DOCX)'}
+                  {formData.resume
+                    ? formData.resume.name
+                    : "Choose file (PDF, DOC, DOCX)"}
                 </label>
               </div>
             </div>
 
             <div className="form-group">
-              <label htmlFor="coverLetter">
-                Cover Letter
-              </label>
+              <label htmlFor="coverLetter">Cover Letter</label>
               <textarea
                 id="coverLetter"
                 name="coverLetter"

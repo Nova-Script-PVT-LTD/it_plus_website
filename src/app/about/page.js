@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Link from "next/link";
 
 // Counter component that animates numbers
 const AnimatedCounter = ({ end, duration = 2000, suffix = "" }) => {
@@ -824,6 +825,7 @@ export default function AboutUsPage() {
           </div>
         </section>
 
+        
         {/* Empower Your Future Section */}
         <section className="empower-future-section">
           <div className="empower-future-container">
@@ -831,9 +833,11 @@ export default function AboutUsPage() {
               <span className="empower-text">Empower Your Future with</span>{" "}
               <span className="itplus-empower-text">ITPlus!</span>
             </h2>
-            <a href="/apply" className="apply-now-button">
-              Apply Now
-            </a>
+
+            {/* 2. Wrap your button element in the Link component */}
+            <Link href="/careers" passHref>
+              <div className="apply-now-button">Apply Now</div>
+            </Link>
           </div>
         </section>
       </div>
