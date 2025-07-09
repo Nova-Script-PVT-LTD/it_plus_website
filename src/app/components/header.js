@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState({
@@ -269,7 +269,7 @@ export default function Header() {
         }
         
         .nav-link:hover {
-          color:rgb(245, 149, 32) !important;
+          color: rgb(245, 149, 32) !important;
         }
         
         .dropdown-arrow {
@@ -289,7 +289,7 @@ export default function Header() {
         }
         
         .btn-contact {
-          border: 4px solid rgb(245, 149, 32) ;
+          border: 4px solid rgb(245, 149, 32);
           border-radius: 50px;
           color: white;
           font-size: 16px;
@@ -302,14 +302,14 @@ export default function Header() {
         }
         
         .btn-contact:hover {
-          background: rgb(245, 149, 32) ;
+          background: rgb(245, 149, 32);
           color: #360065;
         }
         
         .search-icon {
           width: 47px;
           height: 47px;
-          background: rgb(245, 149, 32) ;
+          background: rgb(245, 149, 32);
           border-radius: 10px;
           display: flex;
           align-items: center;
@@ -354,7 +354,6 @@ export default function Header() {
         .dropdown-menu-custom {
           position: absolute;
           top: 100%;
-       
           left: 70%;
           transform: translateX(-50%);
           background: #360065;
@@ -386,12 +385,12 @@ export default function Header() {
         }
         
         .dropdown-column h6 {
-          color: rgb(245, 149, 32) ;
+          color: rgb(245, 149, 32);
           font-size: 18px;
           font-weight: 600;
           font-family: 'Outfit', sans-serif;
           margin-bottom: 15px;
-          border-bottom: 2px solid rgb(245, 149, 32) ;
+          border-bottom: 2px solid rgb(245, 149, 32);
           padding-bottom: 8px;
           cursor: pointer;
           transition: color 0.3s ease;
@@ -415,13 +414,13 @@ export default function Header() {
         }
         
         .dropdown-item-custom:hover {
-          color: rgb(245, 149, 32) ;
+          color: rgb(245, 149, 32);
           padding-left: 10px;
         }
         
         .dropdown-item-custom:before {
           content: '▶';
-          color: rgb(245, 149, 32) ;
+          color: rgb(245, 149, 32);
           font-size: 8px;
           margin-right: 8px;
           opacity: 0;
@@ -721,41 +720,49 @@ export default function Header() {
         @media (max-width: 991px) {
           .navbar-custom {
             height: 80px;
+            display: flex;
+            align-items: center;
           }
           
           .navbar-custom .container-fluid {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             padding: 0 20px;
+            width: 100%;
+            height: 100%;
           }
 
           .navbar-brand {
             margin-left: 0;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            height: 100%; /* Ensure logo takes full height of navbar */
           }
 
           .header-actions {
-            margin-right: 0;
-            gap: 10px;
+            display: none; /* Hide contact us button on mobile */
           }
 
           .mobile-toggle {
-            display: block;
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            margin-left: 0;
+            padding: 0;
+            height: 100%; /* Ensure toggle takes full height of navbar */
           }
           
           .navbar-nav {
             display: none;
           }
           
-          .btn-contact {
-            padding: 6px 15px;
-            font-size: 14px;
-            border-width: 2px;
-          }
-          
           .logo-image {
             width: 140px;
             height: 85px;
+            object-fit: contain;
+            vertical-align: middle; /* Align image vertically */
           }
           
           .green-bar {
@@ -801,11 +808,6 @@ export default function Header() {
             height: 75px;
           }
           
-          .btn-contact {
-            padding: 5px 12px;
-            font-size: 12px;
-          }
-          
           .mobile-menu-header {
             height: 70px;
             padding: 0 15px;
@@ -833,6 +835,11 @@ export default function Header() {
             font-size: 15px;
             padding: 12px 15px;
           }
+
+          .mobile-toggle {
+            font-size: 22px;
+            margin-right: 8px;
+          }
         }
 
         /* 480px and below */
@@ -853,20 +860,10 @@ export default function Header() {
             width: 100px;
             height: 60px;
           }
-
-          .btn-contact {
-            padding: 4px 10px;
-            font-size: 11px;
-            border-width: 2px;
-          }
-          
-          .header-actions {
-            gap: 8px;
-          }
           
           .mobile-toggle {
             font-size: 20px;
-            margin-right: 10px;
+            margin-right: 8px;
             padding: 8px;
           }
           
@@ -927,20 +924,10 @@ export default function Header() {
             width: 90px;
             height: 55px;
           }
-
-          .btn-contact {
-            padding: 3px 8px;
-            font-size: 10px;
-            border-width: 1px;
-          }
-          
-          .header-actions {
-            gap: 5px;
-          }
           
           .mobile-toggle {
             font-size: 18px;
-            margin-right: 8px;
+            margin-right: 6px;
             padding: 6px;
           }
           
@@ -1013,7 +1000,9 @@ export default function Header() {
             overflow: visible !important;
           }
 
-          /* Make sure all service categories are visible */
+          /* Make率先
+
+ Make sure all service categories are visible */
           .mobile-service-category {
             display: block !important;
             visibility: visible !important;
