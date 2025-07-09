@@ -101,7 +101,7 @@ export default function AboutUsPage() {
 
       /* Hero Section */
       .hero-section-about {
-        background-color: #31086C;
+        background-color: #360065;
         color: white;
         padding: 0 0 80px 0;
         text-align: center;
@@ -130,7 +130,7 @@ export default function AboutUsPage() {
         border-radius: 0;
         padding: 0;
         margin: 0;
-        background: #31086C;
+        background: #360065;
         object-fit: cover;
       }
 
@@ -825,7 +825,6 @@ export default function AboutUsPage() {
           </div>
         </section>
 
-        
         {/* Empower Your Future Section */}
         <section className="empower-future-section">
           <div className="empower-future-container">
