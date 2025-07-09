@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState({
     aboutUs: false,
-    services: false
+    services: false,
   });
-  
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
@@ -17,17 +17,21 @@ export default function Header() {
     // Load external CSS if not already loaded
     const bootstrapLink = document.querySelector('link[href*="bootstrap"]');
     if (!bootstrapLink) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css';
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href =
+        "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css";
       document.head.appendChild(link);
     }
 
-    const fontAwesomeLink = document.querySelector('link[href*="font-awesome"]');
+    const fontAwesomeLink = document.querySelector(
+      'link[href*="font-awesome"]'
+    );
     if (!fontAwesomeLink) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href =
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css";
       document.head.appendChild(link);
     }
 
@@ -38,15 +42,20 @@ export default function Header() {
         setTimeout(() => {
           const element = document.getElementById(hash);
           if (element) {
-            const headerElement = document.querySelector('.header-container');
-            const headerHeight = headerElement ? headerElement.offsetHeight : 148;
+            const headerElement = document.querySelector(".header-container");
+            const headerHeight = headerElement
+              ? headerElement.offsetHeight
+              : 148;
             const elementRect = element.getBoundingClientRect();
             const absoluteElementTop = elementRect.top + window.pageYOffset;
-            const finalPosition = Math.max(0, absoluteElementTop - headerHeight - 20);
-            
+            const finalPosition = Math.max(
+              0,
+              absoluteElementTop - headerHeight - 20
+            );
+
             window.scrollTo({
               top: finalPosition,
-              behavior: 'smooth'
+              behavior: "smooth",
             });
           }
         }, 500); // Wait for content to load
@@ -55,34 +64,36 @@ export default function Header() {
 
     // Handle initial hash scroll and hash changes
     handleHashScroll();
-    window.addEventListener('hashchange', handleHashScroll);
-    
+    window.addEventListener("hashchange", handleHashScroll);
+
     // Cleanup
     return () => {
-      window.removeEventListener('hashchange', handleHashScroll);
+      window.removeEventListener("hashchange", handleHashScroll);
     };
   }, []);
 
   const toggleDropdown = (dropdown) => {
-    setIsDropdownOpen(prev => {
+    setIsDropdownOpen((prev) => {
       const newState = {
         ...prev,
-        [dropdown]: !prev[dropdown]
+        [dropdown]: !prev[dropdown],
       };
-      
+
       // For mobile services dropdown, ensure proper height calculation
-      if (dropdown === 'services' && window.innerWidth <= 991) {
+      if (dropdown === "services" && window.innerWidth <= 991) {
         setTimeout(() => {
-          const servicesDropdown = document.querySelector('.mobile-services-dropdown');
+          const servicesDropdown = document.querySelector(
+            ".mobile-services-dropdown"
+          );
           if (servicesDropdown && newState.services) {
             // Force recalculation of height
-            servicesDropdown.style.maxHeight = 'none';
-            servicesDropdown.style.height = 'auto';
-            console.log('Services dropdown opened - height reset');
+            servicesDropdown.style.maxHeight = "none";
+            servicesDropdown.style.height = "auto";
+            console.log("Services dropdown opened - height reset");
           }
         }, 50);
       }
-      
+
       return newState;
     });
   };
@@ -98,37 +109,40 @@ export default function Header() {
     // Prevent multiple rapid clicks
     if (isNavigating) return;
     setIsNavigating(true);
-    
+
     const currentPath = window.location.pathname;
     const targetId = subcategoryId || sectionId;
-    
+
     // Close dropdown and mobile menu immediately
     setIsDropdownOpen({ aboutUs: false, services: false });
     setIsMobileMenuOpen(false);
-    
-    if (currentPath === '/services') {
+
+    if (currentPath === "/services") {
       // We're already on services page - smooth scroll to section
-      console.log('Header: Scrolling to section:', targetId);
-      
+      console.log("Header: Scrolling to section:", targetId);
+
       // Scroll to element with better error handling
       const scrollToElement = () => {
         const element = document.getElementById(targetId);
         if (element) {
           // Calculate header height dynamically
-          const headerElement = document.querySelector('.header-container');
+          const headerElement = document.querySelector(".header-container");
           const headerHeight = headerElement ? headerElement.offsetHeight : 148;
-          
+
           // Get element position
           const elementRect = element.getBoundingClientRect();
           const absoluteElementTop = elementRect.top + window.pageYOffset;
-          const finalPosition = Math.max(0, absoluteElementTop - headerHeight - 20);
-          
+          const finalPosition = Math.max(
+            0,
+            absoluteElementTop - headerHeight - 20
+          );
+
           // Smooth scroll to position
           window.scrollTo({
             top: finalPosition,
-            behavior: 'smooth'
+            behavior: "smooth",
           });
-          
+
           // Update URL hash after successful scroll
           setTimeout(() => {
             window.history.replaceState(null, null, `#${targetId}`);
@@ -139,42 +153,49 @@ export default function Header() {
           setTimeout(scrollToElement, 200);
         }
       };
-      
+
       // Execute scroll after a small delay to ensure menu is closed
       setTimeout(scrollToElement, 100);
-      
     } else {
       // Navigate to services page with hash - use router for better handling
-      console.log('Header: Navigating to services with hash:', targetId);
-      
+      console.log("Header: Navigating to services with hash:", targetId);
+
       // Use Next.js router if available, otherwise fallback to window.location
       if (router && router.push) {
-        router.push(`/services#${targetId}`, undefined, { 
-          scroll: false // Disable automatic scroll, we'll handle it manually
-        }).then(() => {
-          // After navigation, scroll to the element
-          setTimeout(() => {
-            const element = document.getElementById(targetId);
-            if (element) {
-              const headerElement = document.querySelector('.header-container');
-              const headerHeight = headerElement ? headerElement.offsetHeight : 148;
-              const elementRect = element.getBoundingClientRect();
-              const absoluteElementTop = elementRect.top + window.pageYOffset;
-              const finalPosition = Math.max(0, absoluteElementTop - headerHeight - 20);
-              
-              window.scrollTo({
-                top: finalPosition,
-                behavior: 'smooth'
-              });
-            }
-          }, 300); // Longer delay for page navigation
-        });
+        router
+          .push(`/services#${targetId}`, undefined, {
+            scroll: false, // Disable automatic scroll, we'll handle it manually
+          })
+          .then(() => {
+            // After navigation, scroll to the element
+            setTimeout(() => {
+              const element = document.getElementById(targetId);
+              if (element) {
+                const headerElement =
+                  document.querySelector(".header-container");
+                const headerHeight = headerElement
+                  ? headerElement.offsetHeight
+                  : 148;
+                const elementRect = element.getBoundingClientRect();
+                const absoluteElementTop = elementRect.top + window.pageYOffset;
+                const finalPosition = Math.max(
+                  0,
+                  absoluteElementTop - headerHeight - 20
+                );
+
+                window.scrollTo({
+                  top: finalPosition,
+                  behavior: "smooth",
+                });
+              }
+            }, 300); // Longer delay for page navigation
+          });
       } else {
         // Fallback to window.location
         window.location.href = `/services#${targetId}`;
       }
     }
-    
+
     // Reset navigation flag
     setTimeout(() => setIsNavigating(false), 1500);
   };
@@ -186,24 +207,25 @@ export default function Header() {
         html {
           scroll-behavior: smooth;
         }
-        
+
         /* Ensure sections have proper scroll margin for fixed header */
-        section[id], div[id] {
+        section[id],
+        div[id] {
           scroll-margin-top: 160px;
         }
-        
+
         .header-container {
           position: relative;
           z-index: 1000;
         }
-        
+
         .navbar-custom {
           background: #360065;
           height: 112px;
           padding: 0;
           position: relative;
         }
-        
+
         .navbar-brand {
           display: flex;
           align-items: center;
@@ -216,7 +238,7 @@ export default function Header() {
           height: 127px;
           object-fit: contain;
         }
-        
+
         .logo-container {
           display: flex;
           align-items: center;
@@ -225,40 +247,40 @@ export default function Header() {
           border-radius: 10px;
           margin-left: 39px;
         }
-        
+
         .logo-text {
-          font-family: 'Outfit', sans-serif;
+          font-family: "Outfit", sans-serif;
           font-size: 24px;
           font-weight: 700;
           color: #360065;
           margin: 0;
         }
-        
+
         .logo-subtitle {
-          font-family: 'Outfit', sans-serif;
+          font-family: "Outfit", sans-serif;
           font-size: 12px;
           font-weight: 400;
           color: #360065;
           margin: 0;
           line-height: 1;
         }
-        
+
         .navbar-nav {
           display: flex;
           align-items: center;
           gap: 30px;
           margin: 0 auto;
         }
-        
+
         .nav-item {
           position: relative;
         }
-        
+
         .nav-link {
           color: white !important;
           font-size: 16px;
           font-weight: 600;
-          font-family: 'Outfit', sans-serif;
+          font-family: "Outfit", sans-serif;
           text-decoration: none;
           padding: 15px 0;
           display: flex;
@@ -267,45 +289,45 @@ export default function Header() {
           transition: color 0.3s ease;
           cursor: pointer;
         }
-        
+
         .nav-link:hover {
           color: rgb(245, 149, 32) !important;
         }
-        
+
         .dropdown-arrow {
           font-size: 12px;
           transition: transform 0.3s ease;
         }
-        
+
         .dropdown-arrow.open {
           transform: rotate(180deg);
         }
-        
+
         .header-actions {
           display: flex;
           align-items: center;
           gap: 20px;
           margin-right: 39px;
         }
-        
+
         .btn-contact {
           border: 4px solid rgb(245, 149, 32);
           border-radius: 50px;
           color: white;
           font-size: 16px;
           font-weight: 600;
-          font-family: 'Outfit', sans-serif;
+          font-family: "Outfit", sans-serif;
           padding: 8px 25px;
           background: transparent;
           transition: all 0.3s ease;
           cursor: pointer;
         }
-        
+
         .btn-contact:hover {
           background: rgb(245, 149, 32);
           color: #360065;
         }
-        
+
         .search-icon {
           width: 47px;
           height: 47px;
@@ -319,11 +341,11 @@ export default function Header() {
           cursor: pointer;
           transition: all 0.3s ease;
         }
-        
+
         .search-icon:hover {
           background: white;
         }
-        
+
         .green-bar {
           background: rgb(245, 149, 32);
           height: 36px;
@@ -332,25 +354,25 @@ export default function Header() {
           justify-content: space-between;
           position: relative;
         }
-        
+
         .green-bar-text {
           color: #360065;
           font-size: 16px;
           font-weight: 400;
-          font-family: 'Outfit', sans-serif;
+          font-family: "Outfit", sans-serif;
           margin: 0;
         }
-        
+
         .green-bar-text.left {
           position: absolute;
           left: 52px;
         }
-        
+
         .green-bar-text.right {
           position: absolute;
           right: 49px;
         }
-        
+
         .dropdown-menu-custom {
           position: absolute;
           top: 100%;
@@ -367,70 +389,74 @@ export default function Header() {
           visibility: hidden;
           transition: all 0.3s ease;
         }
-        
+
         .dropdown-menu-custom.show {
           opacity: 1;
           visibility: visible;
         }
-        
+
         .dropdown-content {
           display: flex;
           justify-content: space-between;
           padding: 0 40px;
         }
-        
+
         .dropdown-column {
           flex: 1;
           margin: 0 20px;
+          position: relative;
         }
-        
+
         .dropdown-column h6 {
           color: rgb(245, 149, 32);
           font-size: 18px;
           font-weight: 600;
-          font-family: 'Outfit', sans-serif;
+          font-family: "Outfit", sans-serif;
           margin-bottom: 15px;
           border-bottom: 2px solid rgb(245, 149, 32);
           padding-bottom: 8px;
           cursor: pointer;
           transition: color 0.3s ease;
+          padding-left: 5px;
         }
-        
+
         .dropdown-column h6:hover {
           color: white;
         }
-        
+
         .dropdown-item-custom {
           color: white;
           font-size: 14px;
           font-weight: 400;
-          font-family: 'Outfit', sans-serif;
+          font-family: "Outfit", sans-serif;
           text-decoration: none;
           display: block;
-          padding: 8px 0;
+          padding: 8px 0 8px 0px;
           transition: color 0.3s ease;
           position: relative;
           cursor: pointer;
         }
-        
+
         .dropdown-item-custom:hover {
           color: rgb(245, 149, 32);
           padding-left: 10px;
         }
-        
+
         .dropdown-item-custom:before {
-          content: '▶';
+          content: "▶";
           color: rgb(245, 149, 32);
           font-size: 8px;
           margin-right: 8px;
           opacity: 0;
+          position: absolute;
+          left: 0;
           transition: opacity 0.3s ease;
         }
-        
+
         .dropdown-item-custom:hover:before {
           opacity: 1;
         }
-        
+
         .simple-dropdown {
           position: absolute;
           top: 100%;
@@ -446,17 +472,17 @@ export default function Header() {
           visibility: hidden;
           transition: all 0.3s ease;
         }
-        
+
         .simple-dropdown.show {
           opacity: 1;
           visibility: visible;
         }
-        
+
         .simple-dropdown .dropdown-item-custom {
           padding: 10px 20px;
           margin: 0;
         }
-        
+
         .mobile-toggle {
           display: none;
           background: none;
@@ -560,7 +586,7 @@ export default function Header() {
           color: white;
           font-size: 16px;
           font-weight: 600;
-          font-family: 'Outfit', sans-serif;
+          font-family: "Outfit", sans-serif;
           text-decoration: none;
           padding: 15px 20px;
           display: flex;
@@ -591,7 +617,7 @@ export default function Header() {
           color: rgba(255, 255, 255, 0.8);
           font-size: 14px;
           font-weight: 400;
-          font-family: 'Outfit', sans-serif;
+          font-family: "Outfit", sans-serif;
           text-decoration: none;
           padding: 12px 40px;
           display: block;
@@ -630,7 +656,7 @@ export default function Header() {
           color: rgb(245, 149, 32);
           font-size: 16px;
           font-weight: 600;
-          font-family: 'Outfit', sans-serif;
+          font-family: "Outfit", sans-serif;
           padding: 15px 20px;
           background: rgba(245, 149, 32, 0.1);
           margin: 0;
@@ -669,47 +695,55 @@ export default function Header() {
         }
 
         /* Responsive Breakpoints */
-        
+
         /* 1200px and below */
         @media (max-width: 1200px) {
           .navbar-nav {
             gap: 20px;
           }
-          
+
           .nav-link {
             font-size: 14px;
           }
-          
+
           .dropdown-menu-custom {
             min-width: 1100px;
           }
-          
+
           .dropdown-content {
             padding: 0 20px;
           }
-          
+
           .dropdown-column {
             margin: 0 10px;
           }
-          
+
+          .dropdown-item-custom {
+            padding-left: 8px; /* Match h6 padding */
+          }
+
+          .dropdown-item-custom:hover {
+            padding-left: 16px; /* Adjust hover padding */
+          }
+
           .green-bar-text.left {
             left: 30px;
             font-size: 14px;
           }
-          
+
           .green-bar-text.right {
             right: 30px;
             font-size: 14px;
           }
-          
+
           .navbar-brand {
             margin-left: 20px;
           }
-          
+
           .header-actions {
             margin-right: 20px;
           }
-          
+
           .logo-image {
             width: 160px;
             height: 100px;
@@ -723,7 +757,7 @@ export default function Header() {
             display: flex;
             align-items: center;
           }
-          
+
           .navbar-custom .container-fluid {
             display: flex;
             align-items: center;
@@ -753,23 +787,23 @@ export default function Header() {
             padding: 0;
             height: 100%; /* Ensure toggle takes full height of navbar */
           }
-          
+
           .navbar-nav {
             display: none;
           }
-          
+
           .logo-image {
             width: 140px;
             height: 85px;
             object-fit: contain;
             vertical-align: middle; /* Align image vertically */
           }
-          
+
           .green-bar {
             height: auto;
             padding: 8px 20px;
           }
-          
+
           .green-bar-text {
             font-size: 12px;
             position: static;
@@ -782,7 +816,7 @@ export default function Header() {
           .navbar-custom {
             height: 70px;
           }
-          
+
           .green-bar {
             flex-direction: column;
             justify-content: center;
@@ -802,35 +836,35 @@ export default function Header() {
             font-size: 11px;
             line-height: 1.3;
           }
-          
+
           .logo-image {
             width: 120px;
             height: 75px;
           }
-          
+
           .mobile-menu-header {
             height: 70px;
             padding: 0 15px;
           }
-          
+
           .mobile-menu {
             padding-top: 70px;
           }
-          
+
           .mobile-menu-logo {
             height: 35px;
           }
-          
+
           .mobile-nav-link {
             font-size: 15px;
             padding: 12px 15px;
           }
-          
+
           .mobile-dropdown-item {
             font-size: 13px;
             padding: 10px 30px;
           }
-          
+
           .mobile-category-title {
             font-size: 15px;
             padding: 12px 15px;
@@ -847,7 +881,7 @@ export default function Header() {
           .navbar-custom {
             height: 60px;
           }
-          
+
           .green-bar {
             padding: 8px 10px;
           }
@@ -860,45 +894,45 @@ export default function Header() {
             width: 100px;
             height: 60px;
           }
-          
+
           .mobile-toggle {
             font-size: 20px;
             margin-right: 8px;
             padding: 8px;
           }
-          
+
           .mobile-menu-header {
             height: 60px;
             padding: 0 10px;
           }
-          
+
           .mobile-menu {
             padding-top: 60px;
           }
-          
+
           .mobile-menu-logo {
             height: 30px;
           }
-          
+
           .mobile-close-btn {
             font-size: 20px;
             padding: 6px;
           }
-          
+
           .mobile-nav-link {
             font-size: 14px;
             padding: 12px 15px;
           }
-          
+
           .mobile-dropdown-item {
             font-size: 12px;
             padding: 8px 25px;
           }
-          
+
           .mobile-dropdown-item:hover {
             padding-left: 30px;
           }
-          
+
           .mobile-category-title {
             font-size: 14px;
             padding: 10px 15px;
@@ -910,7 +944,7 @@ export default function Header() {
           .navbar-custom {
             height: 55px;
           }
-          
+
           .green-bar {
             padding: 6px 8px;
           }
@@ -924,50 +958,50 @@ export default function Header() {
             width: 90px;
             height: 55px;
           }
-          
+
           .mobile-toggle {
             font-size: 18px;
             margin-right: 6px;
             padding: 6px;
           }
-          
+
           .mobile-menu-header {
             height: 55px;
             padding: 0 8px;
           }
-          
+
           .mobile-menu {
             padding-top: 55px;
           }
-          
+
           .mobile-menu-logo {
             height: 25px;
           }
-          
+
           .mobile-close-btn {
             font-size: 18px;
             padding: 5px;
           }
-          
+
           .mobile-nav-link {
             font-size: 13px;
             padding: 10px 12px;
           }
-          
+
           .mobile-dropdown-item {
             font-size: 11px;
             padding: 7px 20px;
           }
-          
+
           .mobile-dropdown-item:hover {
             padding-left: 25px;
           }
-          
+
           .mobile-category-title {
             font-size: 13px;
             padding: 8px 12px;
           }
-          
+
           .dropdown-arrow {
             font-size: 10px;
           }
@@ -983,7 +1017,7 @@ export default function Header() {
             display: flex;
             align-items: center;
           }
-          
+
           .mobile-dropdown-item {
             min-height: 40px;
           }
@@ -1012,21 +1046,21 @@ export default function Header() {
 
       <div className="header-container">
         {/* Mobile Menu Overlay */}
-        <div 
-          className={`mobile-menu-overlay${isMobileMenuOpen ? ' show' : ''}`}
+        <div
+          className={`mobile-menu-overlay${isMobileMenuOpen ? " show" : ""}`}
           onClick={() => setIsMobileMenuOpen(false)}
         ></div>
 
         {/* Mobile Menu */}
-        <div className={`mobile-menu${isMobileMenuOpen ? ' show' : ''}`}>
+        <div className={`mobile-menu${isMobileMenuOpen ? " show" : ""}`}>
           {/* Mobile Menu Header with Close Button */}
           <div className="mobile-menu-header">
-            <img 
-              src="/images/it_plus_logo.png" 
-              alt="IT Plus Logo" 
+            <img
+              src="/images/it_plus_logo.png"
+              alt="IT Plus Logo"
               className="mobile-menu-logo"
             />
-            <button 
+            <button
               className="mobile-close-btn"
               onClick={() => setIsMobileMenuOpen(false)}
             >
@@ -1036,100 +1070,409 @@ export default function Header() {
 
           {/* About Us */}
           <div className="mobile-nav-item">
-            <div 
+            <div
               className="mobile-nav-link"
-              onClick={() => toggleDropdown('aboutUs')}
+              onClick={() => toggleDropdown("aboutUs")}
             >
               About Us
-              <i className={`fas fa-chevron-down dropdown-arrow${isDropdownOpen.aboutUs ? ' open' : ''}`}></i>
+              <i
+                className={`fas fa-chevron-down dropdown-arrow${
+                  isDropdownOpen.aboutUs ? " open" : ""
+                }`}
+              ></i>
             </div>
-            <div className={`mobile-dropdown${isDropdownOpen.aboutUs ? ' show' : ''}`}>
-              <div className="mobile-dropdown-item" onClick={() => {
-                setIsMobileMenuOpen(false);
-                setIsDropdownOpen({ aboutUs: false, services: false });
-                window.location.href = '/about';
-              }}>About us</div>
-              <div className="mobile-dropdown-item" onClick={() => {
-                setIsMobileMenuOpen(false);
-                setIsDropdownOpen({ aboutUs: false, services: false });
-                window.location.href = '/careers';
-              }}>Careers</div>
-              <div className="mobile-dropdown-item" onClick={() => {
-                setIsMobileMenuOpen(false);
-                setIsDropdownOpen({ aboutUs: false, services: false });
-                window.location.href = '/contact';
-              }}>Contact us</div>
+            <div
+              className={`mobile-dropdown${
+                isDropdownOpen.aboutUs ? " show" : ""
+              }`}
+            >
+              <div
+                className="mobile-dropdown-item"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsDropdownOpen({ aboutUs: false, services: false });
+                  window.location.href = "/about";
+                }}
+              >
+                About us
+              </div>
+              <div
+                className="mobile-dropdown-item"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsDropdownOpen({ aboutUs: false, services: false });
+                  window.location.href = "/careers";
+                }}
+              >
+                Careers
+              </div>
+              <div
+                className="mobile-dropdown-item"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsDropdownOpen({ aboutUs: false, services: false });
+                  window.location.href = "/contact";
+                }}
+              >
+                Contact us
+              </div>
             </div>
           </div>
 
           {/* Services */}
           <div className="mobile-nav-item">
-            <div 
+            <div
               className="mobile-nav-link"
-              onClick={() => toggleDropdown('services')}
+              onClick={() => toggleDropdown("services")}
             >
               Services
-              <i className={`fas fa-chevron-down dropdown-arrow${isDropdownOpen.services ? ' open' : ''}`}></i>
+              <i
+                className={`fas fa-chevron-down dropdown-arrow${
+                  isDropdownOpen.services ? " open" : ""
+                }`}
+              ></i>
             </div>
-            <div className={`mobile-dropdown mobile-services-dropdown${isDropdownOpen.services ? ' show' : ''}`}>
+            <div
+              className={`mobile-dropdown mobile-services-dropdown${
+                isDropdownOpen.services ? " show" : ""
+              }`}
+            >
               {/* Technology */}
               <div className="mobile-service-category">
-                <h6 className="mobile-category-title" onClick={() => handleServiceNavigation('technology')}>Technology</h6>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('technology', 'enterprise-networking')}>Enterprise Networking</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('technology', 'managed-wifi-solutions')}>Managed Wi-Fi Solutions</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('technology', 'ip-pbx-solutions')}>IP PBX Solutions</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('technology', 'firewall-solutions')}>Firewall Solutions</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('technology', 'information-security')}>Information Security</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('technology', 'servers-virtualization')}>Servers & Virtualization</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('technology', 'storage-solutions')}>Storage Solutions</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('technology', 'vpn-brand-connectivity')}>VPN and Brand Connectivity</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('technology', 'video-conferencing')}>Video Conferencing</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('technology', 'cctv-solutions')}>CCTV Solutions</div>
+                <h6
+                  className="mobile-category-title"
+                  onClick={() => handleServiceNavigation("technology")}
+                >
+                  Technology
+                </h6>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "technology",
+                      "enterprise-networking"
+                    )
+                  }
+                >
+                  Enterprise Networking
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "technology",
+                      "managed-wifi-solutions"
+                    )
+                  }
+                >
+                  Managed Wi-Fi Solutions
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation("technology", "ip-pbx-solutions")
+                  }
+                >
+                  IP PBX Solutions
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation("technology", "firewall-solutions")
+                  }
+                >
+                  Firewall Solutions
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "technology",
+                      "information-security"
+                    )
+                  }
+                >
+                  Information Security
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "technology",
+                      "servers-virtualization"
+                    )
+                  }
+                >
+                  Servers & Virtualization
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation("technology", "storage-solutions")
+                  }
+                >
+                  Storage Solutions
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "technology",
+                      "vpn-brand-connectivity"
+                    )
+                  }
+                >
+                  VPN and Brand Connectivity
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation("technology", "video-conferencing")
+                  }
+                >
+                  Video Conferencing
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation("technology", "cctv-solutions")
+                  }
+                >
+                  CCTV Solutions
+                </div>
               </div>
 
               {/* Cloud */}
               <div className="mobile-service-category">
-                <h6 className="mobile-category-title" onClick={() => handleServiceNavigation('cloud')}>Cloud</h6>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('cloud', 'itplus-cloud-vps')}>ITPlus Cloud - Cloud VPS</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('cloud', 'itplus-shield-cloud-protect')}>ITPlus Shield - Cloud Protect</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('cloud', 'itplus-backup-cloud-backup')}>ITPlus Backup - Cloud Backup</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('cloud', 'itplus-virtual-cloud-virtual')}>ITPlus Virtual - Cloud Virtual</div>
+                <h6
+                  className="mobile-category-title"
+                  onClick={() => handleServiceNavigation("cloud")}
+                >
+                  Cloud
+                </h6>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation("cloud", "itplus-cloud-vps")
+                  }
+                >
+                  ITPlus Cloud - Cloud VPS
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "cloud",
+                      "itplus-shield-cloud-protect"
+                    )
+                  }
+                >
+                  ITPlus Shield - Cloud Protect
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "cloud",
+                      "itplus-backup-cloud-backup"
+                    )
+                  }
+                >
+                  ITPlus Backup - Cloud Backup
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "cloud",
+                      "itplus-virtual-cloud-virtual"
+                    )
+                  }
+                >
+                  ITPlus Virtual - Cloud Virtual
+                </div>
               </div>
 
               {/* Software */}
               <div className="mobile-service-category">
-                <h6 className="mobile-category-title" onClick={() => handleServiceNavigation('software')}>Software</h6>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('software', 'custom-software-development')}>Custom Software Development</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('software', 'web-application-development')}>Web Application Development</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('software', 'mobile-app-development')}>Mobile App Development</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('software', 'erp-systems')}>ERP Systems</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('software', 'payroll-hr-systems')}>Payroll & HR Systems</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('software', 'pos-solutions')}>POS Solutions</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('software', 'api-integration-services')}>API Integration Services</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('software', 'software-maintenance-support')}>Software Maintenance & Support</div>
+                <h6
+                  className="mobile-category-title"
+                  onClick={() => handleServiceNavigation("software")}
+                >
+                  Software
+                </h6>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "software",
+                      "custom-software-development"
+                    )
+                  }
+                >
+                  Custom Software Development
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "software",
+                      "web-application-development"
+                    )
+                  }
+                >
+                  Web Application Development
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "software",
+                      "mobile-app-development"
+                    )
+                  }
+                >
+                  Mobile App Development
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation("software", "erp-systems")
+                  }
+                >
+                  ERP Systems
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation("software", "payroll-hr-systems")
+                  }
+                >
+                  Payroll & HR Systems
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation("software", "pos-solutions")
+                  }
+                >
+                  POS Solutions
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "software",
+                      "api-integration-services"
+                    )
+                  }
+                >
+                  API Integration Services
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "software",
+                      "software-maintenance-support"
+                    )
+                  }
+                >
+                  Software Maintenance & Support
+                </div>
               </div>
 
               {/* IT Support */}
               <div className="mobile-service-category">
-                <h6 className="mobile-category-title" onClick={() => handleServiceNavigation('it-support')}>IT Support</h6>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('it-support', 'onsite-remote-support')}>Onsite & Remote Support</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('it-support', 'it-helpdesk')}>IT Helpdesk</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('it-support', 'annual-maintenance-service')}>Annual Maintenance Service</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('it-support', 'it-consultant-project-management')}>IT Consultant & Project Management</div>
-                <div className="mobile-dropdown-item" onClick={() => handleServiceNavigation('it-support', 'it-staff-outsourcing')}>IT Staff Outsourcing</div>
+                <h6
+                  className="mobile-category-title"
+                  onClick={() => handleServiceNavigation("it-support")}
+                >
+                  IT Support
+                </h6>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "it-support",
+                      "onsite-remote-support"
+                    )
+                  }
+                >
+                  Onsite & Remote Support
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation("it-support", "it-helpdesk")
+                  }
+                >
+                  IT Helpdesk
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "it-support",
+                      "annual-maintenance-service"
+                    )
+                  }
+                >
+                  Annual Maintenance Service
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "it-support",
+                      "it-consultant-project-management"
+                    )
+                  }
+                >
+                  IT Consultant & Project Management
+                </div>
+                <div
+                  className="mobile-dropdown-item"
+                  onClick={() =>
+                    handleServiceNavigation(
+                      "it-support",
+                      "it-staff-outsourcing"
+                    )
+                  }
+                >
+                  IT Staff Outsourcing
+                </div>
               </div>
             </div>
           </div>
 
           {/* Other Navigation Items */}
           <div className="mobile-nav-item">
-            <a href="/academic" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Academic</a>
+            <a
+              href="/academic"
+              className="mobile-nav-link"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Academic
+            </a>
           </div>
           <div className="mobile-nav-item">
-            <a href="/blog" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Blog</a>
+            <a
+              href="/blog"
+              className="mobile-nav-link"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Blog
+            </a>
           </div>
           <div className="mobile-nav-item">
-            <a href="/gallery" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Gallery</a>
+            <a
+              href="/gallery"
+              className="mobile-nav-link"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Gallery
+            </a>
           </div>
         </div>
 
@@ -1138,111 +1481,410 @@ export default function Header() {
           <div className="container-fluid px-0">
             {/* Logo */}
             <a className="navbar-brand" href="/">
-               <img 
-               src="/images/it_plus_logo.png" 
-               alt="IT Plus Logo" 
-               className="logo-image"
-               />
+              <img
+                src="/images/it_plus_logo.png"
+                alt="IT Plus Logo"
+                className="logo-image"
+              />
             </a>
-            
+
             {/* Mobile Toggle */}
-            <button 
-              className="mobile-toggle" 
+            <button
+              className="mobile-toggle"
               type="button"
               onClick={toggleMobileMenu}
             >
-              <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+              <i
+                className={`fas ${isMobileMenuOpen ? "fa-times" : "fa-bars"}`}
+              ></i>
             </button>
-            
+
             {/* Desktop Navigation Links */}
             <div className="navbar-nav">
               {/* About Us Dropdown */}
               <div className="nav-item">
-                <div 
+                <div
                   className="nav-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    toggleDropdown('aboutUs');
+                    toggleDropdown("aboutUs");
                   }}
                 >
                   About Us
-                  <i className={`fas fa-chevron-down dropdown-arrow${isDropdownOpen.aboutUs ? ' open' : ''}`}></i>
+                  <i
+                    className={`fas fa-chevron-down dropdown-arrow${
+                      isDropdownOpen.aboutUs ? " open" : ""
+                    }`}
+                  ></i>
                 </div>
-                <div className={`simple-dropdown${isDropdownOpen.aboutUs ? ' show' : ''}`}>
-                  <div className="dropdown-item-custom" onClick={() => {
-                    setIsDropdownOpen({ aboutUs: false, services: false });
-                    window.location.href = '/about';
-                  }}>About us</div>
-                  <div className="dropdown-item-custom" onClick={() => {
-                    setIsDropdownOpen({ aboutUs: false, services: false });
-                    window.location.href = '/careers';
-                  }}>Careers</div>
-                  <div className="dropdown-item-custom" onClick={() => {
-                    setIsDropdownOpen({ aboutUs: false, services: false });
-                    window.location.href = '/contact';
-                  }}>Contact us</div>
+                <div
+                  className={`simple-dropdown${
+                    isDropdownOpen.aboutUs ? " show" : ""
+                  }`}
+                >
+                  <div
+                    className="dropdown-item-custom"
+                    onClick={() => {
+                      setIsDropdownOpen({ aboutUs: false, services: false });
+                      window.location.href = "/about";
+                    }}
+                  >
+                    About us
+                  </div>
+                  <div
+                    className="dropdown-item-custom"
+                    onClick={() => {
+                      setIsDropdownOpen({ aboutUs: false, services: false });
+                      window.location.href = "/careers";
+                    }}
+                  >
+                    Careers
+                  </div>
+                  <div
+                    className="dropdown-item-custom"
+                    onClick={() => {
+                      setIsDropdownOpen({ aboutUs: false, services: false });
+                      window.location.href = "/contact";
+                    }}
+                  >
+                    Contact us
+                  </div>
                 </div>
               </div>
 
               {/* Services Dropdown */}
               <div className="nav-item">
-                <div 
+                <div
                   className="nav-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    toggleDropdown('services');
+                    toggleDropdown("services");
                   }}
                 >
                   Services
-                  <i className={`fas fa-chevron-down dropdown-arrow${isDropdownOpen.services ? ' open' : ''}`}></i>
+                  <i
+                    className={`fas fa-chevron-down dropdown-arrow${
+                      isDropdownOpen.services ? " open" : ""
+                    }`}
+                  ></i>
                 </div>
-                <div className={`dropdown-menu-custom${isDropdownOpen.services ? ' show' : ''}`}>
+                <div
+                  className={`dropdown-menu-custom${
+                    isDropdownOpen.services ? " show" : ""
+                  }`}
+                >
                   <div className="dropdown-content">
                     {/* Technology Column */}
                     <div className="dropdown-column">
-                      <h6 onClick={() => handleServiceNavigation('technology')}>Technology</h6>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('technology', 'enterprise-networking')}>Enterprise Networking</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('technology', 'managed-wifi-solutions')}>Managed Wi-Fi Solutions</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('technology', 'ip-pbx-solutions')}>IP PBX Solutions</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('technology', 'firewall-solutions')}>Firewall Solutions</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('technology', 'information-security')}>Information Security</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('technology', 'servers-virtualization')}>Servers & Virtualization</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('technology', 'storage-solutions')}>Storage Solutions</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('technology', 'vpn-brand-connectivity')}>VPN and Brand Connectivity</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('technology', 'video-conferencing')}>Video Conferencing</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('technology', 'cctv-solutions')}>CCTV Solutions</div>
+                      <h6 onClick={() => handleServiceNavigation("technology")}>
+                        Technology
+                      </h6>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "technology",
+                            "enterprise-networking"
+                          )
+                        }
+                      >
+                        Enterprise Networking
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "technology",
+                            "managed-wifi-solutions"
+                          )
+                        }
+                      >
+                        Managed Wi-Fi Solutions
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "technology",
+                            "ip-pbx-solutions"
+                          )
+                        }
+                      >
+                        IP PBX Solutions
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "technology",
+                            "firewall-solutions"
+                          )
+                        }
+                      >
+                        Firewall Solutions
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "technology",
+                            "information-security"
+                          )
+                        }
+                      >
+                        Information Security
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "technology",
+                            "servers-virtualization"
+                          )
+                        }
+                      >
+                        Servers & Virtualization
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "technology",
+                            "storage-solutions"
+                          )
+                        }
+                      >
+                        Storage Solutions
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "technology",
+                            "vpn-brand-connectivity"
+                          )
+                        }
+                      >
+                        VPN and Brand Connectivity
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "technology",
+                            "video-conferencing"
+                          )
+                        }
+                      >
+                        Video Conferencing
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "technology",
+                            "cctv-solutions"
+                          )
+                        }
+                      >
+                        CCTV Solutions
+                      </div>
                     </div>
 
                     {/* Cloud Column */}
                     <div className="dropdown-column">
-                      <h6 onClick={() => handleServiceNavigation('cloud')}>Cloud</h6>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('cloud', 'itplus-cloud-vps')}>ITPlus Cloud - Cloud VPS</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('cloud', 'itplus-shield-cloud-protect')}>ITPlus Shield - Cloud Protect</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('cloud', 'itplus-backup-cloud-backup')}>ITPlus Backup - Cloud Backup</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('cloud', 'itplus-virtual-cloud-virtual')}>ITPlus Virtual - Cloud Virtual</div>
+                      <h6 onClick={() => handleServiceNavigation("cloud")}>
+                        Cloud
+                      </h6>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation("cloud", "itplus-cloud-vps")
+                        }
+                      >
+                        ITPlus Cloud - Cloud VPS
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "cloud",
+                            "itplus-shield-cloud-protect"
+                          )
+                        }
+                      >
+                        ITPlus Shield - Cloud Protect
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "cloud",
+                            "itplus-backup-cloud-backup"
+                          )
+                        }
+                      >
+                        ITPlus Backup - Cloud Backup
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "cloud",
+                            "itplus-virtual-cloud-virtual"
+                          )
+                        }
+                      >
+                        ITPlus Virtual - Cloud Virtual
+                      </div>
                     </div>
 
                     {/* Software Column */}
                     <div className="dropdown-column">
-                      <h6 onClick={() => handleServiceNavigation('software')}>Software</h6>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('software', 'custom-software-development')}>Custom Software Development</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('software', 'web-application-development')}>Web Application Development</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('software', 'mobile-app-development')}>Mobile App Development</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('software', 'erp-systems')}>ERP Systems</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('software', 'payroll-hr-systems')}>Payroll & HR Systems</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('software', 'pos-solutions')}>POS Solutions</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('software', 'api-integration-services')}>API Integration Services</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('software', 'software-maintenance-support')}>Software Maintenance & Support</div>
+                      <h6 onClick={() => handleServiceNavigation("software")}>
+                        Software
+                      </h6>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "software",
+                            "custom-software-development"
+                          )
+                        }
+                      >
+                        Custom Software Development
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "software",
+                            "web-application-development"
+                          )
+                        }
+                      >
+                        Web Application Development
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "software",
+                            "mobile-app-development"
+                          )
+                        }
+                      >
+                        Mobile App Development
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation("software", "erp-systems")
+                        }
+                      >
+                        ERP Systems
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "software",
+                            "payroll-hr-systems"
+                          )
+                        }
+                      >
+                        Payroll & HR Systems
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation("software", "pos-solutions")
+                        }
+                      >
+                        POS Solutions
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "software",
+                            "api-integration-services"
+                          )
+                        }
+                      >
+                        API Integration Services
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "software",
+                            "software-maintenance-support"
+                          )
+                        }
+                      >
+                        Software Maintenance & Support
+                      </div>
                     </div>
 
                     {/* IT Support Column */}
                     <div className="dropdown-column">
-                      <h6 onClick={() => handleServiceNavigation('it-support')}>IT Support</h6>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('it-support', 'onsite-remote-support')}>Onsite & Remote Support</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('it-support', 'it-helpdesk')}>IT Helpdesk</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('it-support', 'annual-maintenance-service')}>Annual Maintenance Service</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('it-support', 'it-consultant-project-management')}>IT Consultant & Project Management</div>
-                      <div className="dropdown-item-custom" onClick={() => handleServiceNavigation('it-support', 'it-staff-outsourcing')}>IT Staff Outsourcing</div>
+                      <h6 onClick={() => handleServiceNavigation("it-support")}>
+                        IT Support
+                      </h6>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "it-support",
+                            "onsite-remote-support"
+                          )
+                        }
+                      >
+                        Onsite & Remote Support
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation("it-support", "it-helpdesk")
+                        }
+                      >
+                        IT Helpdesk
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "it-support",
+                            "annual-maintenance-service"
+                          )
+                        }
+                      >
+                        Annual Maintenance Service
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "it-support",
+                            "it-consultant-project-management"
+                          )
+                        }
+                      >
+                        IT Consultant & Project Management
+                      </div>
+                      <div
+                        className="dropdown-item-custom"
+                        onClick={() =>
+                          handleServiceNavigation(
+                            "it-support",
+                            "it-staff-outsourcing"
+                          )
+                        }
+                      >
+                        IT Staff Outsourcing
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1250,16 +1892,22 @@ export default function Header() {
 
               {/* Other Navigation Items */}
               <div className="nav-item">
-                <a href="/academic" className="nav-link">Academic</a>
+                <a href="/academic" className="nav-link">
+                  Academic
+                </a>
               </div>
               <div className="nav-item">
-                <a href="/blog" className="nav-link">Blog</a>
+                <a href="/blog" className="nav-link">
+                  Blog
+                </a>
               </div>
               <div className="nav-item">
-                <a href="/gallery" className="nav-link">Gallery</a>
+                <a href="/gallery" className="nav-link">
+                  Gallery
+                </a>
               </div>
             </div>
-            
+
             {/* Header Actions */}
             <div className="header-actions">
               <button className="btn-contact">Contact Us</button>
@@ -1269,9 +1917,15 @@ export default function Header() {
 
         {/* Green Bar */}
         <div className="green-bar">
-          <p className="green-bar-text left" style={{marginLeft: '8px'}}> Join ITPlus and confidently transform your business and career.</p>
+          <p className="green-bar-text left" style={{ marginLeft: "8px" }}>
+            {" "}
+            Join ITPlus and confidently transform your business and career.
+          </p>
           <p className="green-bar-text right">
-            <i className="fas fa-arrow-right" style={{marginRight: '8px'}}></i>
+            <i
+              className="fas fa-arrow-right"
+              style={{ marginRight: "8px" }}
+            ></i>
             Learn More
           </p>
         </div>
