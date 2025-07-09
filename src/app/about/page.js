@@ -455,6 +455,52 @@ export default function AboutUsPage() {
         color: #4a5568;
         margin: 0;
       }
+      
+      /* Empower Future Section */
+.empower-future-section {
+  padding: 80px 0;
+  background: white;
+  text-align: center;
+}
+
+.empower-future-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.empower-future-container h2 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.empower-text {
+  color: #31086C;
+}
+
+.itplus-empower-text {
+  color: rgb(245, 149, 32);
+}
+
+.apply-now-button {
+  display: inline-block;
+  background-color: rgb(245, 149, 32);
+  color: white;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.apply-now-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(245, 149, 32, 0.4);
+  background-color: #e08e1a; /* A slightly darker orange for hover */
+}
 
       /* Responsive Design */
       @media (max-width: 1200px) {
@@ -504,6 +550,9 @@ export default function AboutUsPage() {
         .stat-item p {
           font-size: 15px;
         }
+        .empower-future-container h2 {
+    font-size: 38px;
+  }
       }
 
       @media (max-width: 768px) {
@@ -554,6 +603,14 @@ export default function AboutUsPage() {
         .working-icon i {
           font-size: 24px;
         }
+
+        .empower-future-container h2 {
+    font-size: 32px;
+  }
+  .apply-now-button {
+    padding: 12px 35px;
+    font-size: 16px;
+  }
       }
 
       @media (max-width: 480px) {
@@ -601,6 +658,10 @@ export default function AboutUsPage() {
           margin-bottom: 20px;
           padding-top: 80px;
         }
+
+        .empower-future-container h2 {
+    font-size: 28px;
+  }
       }
     `;
 
@@ -635,12 +696,13 @@ export default function AboutUsPage() {
                 <p>
                   Established in 2015, ITPlus is a leading technology company in
                   Sri Lanka, dedicated to empowering businesses and individuals
-                  through innovative and expert-driven IT solutions. We specialize
-                  in services including Enterprise IT Solutions, Cloud Services,
-                  System and Hardware Development, Contract-based IT Support, and
-                  a wide range of IT Products. Our specialized IT Training Academy
-                  is recognized for developing industry-focused human skills,
-                  enabling a digitally advanced IT community across the nation.
+                  through innovative and expert-driven IT solutions. We
+                  specialize in services including Enterprise IT Solutions,
+                  Cloud Services, System and Hardware Development,
+                  Contract-based IT Support, and a wide range of IT Products.
+                  Our specialized IT Training Academy is recognized for
+                  developing industry-focused human skills, enabling a digitally
+                  advanced IT community across the nation.
                 </p>
               </div>
             </div>
@@ -759,6 +821,19 @@ export default function AboutUsPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Empower Your Future Section */}
+        <section className="empower-future-section">
+          <div className="empower-future-container">
+            <h2>
+              <span className="empower-text">Empower Your Future with</span>{" "}
+              <span className="itplus-empower-text">ITPlus!</span>
+            </h2>
+            <a href="/apply" className="apply-now-button">
+              Apply Now
+            </a>
           </div>
         </section>
       </div>
