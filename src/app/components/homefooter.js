@@ -1,4 +1,3 @@
-import React from "react";
 
 const HomeFooter = () => {
   const faqs = [
@@ -395,7 +394,7 @@ const HomeFooter = () => {
           border: 2px solid rgba(152, 150, 153, 0.77);
           border-radius: 12px;
           padding: 14px 16px;
-          color:rgb(100, 101, 104);
+          color: rgb(100, 101, 104);
           font-size: 14px;
           transition: all 0.2s ease;
           font-family: inherit;
@@ -425,7 +424,7 @@ const HomeFooter = () => {
         }
 
         .submit-button {
-          background:rgb(235, 145, 61);
+          background: rgb(235, 145, 61);
           color: white;
           border: none;
           border-radius: 12px;
@@ -522,25 +521,17 @@ const HomeFooter = () => {
           flex-direction: column;
           align-items: flex-start;
           text-align: left;
-          padding-left: 0; /* make sure there's no extra left padding */
+          padding-left: 0;
           margin-left: 0;
         }
+
         .brand-logo {
-          display: block; /* removes inline spacing */
+          display: block;
           width: 200px;
           height: auto;
           margin-bottom: 16px;
-          padding: 0; /* ensure no padding is applied */
-          margin-left: -24px; /* force zero margin on left */
-          
-        }
-
-        .brand-title {
-          font-size: 28px;
-          font-weight: 700;
-          color: white;
-          margin: 0 0 24px 0;
-          letter-spacing: 0.02em;
+          padding: 0;
+          margin-left: -24px;
         }
 
         .brand-description {
@@ -760,7 +751,7 @@ const HomeFooter = () => {
           color: rgb(245, 149, 32);
         }
 
-        /* Mobile Responsive Design */
+        /* Responsive Design */
         @media (max-width: 1200px) {
           .footer-wrapper {
             min-height: 1500px;
@@ -816,12 +807,34 @@ const HomeFooter = () => {
           .brand-column {
             grid-column: 1 / -1;
             max-width: none;
+            align-items: center;
             text-align: center;
             margin-bottom: 20px;
           }
 
+          .brand-logo {
+            margin-left: auto;
+            margin-right: auto;
+            width: 180px;
+          }
+
+          .brand-description {
+            text-align: center;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 15px;
+          }
+
           .social-icons {
             justify-content: center;
+            gap: 16px;
+          }
+
+          .social-icon {
+            width: 45px;
+            height: 45px;
+            font-size: 18px;
           }
         }
 
@@ -892,10 +905,33 @@ const HomeFooter = () => {
 
           .brand-column {
             max-width: none;
+            align-items: center;
+            text-align: center;
+          }
+
+          .brand-logo {
+            margin-left: auto;
+            margin-right: auto;
+            width: 180px;
+          }
+
+          .brand-description {
+            text-align: center;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 15px;
           }
 
           .social-icons {
             justify-content: center;
+            gap: 16px;
+          }
+
+          .social-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
           }
 
           .newsletter-form {
@@ -959,6 +995,30 @@ const HomeFooter = () => {
             font-size: 15px;
           }
 
+          .brand-column {
+            align-items: center;
+            text-align: center;
+          }
+
+          .brand-logo {
+            margin-left: auto;
+            margin-right: auto;
+            width: 160px;
+          }
+
+          .brand-description {
+            text-align: center;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 14px;
+          }
+
+          .social-icons {
+            justify-content: center;
+            gap: 14px;
+          }
+
           .social-icon {
             width: 40px;
             height: 40px;
@@ -967,22 +1027,6 @@ const HomeFooter = () => {
 
           .newsletter-form {
             width: 260px;
-          }
-
-          .brand-title {
-            font-size: 24px;
-          }
-
-          .column-title {
-            font-size: 12px;
-          }
-
-          .column-links a {
-            font-size: 13px;
-          }
-
-          .contact-item {
-            font-size: 13px;
           }
         }
 
@@ -1019,8 +1063,29 @@ const HomeFooter = () => {
             font-size: 14px;
           }
 
-          .brand-title {
-            font-size: 20px;
+          .brand-column {
+            align-items: center;
+            text-align: center;
+            max-width: none;
+          }
+
+          .brand-logo {
+            margin-left: auto;
+            margin-right: auto;
+            width: 160px;
+          }
+
+          .brand-description {
+            text-align: center;
+            max-width: 280px;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 14px;
+          }
+
+          .social-icons {
+            justify-content: center;
+            gap: 14px;
           }
 
           .social-icon {
