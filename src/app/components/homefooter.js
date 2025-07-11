@@ -675,6 +675,7 @@ const HomeFooter = () => {
           padding: 0 90px 0 16px;
           border-radius: 20px;
           font-weight: 400;
+          align-items: left;
         }
 
         .email-input::placeholder {
