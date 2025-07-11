@@ -263,13 +263,13 @@ export default function Home() {
   margin-bottom: 30px;
 
   /* ADDITIONS FOR HOVER ANIMATION */
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for transform and shadow */
-  cursor: pointer; /* Indicate it's interactive */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; 
+  cursor: pointer;
 }
 
 .feature-card:hover {
-  transform: translateY(-10px) scale(1.02); /* Lifts the card up slightly and makes it a bit larger */
-  box-shadow: 8px 8px 20px rgba(122, 74, 223, 0.7); /* Enhance shadow on hover */
+  transform: translateY(-10px) scale(1.02); 
+  box-shadow: 8px 8px 20px rgba(122, 74, 223, 0.7); 
 }
 
 .feature-icon {
@@ -278,17 +278,20 @@ export default function Home() {
   height: 120px;
   border-radius: 10px;
   margin-bottom: 30px;
-  /* ADDITIONS FOR HOVER ANIMATION (on the icon itself) */
-  transition: transform 0.3s ease-in-out; /* Smooth transition for icon */
-  /* If the icon is an <img> or <svg>, you might also want to add: */
-  /* filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); */ /* Example for a subtle glow */
+  
+  transition: transform 0.3s ease-in-out; 
+  
 }
 
 /* We'll make the icon animate when its parent card is hovered */
 .feature-card:hover .feature-icon {
-  transform: rotate(5deg) scale(1.1); /* Rotates slightly and scales up the icon */
+  transform: rotate(5deg) scale(1.1); 
 }
-
+.feature-icon img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+}
 .feature-title {
   font-size: 36px;
   font-weight: 600;
@@ -303,7 +306,7 @@ export default function Home() {
   height: 363px;
 }
         
-        .clients-container {
+  .clients-container {
   padding: 80px; /* increase from 60px */
 }
         
@@ -458,18 +461,18 @@ export default function Home() {
     padding: 24px 10px;   /* Optional: adjust padding for smaller screens */
   }
 }
-        .btn-read-article {
-          background: var(--accent-green);
-          color: var(--dark-blue);
-          border: none;
-          border-radius: 15px;
-          font-size: 15px;
-          font-weight: 500;
-          padding: 8px 20px;
-        }
+.btn-read-article {
+    background: var(--accent-green);
+    color: var(--dark-blue);
+    border: none;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 8px 20px;
+}
         
-        .btn-show-more {
-        background: linear-gradient(45deg, rgb(245, 149, 32), rgb(245, 149, 32));
+.btn-show-more {
+  background: linear-gradient(45deg, rgb(245, 149, 32), rgb(245, 149, 32));
   color: #2D1B69;
   border: none;
   padding: 16px 40px;
@@ -908,6 +911,44 @@ export default function Home() {
   }
 }
 
+@media (max-width: 479px) {
+  .col-lg-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .feature-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 4px;
+    border-radius: 20px;
+    height: 65px !important;
+  }
+
+  .tall-card,
+  .short-card {
+    height: 65px !important;
+  }
+
+  .feature-icon {
+    width: 58px;
+    height: 58px;
+    margin-bottom: 0;
+    margin-right: 7px;
+  }
+
+  .feature-icon img {
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  .feature-title {
+    font-size: 17px;
+    text-align: left;
+  }
+}
+
+
 
 /* Extra Small Mobile Responsive CSS for screens with max-width: 380px */
 @media (max-width: 380px) {
@@ -1050,30 +1091,41 @@ export default function Home() {
   .why-choose-section {
     padding: 35px 0;
   }
+
+  .col-lg-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
   
   .feature-card {
-    margin-bottom: 12px;
-    border-radius: 18px;
-    padding: 18px 8px;
-    min-height: 220px;
-  }
-  
-  .feature-icon {
-    width: 70px;
-    height: 70px;
-    margin-bottom: 15px;
-  }
-  
-  .feature-icon img {
-    width: 70px !important;
-    height: 70px !important;
-  }
-  
-  .feature-title {
-    font-size: 16px;
-    line-height: 1.3;
+    flex-direction: row;
+    align-items: center;
+    padding: 4px;
+    border-radius: 20px;
+    height: 60px !important;
   }
 
+  .tall-card,
+  .short-card {
+    height: 60px !important;
+  }
+
+  .feature-icon {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 0;
+    margin-right: 6px;
+  }
+
+  .feature-icon img {
+    width: 54px !important;
+    height: 54px !important;
+  }
+
+  .feature-title {
+    font-size: 16px;
+    text-align: left;
+  }
   /* Clients Section */
   .clients-section {
     padding: 35px 0;
@@ -2012,6 +2064,45 @@ export default function Home() {
   .who-content-centered {
     padding: 0 30px;
   }
+
+  .col-lg-2 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .col-lg-2[style*="margin-top"] {
+    margin-top: 40px !important;
+  }
+
+  .feature-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    border-radius: 30px;
+    height: 100px !important;
+  }
+
+  .tall-card,
+  .short-card {
+    height: 100px !important;
+  }
+
+  .feature-icon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 0;
+    margin-right: 12px;
+  }
+
+  .feature-icon img {
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  .feature-title {
+    font-size: 28px;
+    text-align: left;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2051,6 +2142,46 @@ export default function Home() {
     padding: 14px 30px;
     font-size: 14px;
   }
+
+  .col-lg-2 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .col-lg-2[style*="margin-top"] {
+    margin-top: 0 !important;
+  }
+
+  .feature-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px;
+    border-radius: 25px;
+    height: 80px !important;
+  }
+
+  .tall-card,
+  .short-card {
+    height: 80px !important;
+  }
+
+  .feature-icon {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+
+  .feature-icon img {
+    width: 72px !important;
+    height: 72px !important;
+  }
+
+
+  .feature-title {
+    font-size: 22px;
+    text-align: left;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2078,6 +2209,41 @@ export default function Home() {
   .who-description-centered {
     font-size: 14px;
     padding: 0 15px;
+  }
+
+  .col-lg-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .feature-card {
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+    border-radius: 20px;
+    height: 70px !important;
+  }
+
+  .tall-card,
+  .short-card {
+    height: 70px !important;
+  }
+
+  .feature-icon {
+    width: 63px;
+    height: 63px;
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
+
+  .feature-icon img {
+    width: 63px !important;
+    height: 63px !important;
+  }
+
+  .feature-title {
+    font-size: 18px;
+    text-align: left;
   }
 }
 
@@ -2325,15 +2491,11 @@ export default function Home() {
             Your Trusted IT Partner in Sri Lanka
           </p>
 
-          <div className="row justify-content-center ">
+          <div className="row justify-content-center">
             <div className="col-lg-2">
               <div className="feature-card tall-card">
                 <div className="feature-icon">
-                  <img
-                    src="/images/icons/2.svg"
-                    alt="Expert Team"
-                    style={{ width: "130px", height: "130px" }}
-                  />
+                  <img src="/images/icons/2.svg" alt="Expert Team" />
                 </div>
                 <div className="feature-title">Expert Team</div>
               </div>
@@ -2342,11 +2504,7 @@ export default function Home() {
             <div className="col-lg-2" style={{ marginTop: "114px" }}>
               <div className="feature-card tall-card">
                 <div className="feature-icon">
-                  <img
-                    src="/images/icons/3.svg"
-                    alt="Focus on Quality"
-                    style={{ width: "130px", height: "130px" }}
-                  />
+                  <img src="/images/icons/3.svg" alt="Focus on Quality" />
                 </div>
                 <div className="feature-title">Focus on Quality</div>
               </div>
@@ -2355,21 +2513,13 @@ export default function Home() {
             <div className="col-lg-2">
               <div className="feature-card short-card mb-4">
                 <div className="feature-icon">
-                  <img
-                    src="/images/icons/4.svg"
-                    alt="Innovative Solutions"
-                    style={{ width: "130px", height: "130px" }}
-                  />
+                  <img src="/images/icons/4.svg" alt="Innovative Solutions" />
                 </div>
                 <div className="feature-title">Innovative Solutions</div>
               </div>
               <div className="feature-card short-card">
                 <div className="feature-icon">
-                  <img
-                    src="/images/icons/5.svg"
-                    alt="Job Placement"
-                    style={{ width: "130px", height: "130px" }}
-                  />
+                  <img src="/images/icons/5.svg" alt="Job Placement" />
                 </div>
                 <div className="feature-title">Job Placement</div>
               </div>
@@ -2378,11 +2528,7 @@ export default function Home() {
             <div className="col-lg-2" style={{ marginTop: "114px" }}>
               <div className="feature-card tall-card">
                 <div className="feature-icon">
-                  <img
-                    src="/images/icons/6.svg"
-                    alt="Certified Trainers"
-                    style={{ width: "130px", height: "130px" }}
-                  />
+                  <img src="/images/icons/6.svg" alt="Certified Trainers" />
                 </div>
                 <div className="feature-title">Certified Trainers</div>
               </div>
@@ -2391,11 +2537,7 @@ export default function Home() {
             <div className="col-lg-2">
               <div className="feature-card tall-card">
                 <div className="feature-icon">
-                  <img
-                    src="/images/icons/7.svg"
-                    alt="24x7 Support"
-                    style={{ width: "130px", height: "130px" }}
-                  />
+                  <img src="/images/icons/7.svg" alt="24x7 Support" />
                 </div>
                 <div className="feature-title">24x7 Support</div>
               </div>
