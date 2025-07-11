@@ -33,12 +33,29 @@ export default function Home() {
       "https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js";
     document.body.appendChild(bootstrapScript);
 
+    // Reveal on scroll logic
+  const revealElements = document.querySelectorAll('.reveal-on-scroll'); // <-- ADD THIS LINE
+  const observer = new window.IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        } else {
+          entry.target.classList.remove("visible");
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+  revealElements.forEach((el) => observer.observe(el));
+
     return () => {
       // Cleanup
       document.head.removeChild(bootstrapLink);
       document.head.removeChild(fontAwesomeLink);
       document.head.removeChild(googleFontsLink);
       document.body.removeChild(bootstrapScript);
+      revealElements.forEach((el) => observer.unobserve(el));
     };
   }, []);
 
@@ -75,6 +92,16 @@ export default function Home() {
           padding: 0;
           overflow-x: hidden;
         }
+        
+        .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal-on-scroll.visible {
+  opacity: 1;
+  transform: none;
+}
         
         
         
@@ -2251,438 +2278,445 @@ export default function Home() {
 
       <Header />
       <HeroSection />
+      <section className="py-5 reveal-on-scroll">
+        {/* What We Do Section */}
+        <section className="py-5">
+          <div className="container">
+            <div className="decorative-line">
+              <div className="dot"></div>
+              <div className="line"></div>
+              <h2 className="section-title mx-4">
+                What <span style={{ color: "#ef8f11" }}>We</span> Do
+              </h2>
+              <div className="line"></div>
+              <div className="dot"></div>
+            </div>
+            <p className="section-subtitle">Expert to Make IT Perfect</p>
 
-      {/* What We Do Section */}
-      <section className="py-5">
-        <div className="container">
-          <div className="decorative-line">
-            <div className="dot"></div>
-            <div className="line"></div>
-            <h2 className="section-title mx-4">
-              What <span style={{ color: "#ef8f11" }}>We</span> Do
-            </h2>
-            <div className="line"></div>
-            <div className="dot"></div>
+            <div className="services-grid">
+              {/* Technology Service */}
+              <a href="/services/technology" className="service-card-image">
+                <div
+                  className="service-bg"
+                  style={{
+                    backgroundImage: "url(/images/services/technology-bg.png)",
+                  }}
+                ></div>
+                <div className="service-overlay"></div>
+                <div className="service-content">
+                  <h3 className="service-title">TECHNOLOGY</h3>
+                  <div className="service-arrow-icon">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="service-description">
+                  <p>
+                    Explore our Technology services for modern IT solutions,
+                    from networking to video conferencing, enhancing your
+                    digital infrastructure.
+                  </p>
+                </div>
+              </a>
+
+              {/* Cloud Service */}
+              <a
+                href="/services/cloud-solutions"
+                className="service-card-image"
+              >
+                <div
+                  className="service-bg"
+                  style={{
+                    backgroundImage: "url(/images/services/cloud-bg.png)",
+                  }}
+                ></div>
+                <div className="service-overlay"></div>
+                <div className="service-content">
+                  <h3 className="service-title">CLOUD</h3>
+                  <div className="service-arrow-icon">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="service-description">
+                  <p>
+                    Experience cloud flexibility with our Cloud Solutions,
+                    including servers,
+                    <br /> security, and backup, <br />
+                    enhancing your business efficiency.
+                  </p>
+                </div>
+              </a>
+
+              {/* Software Service */}
+              <a href="/services/software" className="service-card-image">
+                <div
+                  className="service-bg"
+                  style={{
+                    backgroundImage: "url(/images/services/software-bg.png)",
+                  }}
+                ></div>
+                <div className="service-overlay"></div>
+                <div className="service-content">
+                  <h3 className="service-title">SOFTWARE</h3>
+                  <div className="service-arrow-icon">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="service-description">
+                  <p>
+                    Custom software development solutions to streamline your
+                    <br />
+                    business processes and <br />
+                    enhance operational efficiency.
+                  </p>
+                </div>
+              </a>
+
+              {/* IT Support Service */}
+              <a href="/services/support" className="service-card-image">
+                <div
+                  className="service-bg"
+                  style={{
+                    backgroundImage: "url(/images/services/technology-bg.png)",
+                  }}
+                ></div>
+                <div className="service-overlay"></div>
+                <div className="service-content">
+                  <h3 className="service-title">IT SUPPORT</h3>
+                  <div className="service-arrow-icon">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="service-description">
+                  <p>
+                    Comprehensive IT support services including helpdesk,
+                    maintenance,
+                    <br /> and project management <br />
+                    for optimized systems.
+                  </p>
+                </div>
+              </a>
+
+              {/* IT Products Service */}
+              <a href="/services/products" className="service-card-image">
+                <div
+                  className="service-bg"
+                  style={{
+                    backgroundImage: "url(/images/services/technology-bg.png)",
+                  }}
+                ></div>
+                <div className="service-overlay"></div>
+                <div className="service-content">
+                  <h3 className="service-title">IT PRODUCTS</h3>
+                  <div className="service-arrow-icon">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="service-description">
+                  <p>
+                    Quality IT hardware and products to support your business
+                    infrastructure
+                    <br /> and
+                    <br /> technology requirements.
+                  </p>
+                </div>
+              </a>
+
+              {/* Academic Service */}
+              <a href="/services/academic" className="service-card-image">
+                <div
+                  className="service-bg"
+                  style={{
+                    backgroundImage: "url(/images/services/technology-bg.png)",
+                  }}
+                ></div>
+                <div className="service-overlay"></div>
+                <div className="service-content">
+                  <h3 className="service-title"> ACADEMIC</h3>
+                  <div className="service-arrow-icon">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="service-description">
+                  <p>
+                    Educational technology solutions <br />
+                    and training programs to enhance
+                    <br /> learning and
+                    <br /> skill development.
+                  </p>
+                </div>
+              </a>
+            </div>
           </div>
-          <p className="section-subtitle">Expert to Make IT Perfect</p>
-
-          <div className="services-grid">
-            {/* Technology Service */}
-            <a href="/services/technology" className="service-card-image">
-              <div
-                className="service-bg"
-                style={{
-                  backgroundImage: "url(/images/services/technology-bg.png)",
-                }}
-              ></div>
-              <div className="service-overlay"></div>
-              <div className="service-content">
-                <h3 className="service-title">TECHNOLOGY</h3>
-                <div className="service-arrow-icon">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-              <div className="service-description">
-                <p>
-                  Explore our Technology services for modern IT solutions, from
-                  networking to video conferencing, enhancing your digital
-                  infrastructure.
-                </p>
-              </div>
-            </a>
-
-            {/* Cloud Service */}
-            <a href="/services/cloud-solutions" className="service-card-image">
-              <div
-                className="service-bg"
-                style={{
-                  backgroundImage: "url(/images/services/cloud-bg.png)",
-                }}
-              ></div>
-              <div className="service-overlay"></div>
-              <div className="service-content">
-                <h3 className="service-title">CLOUD</h3>
-                <div className="service-arrow-icon">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-              <div className="service-description">
-                <p>
-                  Experience cloud flexibility with our Cloud Solutions,
-                  including servers,
-                  <br /> security, and backup, <br />
-                  enhancing your business efficiency.
-                </p>
-              </div>
-            </a>
-
-            {/* Software Service */}
-            <a href="/services/software" className="service-card-image">
-              <div
-                className="service-bg"
-                style={{
-                  backgroundImage: "url(/images/services/software-bg.png)",
-                }}
-              ></div>
-              <div className="service-overlay"></div>
-              <div className="service-content">
-                <h3 className="service-title">SOFTWARE</h3>
-                <div className="service-arrow-icon">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-              <div className="service-description">
-                <p>
-                  Custom software development solutions to streamline your
-                  <br />
-                  business processes and <br />
-                  enhance operational efficiency.
-                </p>
-              </div>
-            </a>
-
-            {/* IT Support Service */}
-            <a href="/services/support" className="service-card-image">
-              <div
-                className="service-bg"
-                style={{
-                  backgroundImage: "url(/images/services/technology-bg.png)",
-                }}
-              ></div>
-              <div className="service-overlay"></div>
-              <div className="service-content">
-                <h3 className="service-title">IT SUPPORT</h3>
-                <div className="service-arrow-icon">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-              <div className="service-description">
-                <p>
-                  Comprehensive IT support services including helpdesk,
-                  maintenance,
-                  <br /> and project management <br />
-                  for optimized systems.
-                </p>
-              </div>
-            </a>
-
-            {/* IT Products Service */}
-            <a href="/services/products" className="service-card-image">
-              <div
-                className="service-bg"
-                style={{
-                  backgroundImage: "url(/images/services/technology-bg.png)",
-                }}
-              ></div>
-              <div className="service-overlay"></div>
-              <div className="service-content">
-                <h3 className="service-title">IT PRODUCTS</h3>
-                <div className="service-arrow-icon">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-              <div className="service-description">
-                <p>
-                  Quality IT hardware and products to support your business
-                  infrastructure
-                  <br /> and
-                  <br /> technology requirements.
-                </p>
-              </div>
-            </a>
-
-            {/* Academic Service */}
-            <a href="/services/academic" className="service-card-image">
-              <div
-                className="service-bg"
-                style={{
-                  backgroundImage: "url(/images/services/technology-bg.png)",
-                }}
-              ></div>
-              <div className="service-overlay"></div>
-              <div className="service-content">
-                <h3 className="service-title"> ACADEMIC</h3>
-                <div className="service-arrow-icon">
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </div>
-              <div className="service-description">
-                <p>
-                  Educational technology solutions <br />
-                  and training programs to enhance
-                  <br /> learning and
-                  <br /> skill development.
-                </p>
-              </div>
-            </a>
-          </div>
-        </div>
+        </section>
       </section>
 
-      <WhoSection />
+      <WhoSection className="reveal-on-scroll" />
 
-      {/* Why Choose Us Section */}
-      <section className="why-choose-section">
-        <div className="container px-xxl-5 px-lg-4 px-3">
-          <div className="decorative-line">
-            <div className="dot"></div>
-            <div className="line"></div>
-            <h2 className="section-title mx-4">
-              Why <span style={{ color: "#ef8f11" }}>Choose</span> Us
-            </h2>
-            <div className="line"></div>
-            <div className="dot"></div>
-          </div>
-          <p className="section-subtitle" style={{ marginBottom: "100px" }}>
-            Your Trusted IT Partner in Sri Lanka
-          </p>
-
-          <div className="row justify-content-center">
-            <div className="col-lg-2">
-              <div className="feature-card tall-card">
-                <div className="feature-icon">
-                  <img src="/images/icons/2.svg" alt="Expert Team" />
-                </div>
-                <div className="feature-title">Expert Team</div>
-              </div>
+      <section className="why-choose-section reveal-on-scroll">
+        {/* Why Choose Us Section */}
+        <section className="why-choose-section">
+          <div className="container px-xxl-5 px-lg-4 px-3">
+            <div className="decorative-line">
+              <div className="dot"></div>
+              <div className="line"></div>
+              <h2 className="section-title mx-4">
+                Why <span style={{ color: "#ef8f11" }}>Choose</span> Us
+              </h2>
+              <div className="line"></div>
+              <div className="dot"></div>
             </div>
+            <p className="section-subtitle" style={{ marginBottom: "100px" }}>
+              Your Trusted IT Partner in Sri Lanka
+            </p>
 
-            <div className="col-lg-2" style={{ marginTop: "114px" }}>
-              <div className="feature-card tall-card">
-                <div className="feature-icon">
-                  <img src="/images/icons/3.svg" alt="Focus on Quality" />
-                </div>
-                <div className="feature-title">Focus on Quality</div>
-              </div>
-            </div>
-
-            <div className="col-lg-2">
-              <div className="feature-card short-card mb-4">
-                <div className="feature-icon">
-                  <img src="/images/icons/4.svg" alt="Innovative Solutions" />
-                </div>
-                <div className="feature-title">Innovative Solutions</div>
-              </div>
-              <div className="feature-card short-card">
-                <div className="feature-icon">
-                  <img src="/images/icons/5.svg" alt="Job Placement" />
-                </div>
-                <div className="feature-title">Job Placement</div>
-              </div>
-            </div>
-
-            <div className="col-lg-2" style={{ marginTop: "114px" }}>
-              <div className="feature-card tall-card">
-                <div className="feature-icon">
-                  <img src="/images/icons/6.svg" alt="Certified Trainers" />
-                </div>
-                <div className="feature-title">Certified Trainers</div>
-              </div>
-            </div>
-
-            <div className="col-lg-2">
-              <div className="feature-card tall-card">
-                <div className="feature-icon">
-                  <img src="/images/icons/7.svg" alt="24x7 Support" />
-                </div>
-                <div className="feature-title">24x7 Support</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Clients Section */}
-      <section className="clients-section">
-        <div className="container">
-          <h2 className="section-title" style={{ marginBottom: "60px" }}>
-            Our Clients In <span style={{ color: "#ef8f11" }}>Success</span>
-          </h2>
-          <div className="clients-container">
-            <div className="row justify-content-center mb-4">
-              <div className="col-auto">
-                <div className="client-logo">
-                  <img
-                    className="default-img"
-                    src="/images/clients/castle-hover.png"
-                    alt="Client 1"
-                  />
-                  <img
-                    className="hover-img"
-                    src="/images/clients/castle.svg"
-                    alt="Client 1 Hover"
-                  />
-                </div>
-              </div>
-              <div className="col-auto">
-                <div className="client-logo">
-                  <img
-                    className="default-img"
-                    src="/images/clients/clever-hover.png"
-                    alt="Client 2"
-                  />
-                  <img
-                    className="hover-img"
-                    src="/images/clients/clever.svg"
-                    alt="Client 2 Hover"
-                  />
-                </div>
-              </div>
-              <div className="col-auto">
-                <div className="client-logo">
-                  <img
-                    className="default-img"
-                    src="/images/clients/doo-hover.png"
-                    alt="Client 3"
-                  />
-                  <img
-                    className="hover-img"
-                    src="/images/clients/doo.svg"
-                    alt="Client 3 Hover"
-                  />
-                </div>
-              </div>
-              <div className="col-auto">
-                <div className="client-logo">
-                  <img
-                    className="default-img"
-                    src="/images/clients/durd-hover.png"
-                    alt="Client 4"
-                  />
-                  <img
-                    className="hover-img"
-                    src="/images/clients/durd.svg"
-                    alt="Client 4 Hover"
-                  />
-                </div>
-              </div>
-              <div className="col-auto">
-                <div className="client-logo">
-                  <img
-                    className="default-img"
-                    src="/images/clients/ella-hover.png"
-                    alt="Client 5"
-                  />
-                  <img
-                    className="hover-img"
-                    src="/images/clients/ella.svg"
-                    alt="Client 5 Hover"
-                  />
-                </div>
-              </div>
-              <div className="col-auto">
-                <div className="client-logo">
-                  <img
-                    className="default-img"
-                    src="/images/clients/fire-hover.png"
-                    alt="Client 6"
-                  />
-                  <img
-                    className="hover-img"
-                    src="/images/clients/fire.svg"
-                    alt="Client 6 Hover"
-                  />
-                </div>
-              </div>
-            </div>
             <div className="row justify-content-center">
-              <div className="col-auto">
-                <div className="client-logo">
-                  <img
-                    className="default-img"
-                    src="/images/clients/swiss-hover.png"
-                    alt="Client 7"
-                  />
-                  <img
-                    className="hover-img"
-                    src="/images/clients/swiss.svg"
-                    alt="Client 7 Hover"
-                  />
+              <div className="col-lg-2">
+                <div className="feature-card tall-card">
+                  <div className="feature-icon">
+                    <img src="/images/icons/2.svg" alt="Expert Team" />
+                  </div>
+                  <div className="feature-title">Expert Team</div>
                 </div>
               </div>
-              <div className="col-auto">
-                <div className="client-logo">
-                  <img
-                    className="default-img"
-                    src="/images/clients/tra-hover.png"
-                    alt="Client 8"
-                  />
-                  <img
-                    className="hover-img"
-                    src="/images/clients/tra.svg"
-                    alt="Client 8 Hover"
-                  />
+
+              <div className="col-lg-2" style={{ marginTop: "114px" }}>
+                <div className="feature-card tall-card">
+                  <div className="feature-icon">
+                    <img src="/images/icons/3.svg" alt="Focus on Quality" />
+                  </div>
+                  <div className="feature-title">Focus on Quality</div>
                 </div>
               </div>
-              <div className="col-auto">
-                <div className="client-logo">
-                  <img
-                    className="default-img"
-                    src="/images/clients/vision-hover.png"
-                    alt="Client 9"
-                  />
-                  <img
-                    className="hover-img"
-                    src="/images/clients/vision.svg"
-                    alt="Client 9 Hover"
-                  />
+
+              <div className="col-lg-2">
+                <div className="feature-card short-card mb-4">
+                  <div className="feature-icon">
+                    <img src="/images/icons/4.svg" alt="Innovative Solutions" />
+                  </div>
+                  <div className="feature-title">Innovative Solutions</div>
+                </div>
+                <div className="feature-card short-card">
+                  <div className="feature-icon">
+                    <img src="/images/icons/5.svg" alt="Job Placement" />
+                  </div>
+                  <div className="feature-title">Job Placement</div>
                 </div>
               </div>
-              {/* <div className="col-auto">
+
+              <div className="col-lg-2" style={{ marginTop: "114px" }}>
+                <div className="feature-card tall-card">
+                  <div className="feature-icon">
+                    <img src="/images/icons/6.svg" alt="Certified Trainers" />
+                  </div>
+                  <div className="feature-title">Certified Trainers</div>
+                </div>
+              </div>
+
+              <div className="col-lg-2">
+                <div className="feature-card tall-card">
+                  <div className="feature-icon">
+                    <img src="/images/icons/7.svg" alt="24x7 Support" />
+                  </div>
+                  <div className="feature-title">24x7 Support</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section className="clients-section reveal-on-scroll">
+        {/* Our Clients Section */}
+        <section className="clients-section">
+          <div className="container">
+            <h2 className="section-title" style={{ marginBottom: "60px" }}>
+              Our Clients In <span style={{ color: "#ef8f11" }}>Success</span>
+            </h2>
+            <div className="clients-container">
+              <div className="row justify-content-center mb-4">
+                <div className="col-auto">
+                  <div className="client-logo">
+                    <img
+                      className="default-img"
+                      src="/images/clients/castle-hover.png"
+                      alt="Client 1"
+                    />
+                    <img
+                      className="hover-img"
+                      src="/images/clients/castle.svg"
+                      alt="Client 1 Hover"
+                    />
+                  </div>
+                </div>
+                <div className="col-auto">
+                  <div className="client-logo">
+                    <img
+                      className="default-img"
+                      src="/images/clients/clever-hover.png"
+                      alt="Client 2"
+                    />
+                    <img
+                      className="hover-img"
+                      src="/images/clients/clever.svg"
+                      alt="Client 2 Hover"
+                    />
+                  </div>
+                </div>
+                <div className="col-auto">
+                  <div className="client-logo">
+                    <img
+                      className="default-img"
+                      src="/images/clients/doo-hover.png"
+                      alt="Client 3"
+                    />
+                    <img
+                      className="hover-img"
+                      src="/images/clients/doo.svg"
+                      alt="Client 3 Hover"
+                    />
+                  </div>
+                </div>
+                <div className="col-auto">
+                  <div className="client-logo">
+                    <img
+                      className="default-img"
+                      src="/images/clients/durd-hover.png"
+                      alt="Client 4"
+                    />
+                    <img
+                      className="hover-img"
+                      src="/images/clients/durd.svg"
+                      alt="Client 4 Hover"
+                    />
+                  </div>
+                </div>
+                <div className="col-auto">
+                  <div className="client-logo">
+                    <img
+                      className="default-img"
+                      src="/images/clients/ella-hover.png"
+                      alt="Client 5"
+                    />
+                    <img
+                      className="hover-img"
+                      src="/images/clients/ella.svg"
+                      alt="Client 5 Hover"
+                    />
+                  </div>
+                </div>
+                <div className="col-auto">
+                  <div className="client-logo">
+                    <img
+                      className="default-img"
+                      src="/images/clients/fire-hover.png"
+                      alt="Client 6"
+                    />
+                    <img
+                      className="hover-img"
+                      src="/images/clients/fire.svg"
+                      alt="Client 6 Hover"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row justify-content-center">
+                <div className="col-auto">
+                  <div className="client-logo">
+                    <img
+                      className="default-img"
+                      src="/images/clients/swiss-hover.png"
+                      alt="Client 7"
+                    />
+                    <img
+                      className="hover-img"
+                      src="/images/clients/swiss.svg"
+                      alt="Client 7 Hover"
+                    />
+                  </div>
+                </div>
+                <div className="col-auto">
+                  <div className="client-logo">
+                    <img
+                      className="default-img"
+                      src="/images/clients/tra-hover.png"
+                      alt="Client 8"
+                    />
+                    <img
+                      className="hover-img"
+                      src="/images/clients/tra.svg"
+                      alt="Client 8 Hover"
+                    />
+                  </div>
+                </div>
+                <div className="col-auto">
+                  <div className="client-logo">
+                    <img
+                      className="default-img"
+                      src="/images/clients/vision-hover.png"
+                      alt="Client 9"
+                    />
+                    <img
+                      className="hover-img"
+                      src="/images/clients/vision.svg"
+                      alt="Client 9 Hover"
+                    />
+                  </div>
+                </div>
+                {/* <div className="col-auto">
                 <div className="client-logo">
                   <img src="/images/clients/10.png" alt="Client 10" />
                 </div>
@@ -2692,159 +2726,179 @@ export default function Home() {
                   <img src="/images/clients/11.png" alt="Client 11" />
                 </div>
               </div> */}
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       </section>
 
-      {/* News Section */}
-      <section className="news-section">
-        <div className="container">
-          <h2 className="section-title" style={{ marginBottom: "60px" }}>
-            News and <span style={{ color: "#ef8f11" }}>Updates</span>
-          </h2>
-          <div className="row">
-            <div className="col-md-4">
-              <div className="news-card">
-                <div className="news-image">
-                  <img src="/images/news/news.png" alt="IFS Appoints News" />
-                </div>
-                <div className="news-content">
-                  <div className="news-title">
-                    IFS Appoints Shown Jusiter as President, Energy & Resources
+      <section className="news-section reveal-on-scroll">
+        {/* News Section */}
+        <section className="news-section">
+          <div className="container">
+            <h2 className="section-title" style={{ marginBottom: "60px" }}>
+              News and <span style={{ color: "#ef8f11" }}>Updates</span>
+            </h2>
+            <div className="row">
+              <div className="col-md-4">
+                <div className="news-card">
+                  <div className="news-image">
+                    <img src="/images/news/news.png" alt="IFS Appoints News" />
                   </div>
-                  <button className="btn btn-read-article">Read article</button>
+                  <div className="news-content">
+                    <div className="news-title">
+                      IFS Appoints Shown Jusiter as President, Energy &
+                      Resources
+                    </div>
+                    <button className="btn btn-read-article">
+                      Read article
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-4">
+                <div className="news-card">
+                  <div className="news-image">
+                    <img
+                      src="/images/news/news.png"
+                      alt="Technology Innovation News"
+                    />
+                  </div>
+                  <div className="news-content">
+                    <div className="news-title">
+                      Latest Technology Innovations Transforming Business
+                      Operations
+                    </div>
+                    <button className="btn btn-read-article">
+                      Read article
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-4">
+                <div className="news-card">
+                  <div className="news-image">
+                    <img
+                      src="/images/news/news.png"
+                      alt="Cloud Solutions News"
+                    />
+                  </div>
+                  <div className="news-content">
+                    <div className="news-title">
+                      Cloud Solutions Drive Digital Transformation in 2025
+                    </div>
+                    <button className="btn btn-read-article">
+                      Read article
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="col-md-4">
+                <div className="news-card">
+                  <div className="news-image">
+                    <img
+                      src="/images/news/news.png"
+                      alt="Cloud Solutions News"
+                    />
+                  </div>
+                  <div className="news-content">
+                    <div className="news-title">
+                      Cloud Solutions Drive Digital Transformation in 2025
+                    </div>
+                    <button className="btn btn-read-article">
+                      Read article
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div className="col-md-4">
-              <div className="news-card">
-                <div className="news-image">
-                  <img
-                    src="/images/news/news.png"
-                    alt="Technology Innovation News"
-                  />
-                </div>
-                <div className="news-content">
-                  <div className="news-title">
-                    Latest Technology Innovations Transforming Business
-                    Operations
-                  </div>
-                  <button className="btn btn-read-article">Read article</button>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-4">
-              <div className="news-card">
-                <div className="news-image">
-                  <img src="/images/news/news.png" alt="Cloud Solutions News" />
-                </div>
-                <div className="news-content">
-                  <div className="news-title">
-                    Cloud Solutions Drive Digital Transformation in 2025
-                  </div>
-                  <button className="btn btn-read-article">Read article</button>
-                </div>
-              </div>
-            </div>
-
-            <div className="col-md-4">
-              <div className="news-card">
-                <div className="news-image">
-                  <img src="/images/news/news.png" alt="Cloud Solutions News" />
-                </div>
-                <div className="news-content">
-                  <div className="news-title">
-                    Cloud Solutions Drive Digital Transformation in 2025
-                  </div>
-                  <button className="btn btn-read-article">Read article</button>
-                </div>
-              </div>
+            <div className="text-center">
+              <button className="btn btn-show-more">Show More News</button>
             </div>
           </div>
-          <div className="text-center">
-            <button className="btn btn-show-more">Show More News</button>
-          </div>
-        </div>
+        </section>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="testimonials-section">
-        <div className="container">
-          <h2 className="section-title">
-            What Our <span style={{ color: "#ef8f11" }}>Clients</span> Say
-          </h2>
-          <div className="row">
-            <div className="col-md-4">
-              <div className="testimonial-card">
-                {/* Star Rating */}
-                <div className="star-rating">
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
+      <section className="testimonials-section reveal-on-scroll">
+        {/* Testimonials Section */}
+        <section className="testimonials-section">
+          <div className="container">
+            <h2 className="section-title">
+              What Our <span style={{ color: "#ef8f11" }}>Clients</span> Say
+            </h2>
+            <div className="row">
+              <div className="col-md-4">
+                <div className="testimonial-card">
+                  {/* Star Rating */}
+                  <div className="star-rating">
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                  </div>
+                  <div className="testimonial-text">
+                    Yet preference connection unpleasant yet melancholy but end
+                    appearance. And excellence partiality estimating terminated
+                    day everything.
+                  </div>
+                  <div className="testimonial-name">Sabo Masties</div>
+                  <div className="testimonial-title">Founder @ Rolex</div>
                 </div>
-                <div className="testimonial-text">
-                  Yet preference connection unpleasant yet melancholy but end
-                  appearance. And excellence partiality estimating terminated
-                  day everything.
+              </div>
+
+              <div className="col-md-4">
+                <div className="testimonial-card">
+                  {/* Star Rating */}
+                  <div className="star-rating">
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                  </div>
+                  <div className="testimonial-text">
+                    Yet preference connection unpleasant yet melancholy but end
+                    appearance. And excellence partiality estimating terminated
+                    day everything.
+                  </div>
+                  <div className="testimonial-name">Sam</div>
+                  <div className="testimonial-title">Founder @ Migelko</div>
                 </div>
-                <div className="testimonial-name">Sabo Masties</div>
-                <div className="testimonial-title">Founder @ Rolex</div>
+              </div>
+
+              <div className="col-md-4">
+                <div className="testimonial-card featured">
+                  {/* Star Rating */}
+                  <div className="star-rating">
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                    <i className="fas fa-star"></i>
+                  </div>
+                  <div className="testimonial-text">
+                    Yet preference connection unpleasant yet melancholy but end
+                    appearance. And excellence partiality estimating terminated
+                    day everything.
+                  </div>
+                  <div className="testimonial-name">Mansur</div>
+                  <div className="testimonial-title">Founder @ Google</div>
+                </div>
               </div>
             </div>
-
-            <div className="col-md-4">
-              <div className="testimonial-card">
-                {/* Star Rating */}
-                <div className="star-rating">
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                </div>
-                <div className="testimonial-text">
-                  Yet preference connection unpleasant yet melancholy but end
-                  appearance. And excellence partiality estimating terminated
-                  day everything.
-                </div>
-                <div className="testimonial-name">Sam</div>
-                <div className="testimonial-title">Founder @ Migelko</div>
-              </div>
-            </div>
-
-            <div className="col-md-4">
-              <div className="testimonial-card featured">
-                {/* Star Rating */}
-                <div className="star-rating">
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                  <i className="fas fa-star"></i>
-                </div>
-                <div className="testimonial-text">
-                  Yet preference connection unpleasant yet melancholy but end
-                  appearance. And excellence partiality estimating terminated
-                  day everything.
-                </div>
-                <div className="testimonial-name">Mansur</div>
-                <div className="testimonial-title">Founder @ Google</div>
-              </div>
+            <div className="text-center mt-4">
+              <p className="cta-text">
+                Get in touch with us. Our experienced team is happily waiting to
+                hear from you
+              </p>
+              <button className="btn btn-inquiry">Send Us an Inquiry</button>
             </div>
           </div>
-          <div className="text-center mt-4">
-            <p className="cta-text">
-              Get in touch with us. Our experienced team is happily waiting to
-              hear from you
-            </p>
-            <button className="btn btn-inquiry">Send Us an Inquiry</button>
-          </div>
-        </div>
+        </section>
       </section>
 
       {/* <section className="faq-section">

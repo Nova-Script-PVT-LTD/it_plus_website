@@ -1,8 +1,9 @@
-const WhoSection = () => {
+const WhoSection = ({ className = "" }) => {
   return (
     <>
+    <section className={`who-section ${className}`}>
       {/* Who Section */}
-      <section className="who-section">
+      
         {/* SVG Background */}
         <div className="who-svg-background">
           <svg 
@@ -49,6 +50,7 @@ const WhoSection = () => {
           </div>
         </div>
       </section>
+      
 
       <style jsx>{`
         /* Who Section with SVG Background */
