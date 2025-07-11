@@ -95,9 +95,9 @@ export default function HeroSection() {
         }
 
         .btn-live-help {
-          background: rgb(245, 149, 32);
-          color: #360065;
-          border: none;
+          background: transparent;
+          color: white;
+          border: 4px solid rgb(245, 149, 32);
           border-radius: 50px;
           font-size: 32px;
           font-weight: 500;
@@ -105,12 +105,12 @@ export default function HeroSection() {
           padding: 18px 45px;
           cursor: pointer;
           transition: all 0.3s ease;
-          box-shadow: 0 8px 25px rgba(51, 255, 148, 0.3);
+          
         }
 
         .btn-live-help:hover {
           background: rgb(245, 149, 32);
-          color: white;
+          color: #360065;
           transform: translateY(-2px);
           box-shadow: 0 12px 35px rgba(51, 255, 148, 0.4);
         }
