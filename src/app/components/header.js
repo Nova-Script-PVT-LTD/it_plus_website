@@ -1634,7 +1634,7 @@ export default function Header() {
 
             
             <div className="navbar-nav">
-              /* About Us Dropdown */
+              
               <div className="nav-item">
                 <div
                   className="nav-link"
@@ -1685,7 +1685,7 @@ export default function Header() {
                 </div>
               </div>
 
-              /* Services Dropdown */
+              
               <div className="nav-item">
                 <div
                   className="nav-link"
@@ -1707,7 +1707,7 @@ export default function Header() {
                   }`}
                 >
                   <div className="dropdown-content">
-                    /* Technology Column */
+                    
                     <div className="dropdown-column">
                       <h6 onClick={() => handleServiceNavigation("technology")}>
                         Technology
@@ -1824,7 +1824,7 @@ export default function Header() {
                       </div>
                     </div>
 
-                    /* Cloud Column */
+                    
                     <div className="dropdown-column">
                       <h6 onClick={() => handleServiceNavigation("cloud")}>
                         Cloud
@@ -1872,7 +1872,7 @@ export default function Header() {
                       </div>
                     </div>
 
-                    /* Software Column */
+                    
                     <div className="dropdown-column">
                       <h6 onClick={() => handleServiceNavigation("software")}>
                         Software
@@ -1961,7 +1961,7 @@ export default function Header() {
                       </div>
                     </div>
 
-                    /* IT Support Column */
+                    
                     <div className="dropdown-column">
                       <h6 onClick={() => handleServiceNavigation("it-support")}>
                         IT Support
