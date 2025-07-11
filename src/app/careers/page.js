@@ -142,6 +142,16 @@ export default function CareersPage() {
         flex-direction: column;
       }
 
+      .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(80px) scale(0.96);
+      transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1), transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .reveal-on-scroll.visible {
+      opacity: 1;
+      transform: none;
+    }
+
       /* Hero Section */
       .hero-section {
         padding: clamp(60px, 10vw, 80px) 0 clamp(40px, 8vw, 60px);
@@ -759,11 +769,25 @@ export default function CareersPage() {
 
     document.head.appendChild(style);
 
+    const revealElements = document.querySelectorAll(".reveal-on-scroll");
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          } else {
+            entry.target.classList.remove("visible");
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+    revealElements.forEach((el) => observer.observe(el));
+
     // Cleanup function to remove the style when component unmounts
     return () => {
-      if (style.parentNode) {
-        style.parentNode.removeChild(style);
-      }
+      if (style.parentNode) style.parentNode.removeChild(style);
+      revealElements.forEach((el) => observer.unobserve(el));
     };
   }, []);
 
@@ -806,8 +830,14 @@ export default function CareersPage() {
       <section className="jobs-section">
         <div className="jobs-container">
           <div className="jobs-grid">
-            {jobListings.map((job) => (
-              <div key={job.id} className="job-card">
+            {jobListings.map((job, idx) => (
+              <div
+                key={job.id}
+                className="job-card reveal-on-scroll"
+                style={{
+                  transitionDelay: `${idx * 120}ms`,
+                }}
+              >
                 <h3 className="job-title">{job.title}</h3>
                 <div className="job-details">
                   <div className="job-detail">

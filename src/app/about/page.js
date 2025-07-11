@@ -92,6 +92,17 @@ export default function AboutUsPage() {
         overflow-x: hidden;
       }
 
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(80px);
+        transition: opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1), transform 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .reveal-on-scroll.visible {
+        opacity: 1;
+        transform: none;
+      }
+
       /* Main Content Section */
       .main-content {
         background: white;
@@ -458,50 +469,50 @@ export default function AboutUsPage() {
       }
       
       /* Empower Future Section */
-.empower-future-section {
-  padding: 80px 0;
-  background: white;
-  text-align: center;
-}
+      .empower-future-section {
+        padding: 80px 0;
+        background: white;
+        text-align: center;
+      }
 
-.empower-future-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 60px;
-}
+      .empower-future-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 60px;
+      }
 
-.empower-future-container h2 {
-  font-size: 42px;
-  font-weight: 700;
-  margin-bottom: 40px;
-}
+      .empower-future-container h2 {
+        font-size: 42px;
+        font-weight: 700;
+        margin-bottom: 40px;
+      }
 
-.empower-text {
-  color: #31086C;
-}
+      .empower-text {
+        color: #31086C;
+      }
 
-.itplus-empower-text {
-  color: rgb(245, 149, 32);
-}
+      .itplus-empower-text {
+        color: rgb(245, 149, 32);
+      }
 
-.apply-now-button {
-  display: inline-block;
-  background-color: rgb(245, 149, 32);
-  color: white;
-  padding: 15px 40px;
-  font-size: 18px;
-  font-weight: 600;
-  border-radius: 30px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-}
+      .apply-now-button {
+        display: inline-block;
+        background-color: rgb(245, 149, 32);
+        color: white;
+        padding: 15px 40px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      }
 
-.apply-now-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(245, 149, 32, 0.4);
-  background-color: #e08e1a; /* A slightly darker orange for hover */
-}
+      .apply-now-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 25px rgba(245, 149, 32, 0.4);
+        background-color: #e08e1a; /* A slightly darker orange for hover */
+      }
 
       /* Responsive Design */
       @media (max-width: 1200px) {
@@ -552,8 +563,8 @@ export default function AboutUsPage() {
           font-size: 15px;
         }
         .empower-future-container h2 {
-    font-size: 38px;
-  }
+          font-size: 38px;
+        }
       }
 
       @media (max-width: 768px) {
@@ -606,12 +617,12 @@ export default function AboutUsPage() {
         }
 
         .empower-future-container h2 {
-    font-size: 32px;
-  }
-  .apply-now-button {
-    padding: 12px 35px;
-    font-size: 16px;
-  }
+          font-size: 32px;
+        }
+        .apply-now-button {
+          padding: 12px 35px;
+          font-size: 16px;
+        }
       }
 
       @media (max-width: 480px) {
@@ -661,17 +672,34 @@ export default function AboutUsPage() {
         }
 
         .empower-future-container h2 {
-    font-size: 28px;
-  }
+          font-size: 28px;
+        }
       }
     `;
 
     document.head.appendChild(style);
 
+    // Reveal on scroll logic
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    revealElements.forEach((el) => observer.observe(el));
+
     return () => {
       if (style.parentNode) {
         style.parentNode.removeChild(style);
       }
+      revealElements.forEach((el) => observer.unobserve(el));
     };
   }, []);
 
@@ -737,7 +765,7 @@ export default function AboutUsPage() {
         </section>
 
         {/* Locations Section */}
-        <section className="locations-section">
+        <section className="locations-section reveal-on-scroll">
           <div className="locations-container">
             <h2 className="locations-heading">
               <span className="our-locations-text">Our</span>
@@ -754,7 +782,7 @@ export default function AboutUsPage() {
         </section>
 
         {/* Mission Vision Section */}
-        <section className="mission-vision-section">
+        <section className="mission-vision-section reveal-on-scroll">
           <div className="mission-vision-container">
             <div className="mission-card">
               <h3>
@@ -786,7 +814,7 @@ export default function AboutUsPage() {
         </section>
 
         {/* Working With ITPlus Section */}
-        <section className="working-section">
+        <section className="working-section reveal-on-scroll">
           <div className="working-container">
             <div className="working-header">
               <h2>
@@ -826,14 +854,12 @@ export default function AboutUsPage() {
         </section>
 
         {/* Empower Your Future Section */}
-        <section className="empower-future-section">
+        <section className="empower-future-section reveal-on-scroll">
           <div className="empower-future-container">
             <h2>
               <span className="empower-text">Empower Your Future with</span>{" "}
               <span className="itplus-empower-text">ITPlus!</span>
             </h2>
-
-            {/* 2. Wrap your button element in the Link component */}
             <Link href="/careers" passHref>
               <div className="apply-now-button">Apply Now</div>
             </Link>
