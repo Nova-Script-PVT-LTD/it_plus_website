@@ -92,6 +92,8 @@ export default function HeroSection() {
           justify-content: center;
           gap: 30px;
           flex-wrap: wrap;
+                    position: relative;
+          z-index: 4;
         }
 
         .btn-live-help {
@@ -162,8 +164,8 @@ export default function HeroSection() {
 
         @media (max-width: 768px) {
           .hero-section {
-            min-height: 500px;
-            padding: 60px 20px;
+            min-height: 600px;
+            padding: 60px 20px 180px 0px;
           }
           .hero-logo-image {
             width: 100;
@@ -194,6 +196,8 @@ export default function HeroSection() {
             flex-direction: column;
             align-items: center;
             gap: 20px;
+                        position: relative;
+            z-index: 4;
           }
 
           .btn-live-help,
@@ -202,6 +206,10 @@ export default function HeroSection() {
             padding: 15px 35px;
             width: 280px;
             height: 66px;
+            position: relative;
+            z-index: 4;
+            box-sizing: border-box;
+            margin: 0;
           }
         }
 
@@ -230,11 +238,24 @@ export default function HeroSection() {
             font-size: 20px;
           }
 
+          .hero-buttons {
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            z-index: 4;
+          }
+
           .btn-live-help,
           .btn-contact-hero {
             font-size: 20px;
             padding: 12px 30px;
             width: 250px;
+            height: 60px;
+            position: relative;
+            z-index: 4;
+            box-sizing: border-box;
+            margin: 0;
           }
         }
 
@@ -263,13 +284,24 @@ export default function HeroSection() {
             font-size: 18px;
           }
 
+          .hero-buttons {
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            z-index: 4;
+          }
+
           .btn-live-help,
           .btn-contact-hero {
             font-size: 18px;
-            padding: 8px 26px;
-            margin:0 0 0 ;
+            padding: 10px 26px;
             width: 200px;
             height: 50px;
+            position: relative;
+            z-index: 4;
+            box-sizing: border-box;
+            margin: 0;
           }
         }
       `}</style>
