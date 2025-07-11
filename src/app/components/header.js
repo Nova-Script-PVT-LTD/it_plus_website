@@ -73,29 +73,10 @@ export default function Header() {
   }, []);
 
   const toggleDropdown = (dropdown) => {
-    setIsDropdownOpen((prev) => {
-      const newState = {
-        ...prev,
-        [dropdown]: !prev[dropdown],
-      };
-
-      // For mobile services dropdown, ensure proper height calculation
-      if (dropdown === "services" && window.innerWidth <= 991) {
-        setTimeout(() => {
-          const servicesDropdown = document.querySelector(
-            ".mobile-services-dropdown"
-          );
-          if (servicesDropdown && newState.services) {
-            // Force recalculation of height
-            servicesDropdown.style.maxHeight = "none";
-            servicesDropdown.style.height = "auto";
-            console.log("Services dropdown opened - height reset");
-          }
-        }, 50);
-      }
-
-      return newState;
-    });
+    setIsDropdownOpen((prev) => ({
+      ...prev,
+      [dropdown]: !prev[dropdown],
+    }));
   };
 
   const toggleMobileMenu = () => {
@@ -609,8 +590,7 @@ export default function Header() {
         }
 
         .mobile-dropdown.show {
-          max-height: none; /* Remove height restriction */
-          max-height: 2000px; /* Large fallback for older browsers */
+          max-height: 2000px; /* Large fallback to ensure all content is visible */
         }
 
         .mobile-dropdown-item {
@@ -636,12 +616,13 @@ export default function Header() {
         /* Services Mobile Dropdown - Special Layout */
         .mobile-services-dropdown {
           padding: 0;
-          max-height: none !important; /* Override any max-height restrictions */
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.4s ease-in-out;
         }
 
         .mobile-services-dropdown.show {
-          max-height: none !important;
-          height: auto;
+          max-height: 2000px !important; /* Ensure all content is visible when expanded */
         }
 
         .mobile-service-category {
@@ -809,6 +790,37 @@ export default function Header() {
             position: static;
             text-align: center;
           }
+
+          .mobile-nav-item,
+          .mobile-dropdown-item,
+          .mobile-category-title,
+          .mobile-close-btn {
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+          }
+
+          .mobile-dropdown-item {
+            min-height: 40px;
+          }
+
+          /* Ensure mobile services dropdown is collapsible */
+          .mobile-services-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+          }
+
+          .mobile-services-dropdown.show {
+            max-height: 2000px !important;
+            overflow: visible !important;
+          }
+
+          /* Ensure all service categories are visible when expanded */
+          .mobile-service-category {
+            display: block !important;
+            visibility: visible !important;
+          }
         }
 
         /* 768px and below */
@@ -939,6 +951,80 @@ export default function Header() {
           }
         }
 
+        /* 479px and below */
+        @media (max-width: 479px) {
+          .navbar-custom {
+            height: 58px;
+          }
+
+          .green-bar {
+            padding: 7px 9px;
+          }
+
+          .green-bar-text {
+            font-size: 9.5px;
+          }
+
+          .logo-image {
+            width: 95px;
+            height: 58px;
+          }
+
+          .mobile-toggle {
+            font-size: 19px;
+            margin-right: 7px;
+            padding: 7px;
+          }
+
+          .mobile-menu-header {
+            height: 58px;
+            padding: 0 9px;
+          }
+
+          .mobile-menu {
+            padding-top: 58px;
+          }
+
+          .mobile-menu-logo {
+            height: 28px;
+          }
+
+          .mobile-close-btn {
+            font-size: 19px;
+            padding: 5.5px;
+          }
+
+          .mobile-nav-link {
+            font-size: 13.5px;
+            padding: 11px 14px;
+          }
+
+          .mobile-dropdown-item {
+            font-size: 11.5px;
+            padding: 7.5px 24px;
+          }
+
+          .mobile-dropdown-item:hover {
+            padding-left: 29px;
+          }
+
+          .mobile-category-title {
+            font-size: 13.5px;
+            padding: 9.5px 14px;
+          }
+
+          .mobile-services-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+          }
+
+          .mobile-services-dropdown.show {
+            max-height: 2000px !important;
+            overflow: visible !important;
+          }
+        }
+
         /* 396px and below */
         @media (max-width: 396px) {
           .navbar-custom {
@@ -1007,39 +1093,71 @@ export default function Header() {
           }
         }
 
-        /* Additional improvements for touch devices */
-        @media (max-width: 991px) {
-          .mobile-nav-item,
-          .mobile-dropdown-item,
-          .mobile-category-title,
+        /* 380px and below */
+        @media (max-width: 380px) {
+          .navbar-custom {
+            height: 50px;
+          }
+
+          .green-bar {
+            padding: 5px 7px;
+          }
+
+          .green-bar-text {
+            font-size: 8.5px;
+            line-height: 1.2;
+          }
+
+          .logo-image {
+            width: 85px;
+            height: 50px;
+          }
+
+          .mobile-toggle {
+            font-size: 17px;
+            margin-right: 5px;
+            padding: 5px;
+          }
+
+          .mobile-menu-header {
+            height: 50px;
+            padding: 0 7px;
+          }
+
+          .mobile-menu {
+            padding-top: 50px;
+          }
+
+          .mobile-menu-logo {
+            height: 23px;
+          }
+
           .mobile-close-btn {
-            min-height: 44px;
-            display: flex;
-            align-items: center;
+            font-size: 17px;
+            padding: 4px;
+          }
+
+          .mobile-nav-link {
+            font-size: 12px;
+            padding: 9px 11px;
           }
 
           .mobile-dropdown-item {
-            min-height: 40px;
+            font-size: 10px;
+            padding: 6px 18px;
           }
 
-          /* Ensure mobile services dropdown shows all content */
-          .mobile-services-dropdown {
-            max-height: none !important;
-            height: auto !important;
+          .mobile-dropdown-item:hover {
+            padding-left: 23px;
           }
 
-          .mobile-services-dropdown.show {
-            max-height: none !important;
-            height: auto !important;
-            overflow: visible !important;
+          .mobile-category-title {
+            font-size: 12px;
+            padding: 7px 11px;
           }
 
-          /* Make率先
-
- Make sure all service categories are visible */
-          .mobile-service-category {
-            display: block !important;
-            visibility: visible !important;
+          .dropdown-arrow {
+            font-size: 9px;
           }
         }
       `}</style>
@@ -1178,7 +1296,10 @@ export default function Header() {
                 <div
                   className="mobile-dropdown-item"
                   onClick={() =>
-                    handleServiceNavigation("technology", "firewall-solutions")
+                    handleServiceNavigation(
+                      "technology",
+                      "firewall-solutions"
+                    )
                   }
                 >
                   Firewall Solutions
@@ -1208,7 +1329,10 @@ export default function Header() {
                 <div
                   className="mobile-dropdown-item"
                   onClick={() =>
-                    handleServiceNavigation("technology", "storage-solutions")
+                    handleServiceNavigation(
+                      "technology",
+                      "storage-solutions"
+                    )
                   }
                 >
                   Storage Solutions
@@ -1227,7 +1351,10 @@ export default function Header() {
                 <div
                   className="mobile-dropdown-item"
                   onClick={() =>
-                    handleServiceNavigation("technology", "video-conferencing")
+                    handleServiceNavigation(
+                      "technology",
+                      "video-conferencing"
+                    )
                   }
                 >
                   Video Conferencing
@@ -1235,7 +1362,10 @@ export default function Header() {
                 <div
                   className="mobile-dropdown-item"
                   onClick={() =>
-                    handleServiceNavigation("technology", "cctv-solutions")
+                    handleServiceNavigation(
+                      "technology",
+                      "cctv-solutions"
+                    )
                   }
                 >
                   CCTV Solutions
@@ -1345,7 +1475,10 @@ export default function Header() {
                 <div
                   className="mobile-dropdown-item"
                   onClick={() =>
-                    handleServiceNavigation("software", "payroll-hr-systems")
+                    handleServiceNavigation(
+                      "software",
+                      "payroll-hr-systems"
+                    )
                   }
                 >
                   Payroll & HR Systems
@@ -1382,7 +1515,7 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* IT Support */}
+              /* IT Support */
               <div className="mobile-service-category">
                 <h6
                   className="mobile-category-title"
@@ -1446,7 +1579,7 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Other Navigation Items */}
+          
           <div className="mobile-nav-item">
             <a
               href="/academic"
@@ -1476,10 +1609,10 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Main Navigation */}
+        
         <nav className="navbar navbar-expand-lg navbar-custom">
           <div className="container-fluid px-0">
-            {/* Logo */}
+            
             <a className="navbar-brand" href="/">
               <img
                 src="/images/it_plus_logo.png"
@@ -1488,7 +1621,7 @@ export default function Header() {
               />
             </a>
 
-            {/* Mobile Toggle */}
+            
             <button
               className="mobile-toggle"
               type="button"
@@ -1499,9 +1632,9 @@ export default function Header() {
               ></i>
             </button>
 
-            {/* Desktop Navigation Links */}
+            
             <div className="navbar-nav">
-              {/* About Us Dropdown */}
+              /* About Us Dropdown */
               <div className="nav-item">
                 <div
                   className="nav-link"
@@ -1552,7 +1685,7 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* Services Dropdown */}
+              /* Services Dropdown */
               <div className="nav-item">
                 <div
                   className="nav-link"
@@ -1574,7 +1707,7 @@ export default function Header() {
                   }`}
                 >
                   <div className="dropdown-content">
-                    {/* Technology Column */}
+                    /* Technology Column */
                     <div className="dropdown-column">
                       <h6 onClick={() => handleServiceNavigation("technology")}>
                         Technology
@@ -1691,7 +1824,7 @@ export default function Header() {
                       </div>
                     </div>
 
-                    {/* Cloud Column */}
+                    /* Cloud Column */
                     <div className="dropdown-column">
                       <h6 onClick={() => handleServiceNavigation("cloud")}>
                         Cloud
@@ -1739,7 +1872,7 @@ export default function Header() {
                       </div>
                     </div>
 
-                    {/* Software Column */}
+                    /* Software Column */
                     <div className="dropdown-column">
                       <h6 onClick={() => handleServiceNavigation("software")}>
                         Software
@@ -1828,7 +1961,7 @@ export default function Header() {
                       </div>
                     </div>
 
-                    {/* IT Support Column */}
+                    /* IT Support Column */
                     <div className="dropdown-column">
                       <h6 onClick={() => handleServiceNavigation("it-support")}>
                         IT Support
@@ -1890,7 +2023,7 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* Other Navigation Items */}
+              
               <div className="nav-item">
                 <a href="/academic" className="nav-link">
                   Academic
@@ -1908,14 +2041,14 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Header Actions */}
+           
             <div className="header-actions">
               <button className="btn-contact">Contact Us</button>
             </div>
           </div>
         </nav>
 
-        {/* Green Bar */}
+        
         <div className="green-bar">
           <p className="green-bar-text left" style={{ marginLeft: "8px" }}>
             {" "}
