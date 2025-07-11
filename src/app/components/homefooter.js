@@ -1094,6 +1094,52 @@ const HomeFooter = () => {
             font-size: 12px;
           }
         }
+
+
+
+        @media (max-width: 768px) {
+          .newsletter-title {
+            text-align: center;
+            margin: 0 auto 20px auto;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .newsletter-title {
+            text-align: center;
+            margin: 0 auto 20px auto;
+          }
+        }
+
+        @media (max-width: 396px) {
+          .newsletter-title {
+            text-align: center;
+            margin: 0 auto 20px auto;
+          }
+        }
+
+
+
+        
+          @media (max-width: 768px) {
+          .newsletter-form {
+            margin: 0 auto;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .newsletter-form {
+            width: 260px;
+            margin: 0 auto;
+          }
+        }
+
+        @media (max-width: 396px) {
+          .newsletter-form {
+            width: 260px;
+            margin: 0 auto;
+          }
+        }
       `}</style>
     </footer>
   );
