@@ -195,6 +195,7 @@ const Footer = () => {
           display: block;
           min-height: 100%;
         }
+
         .logo-image {
           margin-left: -23px;
         }
@@ -293,6 +294,7 @@ const Footer = () => {
         /* Footer Sections */
         .footer-section {
           padding-top: 10px;
+          text-align: left;
         }
 
         .footer-heading {
@@ -302,12 +304,14 @@ const Footer = () => {
           margin: 0 0 30px 0;
           letter-spacing: 1.5px;
           text-transform: uppercase;
+          text-align: left;
         }
 
         .footer-links {
           list-style: none;
           padding: 0;
           margin: 0;
+          text-align: left;
         }
 
         .footer-links li {
@@ -331,10 +335,12 @@ const Footer = () => {
         /* Contact Section */
         .footer-contact {
           max-width: 280px;
+          text-align: left;
         }
 
         .contact-info {
           margin-bottom: 35px;
+          text-align: left;
         }
 
         .contact-item {
@@ -342,7 +348,8 @@ const Footer = () => {
           font-size: 15px;
           margin-bottom: 12px;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
+          justify-content: flex-start;
           gap: 12px;
         }
 
@@ -352,11 +359,16 @@ const Footer = () => {
           color: rgb(245, 149, 32);
         }
 
+        .newsletter {
+          text-align: left;
+        }
+
         .newsletter-title {
           font-size: 18px;
           font-weight: 600;
           color: white;
           margin: 0 0 20px 0;
+          text-align: left;
         }
 
         .newsletter-form {
@@ -368,6 +380,9 @@ const Footer = () => {
           border: 1px solid rgba(255, 255, 255, 0.2);
           backdrop-filter: blur(10px);
           transition: all 0.3s ease;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
         }
 
         .newsletter-form:hover {
@@ -391,10 +406,12 @@ const Footer = () => {
           padding: 0 90px 0 16px;
           border-radius: 20px;
           font-weight: 400;
+          text-align: left;
         }
 
         .email-input::placeholder {
           color: rgba(255, 255, 255, 0.6);
+          text-align: left;
         }
 
         .subscribe-btn {
@@ -493,13 +510,13 @@ const Footer = () => {
           .footer-grid {
             grid-template-columns: 1fr;
             gap: clamp(20px, 5vw, 35px);
-            text-align: center;
             margin-bottom: clamp(20px, 5vw, 40px);
           }
 
           .footer-brand {
             padding-right: 0;
             max-width: none;
+            text-align: center;
           }
 
           .brand-logo {
@@ -510,6 +527,7 @@ const Footer = () => {
             font-size: clamp(13px, 3.5vw, 15px);
             max-width: clamp(250px, 80vw, 400px);
             margin: 0 auto clamp(15px, 4vw, 25px);
+            text-align: center;
           }
 
           .social-icons {
@@ -525,11 +543,17 @@ const Footer = () => {
 
           .footer-section {
             padding-top: clamp(5px, 1vw, 10px);
+            text-align: left;
           }
 
           .footer-heading {
             font-size: clamp(13px, 3.5vw, 15px);
             margin-bottom: clamp(15px, 4vw, 25px);
+            text-align: left;
+          }
+
+          .footer-links {
+            text-align: left;
           }
 
           .footer-links li {
@@ -542,16 +566,19 @@ const Footer = () => {
 
           .footer-contact {
             max-width: none;
+            text-align: left;
           }
 
           .contact-info {
             margin-bottom: clamp(15px, 4vw, 25px);
+            text-align: left;
           }
 
           .contact-item {
             font-size: clamp(13px, 3.5vw, 15px);
             gap: clamp(8px, 2vw, 12px);
-            justify-content: center;
+            justify-content: flex-start;
+            align-items: flex-start;
           }
 
           .contact-item i {
@@ -559,22 +586,35 @@ const Footer = () => {
             width: clamp(12px, 3vw, 16px);
           }
 
+          .newsletter {
+            text-align: left;
+          }
+
           .newsletter-title {
             font-size: clamp(15px, 4vw, 18px);
             margin-bottom: clamp(10px, 2.5vw, 15px);
+            text-align: left;
           }
 
           .newsletter-form {
             width: clamp(220px, 80vw, 300px);
             height: clamp(36px, 9vw, 44px);
-            margin: 0 auto;
+            margin: 0;
             border-radius: clamp(16px, 4vw, 20px);
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
           }
 
           .email-input {
             font-size: clamp(12px, 3vw, 14px);
             padding: 0 clamp(70px, 20vw, 90px) 0 clamp(10px, 2.5vw, 14px);
             border-radius: clamp(16px, 4vw, 20px);
+            text-align: left;
+          }
+
+          .email-input::placeholder {
+            text-align: left;
           }
 
           .subscribe-btn {
@@ -663,6 +703,11 @@ const Footer = () => {
           .footer-heading {
             font-size: 15px;
             margin-bottom: 30px;
+            text-align: left;
+          }
+
+          .footer-links {
+            text-align: left;
           }
 
           .footer-links li {
@@ -675,15 +720,19 @@ const Footer = () => {
 
           .footer-contact {
             max-width: 280px;
+            text-align: left;
           }
 
           .contact-info {
             margin-bottom: 35px;
+            text-align: left;
           }
 
           .contact-item {
             font-size: 15px;
             gap: 12px;
+            justify-content: flex-start;
+            align-items: flex-start;
           }
 
           .contact-item i {
@@ -691,21 +740,34 @@ const Footer = () => {
             width: 16px;
           }
 
+          .newsletter {
+            text-align: left;
+          }
+
           .newsletter-title {
             font-size: 18px;
             margin-bottom: 20px;
+            text-align: left;
           }
 
           .newsletter-form {
             width: 280px;
             height: 40px;
             border-radius: 20px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
           }
 
           .email-input {
             font-size: 13px;
             padding: 0 90px 0 16px;
             border-radius: 20px;
+            text-align: left;
+          }
+
+          .email-input::placeholder {
+            text-align: left;
           }
 
           .subscribe-btn {
@@ -736,12 +798,14 @@ const Footer = () => {
             font-size: 14px;
           }
         }
+
         @media (max-width: 769px) {
           .footer-brand {
             font-size: 26px;
             font-weight: 400;
             margin-bottom: 20px;
             padding-top: 100px;
+            text-align: center;
           }
         }
 
@@ -751,14 +815,17 @@ const Footer = () => {
             font-weight: 400;
             margin-bottom: 20px;
             padding-top: 80px;
+            text-align: center;
           }
         }
+
         @media (max-width: 380px) {
           .footer-brand {
             font-size: 26px;
             font-weight: 400;
             margin-bottom: 20px;
             padding-top: 130px;
+            text-align: center;
           }
         }
       `}</style>
