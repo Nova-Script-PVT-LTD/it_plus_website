@@ -165,7 +165,7 @@ export default function HeroSection() {
         @media (max-width: 768px) {
           .hero-section {
             min-height: 600px;
-            padding: 60px 20px 180px 0px;
+            padding: 60px 20px 100px;
           }
           .hero-logo-image {
             width: 100;
