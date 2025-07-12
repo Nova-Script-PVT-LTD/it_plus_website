@@ -256,6 +256,7 @@ export default function HeroSection() {
             z-index: 4;
             box-sizing: border-box;
             margin: 0;
+            color: white !important;
           }
         }
 
