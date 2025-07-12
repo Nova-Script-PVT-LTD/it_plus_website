@@ -775,12 +775,11 @@ export default function CareersPage() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
-          } else {
-            entry.target.classList.remove("visible");
+            observer.unobserve(entry.target); // Only reveal once, no blinking
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
     revealElements.forEach((el) => observer.observe(el));
 

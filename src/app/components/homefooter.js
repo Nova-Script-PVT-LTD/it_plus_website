@@ -1,3 +1,5 @@
+import React, { useRef } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const HomeFooter = () => {
   const faqs = [
@@ -9,6 +11,8 @@ const HomeFooter = () => {
     "Is your team certified and experienced?",
     "Do you serve areas outside Colombo or major cities?",
   ];
+
+  const recaptchaRef = useRef();
 
   return (
     <footer className="footer-wrapper">
@@ -117,6 +121,41 @@ const HomeFooter = () => {
                 <div className="form-group full-width">
                   <label>Message</label>
                   <textarea rows="3" placeholder="Message"></textarea>
+                </div>
+
+                {/* Radio Buttons and Recaptcha */}
+                <div className="form-group full-width contact-options">
+                  <div className="checkbox-option">
+                    <input type="checkbox" id="privacy" name="privacy" />
+                    <label htmlFor="privacy">
+                      By selecting this, you agree to our{" "}
+                      <a
+                        href="/privacy"
+                        target="_blank"
+                        style={{
+                          color: "#d16120ff",
+                          textDecoration: "underline",
+                        }}
+                      >
+                        Privacy Policy
+                      </a>
+                    </label>
+                  </div>
+                  <div className="checkbox-option">
+                    <input type="checkbox" id="newsletter" name="newsletter" />
+                    <label htmlFor="newsletter">
+                      Send me occasional IT Plus news and updates
+                    </label>
+                  </div>
+                  <div
+                    className="recaptcha-container"
+                    style={{ marginTop: "8px" }}
+                  >
+                    <ReCAPTCHA
+                      ref={recaptchaRef}
+                      sitekey="6LeKR4ArAAAAAIN1ieZUGjpqoyTiMP8xztdRS5ug"
+                    />
+                  </div>
                 </div>
 
                 <button type="submit" className="submit-button">
@@ -1096,8 +1135,6 @@ const HomeFooter = () => {
           }
         }
 
-
-
         @media (max-width: 768px) {
           .newsletter-title {
             text-align: center;
@@ -1119,10 +1156,7 @@ const HomeFooter = () => {
           }
         }
 
-
-
-        
-          @media (max-width: 768px) {
+        @media (max-width: 768px) {
           .newsletter-form {
             margin: 0 auto;
           }
@@ -1140,6 +1174,45 @@ const HomeFooter = () => {
             width: 260px;
             margin: 0 auto;
           }
+        }
+
+        .contact-options {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-bottom: 8px;
+        }
+
+        .radio-option {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 14px;
+          color: #d16120ff;
+        }
+
+        .radio-option input[type="radio"] {
+          accent-color: #d16120ff;
+          width: 18px;
+          height: 18px;
+        }
+
+        .recaptcha-container {
+          margin-top: 8px;
+        }
+
+        .checkbox-option {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 14px;
+          color: #d16120ff;
+        }
+
+        .checkbox-option input[type="checkbox"] {
+          accent-color: #d16120ff;
+          width: 18px;
+          height: 18px;
         }
       `}</style>
     </footer>

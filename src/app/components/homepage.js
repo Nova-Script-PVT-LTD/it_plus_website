@@ -34,20 +34,19 @@ export default function Home() {
     document.body.appendChild(bootstrapScript);
 
     // Reveal on scroll logic
-  const revealElements = document.querySelectorAll('.reveal-on-scroll'); // <-- ADD THIS LINE
-  const observer = new window.IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        } else {
-          entry.target.classList.remove("visible");
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
-  revealElements.forEach((el) => observer.observe(el));
+    const revealElements = document.querySelectorAll(".reveal-on-scroll"); // <-- ADD THIS LINE
+    const observer = new window.IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target); // Stop observing once revealed
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    revealElements.forEach((el) => observer.observe(el));
 
     return () => {
       // Cleanup
@@ -95,8 +94,8 @@ export default function Home() {
         
         .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(80px);
-  transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateY(60px);
+  transition: opacity 1.3s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal-on-scroll.visible {
   opacity: 1;

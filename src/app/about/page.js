@@ -680,21 +680,19 @@ export default function AboutUsPage() {
     document.head.appendChild(style);
 
     // Reveal on scroll logic
-    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    const revealElements = document.querySelectorAll(".reveal-on-scroll");
     const observer = new window.IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          } else {
-            entry.target.classList.remove('visible');
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target); // Only reveal once, no blinking
           }
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.2 }
     );
     revealElements.forEach((el) => observer.observe(el));
-
     return () => {
       if (style.parentNode) {
         style.parentNode.removeChild(style);
