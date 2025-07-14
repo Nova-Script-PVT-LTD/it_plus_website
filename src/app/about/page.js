@@ -239,11 +239,12 @@ export default function AboutUsPage() {
       /* Locations Section */
       .locations-section {
         width: 100%;
-        height: 100vh;
+        min-height: 300px;
         display: flex;
         justify-content: center;
         align-items: center;
         margin-top: 0; /* Ensure no top margin */
+        padding: 20px 0;
       }
 
       .locations-container {
@@ -295,14 +296,15 @@ export default function AboutUsPage() {
 
       .world-map-container {
         width: 100%;
-        height: 100%;
+        height: auto;
+        max-width: 1200px;
       }
 
       .world-map {
         width: 100%;
         height: auto; /* Changed to auto for natural scaling */
-        max-height: 500px; /* Cap height to prevent excessive space */
-        object-fit: cover;
+        max-height: 600px; /* Cap height to prevent excessive space */
+        object-fit: contain;
         display: block;
       }
 
@@ -592,9 +594,27 @@ export default function AboutUsPage() {
         }
 
         .stats-grid {
-          margin-top: 20px; /* Reduced from 40px */
-          margin-bottom: 0; /* Ensure no extra bottom margin */
+          grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* Further reduced min-width */
+          gap: 6px; /* Tighter gap for compactness */
+          margin-top: 10px; /* Reduced margin */
+          margin-bottom: 0;
         }
+
+        .stat-item {
+    padding: 10px 8px !important; /* Reduced padding, override with !important */
+    border-radius: 6px !important; /* Smaller border radius */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important; /* Lighter shadow */
+    min-height: 80px; /* Constrain height for smaller cards */
+  }
+
+  .stat-item h3 {
+    font-size: 20px !important; /* Smaller counter font */
+    margin-bottom: 4px !important;
+  }
+
+  .stat-item p {
+    font-size: 12px !important; /* Smaller label font */
+  }
 
         .locations-section {
           margin: 0; /* Reset margins */
@@ -677,9 +697,28 @@ export default function AboutUsPage() {
         }
 
         .stats-grid {
+          grid-template-columns: 1fr; /* Single column for smallest screens */
+          gap: 7px; /* Minimal gap */
           margin-top: 15px; /* Further reduced */
           margin-bottom: 0; /* Ensure no extra bottom margin */
         }
+
+        .stat-item {
+    padding: 8px 6px !important; /* Even smaller padding */
+    border-radius: 7px !important; /* Minimal border radius */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important; /* Minimal shadow */
+    min-height: 70px; /* Further constrain height */
+    min-width: 50px;
+  }
+
+        .stat-item h3 {
+    font-size: 28px !important; /* Further reduced counter font */
+    margin-bottom: 3px !important;
+  }
+
+  .stat-item p {
+    font-size: 28px !important; /* Further reduced label font */
+  }
 
         .locations-section {
           margin: 0; /* Reset margins */
