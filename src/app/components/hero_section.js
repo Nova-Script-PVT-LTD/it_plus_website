@@ -5,12 +5,12 @@ export default function HeroSection() {
     <>
       <style jsx>{`
         .hero-section {
-          min-height: 800px; /* Increase from 624px to 800px */
+          min-height: 800px;
           display: flex;
           align-items: center;
           justify-content: center;
           position: relative;
-          padding: 80px 20px 120px 20px; /* Increase bottom padding from 60px to 120px */
+          padding: 80px 20px 120px 20px;
           overflow: hidden;
         }
 
@@ -30,7 +30,6 @@ export default function HeroSection() {
           left: 0;
           width: 100%;
           height: 100%;
-
           z-index: 2;
         }
 
@@ -40,7 +39,7 @@ export default function HeroSection() {
           bottom: 0;
           left: 0;
           width: 100%;
-          height: 150px; /* Increase from 100px to 150px for bigger curve */
+          height: 150px;
           background: white;
           clip-path: ellipse(80% 100% at 50% 100%);
           z-index: 3;
@@ -50,7 +49,6 @@ export default function HeroSection() {
           text-align: center;
           color: white;
           max-width: 1200px;
-
           position: relative;
           z-index: 4;
         }
@@ -72,7 +70,6 @@ export default function HeroSection() {
           width: 100;
           height: 140px;
           object-fit: contain;
-
           padding: 0px;
           border-radius: 15px;
           margin: 0;
@@ -92,7 +89,7 @@ export default function HeroSection() {
           justify-content: center;
           gap: 30px;
           flex-wrap: wrap;
-                    position: relative;
+          position: relative;
           z-index: 4;
         }
 
@@ -107,7 +104,6 @@ export default function HeroSection() {
           padding: 18px 45px;
           cursor: pointer;
           transition: all 0.3s ease;
-          
         }
 
         .btn-live-help:hover {
@@ -171,7 +167,6 @@ export default function HeroSection() {
             width: 100;
             height: 120px;
             object-fit: contain;
-
             padding: 0px;
             border-radius: 15px;
             margin: 0;
@@ -196,7 +191,7 @@ export default function HeroSection() {
             flex-direction: column;
             align-items: center;
             gap: 20px;
-                        position: relative;
+            position: relative;
             z-index: 4;
           }
 
@@ -214,16 +209,22 @@ export default function HeroSection() {
         }
 
         @media (max-width: 480px) {
+          .hero-section {
+            min-height: 600px;
+            padding: 60px 20px 100px;
+          }
+          .hero-section::after {
+            display: none; /* Remove the white curve on mobile */
+          }
           .hero-title {
             font-size: 28px;
             letter-spacing: 1px;
           }
 
-           .hero-logo-image {
+          .hero-logo-image {
             width: 70;
             height: 90px;
             object-fit: contain;
-
             padding: 0px;
             border-radius: 15px;
             margin: 0;
@@ -266,11 +267,10 @@ export default function HeroSection() {
             letter-spacing: 1px;
           }
 
-           .hero-logo-image {
+          .hero-logo-image {
             width: 50;
             height: 70px;
             object-fit: contain;
-
             padding: 0px;
             border-radius: 15px;
             margin: 0;
