@@ -1601,18 +1601,19 @@ export default function Home() {
     margin-bottom: 15px;
     border-radius: 20px;
     padding: 20px 10px;
-    min-height: 250px;
+    min-height: 100px;
+    height: auto;
   }
   
   .tall-card,
   .short-card {
     height: auto;
-    min-height: 250px;
+    min-height: 100px;
   }
   
   .feature-icon {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     margin-bottom: 20px;
   }
   
@@ -1622,11 +1623,13 @@ export default function Home() {
   }
   
   .feature-title {
-    font-size: 18px;
+    font-size: 30px;
     font-weight: 600;
+    margin-bottom: 10px;
+    text-align: right !important;
   }
   
-  /* Remove margin-top for feature cards on mobile */
+  
   .col-lg-2[style*="margin-top"] {
     margin-top: 0 !important;
   }
@@ -1634,6 +1637,7 @@ export default function Home() {
   /* Clients Section */
   .clients-section {
     padding: 40px 0;
+    margin-top: 5px;
   }
   
   .clients-container {
