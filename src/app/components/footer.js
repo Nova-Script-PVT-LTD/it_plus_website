@@ -587,34 +587,34 @@ const Footer = () => {
           }
 
           .newsletter {
-            text-align: left;
+            text-align: center;
           }
 
           .newsletter-title {
             font-size: clamp(15px, 4vw, 18px);
             margin-bottom: clamp(10px, 2.5vw, 15px);
-            text-align: left;
+            text-align: center;
           }
 
           .newsletter-form {
             width: clamp(220px, 80vw, 300px);
             height: clamp(36px, 9vw, 44px);
-            margin: 0;
+            margin: 0 auto;
             border-radius: clamp(16px, 4vw, 20px);
             display: flex;
-            align-items: flex-start;
-            justify-content: flex-start;
+            align-items: center;
+            justify-content: center;
           }
 
           .email-input {
             font-size: clamp(12px, 3vw, 14px);
             padding: 0 clamp(70px, 20vw, 90px) 0 clamp(10px, 2.5vw, 14px);
             border-radius: clamp(16px, 4vw, 20px);
-            text-align: left;
+            text-align: center;
           }
 
           .email-input::placeholder {
-            text-align: left;
+            text-align: center;
           }
 
           .subscribe-btn {
@@ -741,7 +741,7 @@ const Footer = () => {
           }
 
           .newsletter {
-            text-align: left;
+            text-align: center;
           }
 
           .newsletter-title {
@@ -814,7 +814,7 @@ const Footer = () => {
             font-size: 26px;
             font-weight: 400;
             margin-bottom: 20px;
-            padding-top: 80px;
+            padding-top: 100px;
             text-align: center;
           }
         }
