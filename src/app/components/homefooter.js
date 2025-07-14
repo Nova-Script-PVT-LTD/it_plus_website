@@ -170,8 +170,30 @@ const HomeFooter = () => {
             <h2 className="faq-title">Frequently Asked Questions</h2>
             <div className="faq-list">
               {faqs.map((faq, index) => (
-                <div key={index} className="faq-item">
-                  <span className="faq-text">{faq}</span>
+                <div
+                  key={index}
+                  className="faq-item"
+                  style={{
+                    border: "none",
+                    marginBottom: 0,
+                    paddingBottom: 0,
+                    transition: "all 0.3s ease",
+                    cursor: "pointer",
+                  }}
+                >
+                  <span
+                    className="faq-text"
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    {faq}{" "}
+                    <span className="arrow-head" style={{ marginLeft: "15px" }}>
+                      ▶
+                    </span>
+                  </span>
                 </div>
               ))}
             </div>
@@ -496,8 +518,8 @@ const HomeFooter = () => {
         /* FAQ Section */
         .faq-section {
           background: transparent;
-          text-align: center;
-          margin-bottom: 120px;
+          text-align: left;
+          margin-bottom: 100px;
         }
 
         .faq-title {
@@ -513,27 +535,34 @@ const HomeFooter = () => {
           margin: 0 auto;
           display: flex;
           flex-direction: column;
-          gap: 0;
+          gap: 9px;
         }
 
         .faq-item {
-          background: transparent;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-          padding: 24px 0;
-          text-align: left;
-          transition: all 0.2s ease;
-          cursor: pointer;
+          border: none !important;
+          border-bottom: none !important;
+          margin-bottom: 0 !important;
+          padding-bottom: 0 !important;
         }
 
         .faq-item:hover {
-          background: transparent;
+          background-color: #ce6a30ff;
+          transform: scale(1.02);
+          border-radius: 15px;
+          
         }
 
         .faq-text {
-          font-size: 18px;
-          font-weight: 400;
-          color: white;
-          line-height: 1.4;
+          display: flex;
+          justify-content: space-between;
+          align-items: left;
+        }
+
+        .arrow-head {
+          margin-left: 15px; /* Adjust as needed */
+          margin-bottom: 15px;
+          width: 20px;
+          
         }
 
         /* Footer Bottom */
@@ -1032,7 +1061,7 @@ const HomeFooter = () => {
           }
 
           .faq-text {
-            font-size: 15px;
+            font-size: 12px;
           }
 
           .brand-column {
