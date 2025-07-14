@@ -170,6 +170,7 @@ export default function AboutUsPage() {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 10px;
         margin-top: 40px;
+        margin-bottom: 0; /* Ensure no extra bottom margin */
       }
 
       .stat-item {
@@ -242,12 +243,14 @@ export default function AboutUsPage() {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-top: 0; /* Ensure no top margin */
       }
 
       .locations-container {
         width: 100%;
         max-width: 1200px;
         text-align: center;
+        margin: 0; /* Reset any default margins */
       }
 
       .locations-heading {
@@ -297,7 +300,8 @@ export default function AboutUsPage() {
 
       .world-map {
         width: 100%;
-        height: 100%;
+        height: auto; /* Changed to auto for natural scaling */
+        max-height: 500px; /* Cap height to prevent excessive space */
         object-fit: cover;
         display: block;
       }
@@ -397,7 +401,6 @@ export default function AboutUsPage() {
       }
 
       .working-header p {
-        font-size union
         font-size: 16px;
         color: #4a5568;
         max-width: 750px;
@@ -576,11 +579,37 @@ export default function AboutUsPage() {
         }
 
         .hero-section-about {
-          padding: 0 0 50px 0;
+          padding: 0 0 20px 0; /* Reduced bottom padding */
+          margin-bottom: 10px; /* Minimized margin-bottom */
+        }
+
+        .hero-image-content {
+          margin-bottom: 10px; /* Reduced from 40px */
+        }
+
+        .hero-container-about {
+          gap: 20px; /* Reduced gap between hero elements */
+        }
+
+        .stats-grid {
+          margin-top: 20px; /* Reduced from 40px */
+          margin-bottom: 0; /* Ensure no extra bottom margin */
         }
 
         .locations-section {
-          padding: 60px 0;
+          margin: 0; /* Reset margins */
+          padding: 20px 0; /* Reduced padding */
+          height: auto; /* Flexible height */
+          min-height: 300px; /* Minimum height for content */
+        }
+
+        .world-map-container {
+          height: auto; /* Natural height */
+        }
+
+        .world-map {
+          height: auto; /* Natural scaling */
+          max-height: 300px; /* Cap image height */
         }
 
         .mission-vision-section {
@@ -619,6 +648,7 @@ export default function AboutUsPage() {
         .empower-future-container h2 {
           font-size: 32px;
         }
+
         .apply-now-button {
           padding: 12px 35px;
           font-size: 16px;
@@ -631,6 +661,40 @@ export default function AboutUsPage() {
         .mission-vision-container,
         .working-container {
           padding: 0 20px;
+        }
+
+        .hero-section-about {
+          padding: 0 0 15px 0; /* Further reduced bottom padding */
+          margin-bottom: 5px; /* Minimized margin-bottom */
+        }
+
+        .hero-image-content {
+          margin-bottom: 5px; /* Further reduced */
+        }
+
+        .hero-container-about {
+          gap: 15px; /* Further reduced gap */
+        }
+
+        .stats-grid {
+          margin-top: 15px; /* Further reduced */
+          margin-bottom: 0; /* Ensure no extra bottom margin */
+        }
+
+        .locations-section {
+          margin: 0; /* Reset margins */
+          padding: 15px 0; /* Further reduced padding */
+          height: auto; /* Flexible height */
+          min-height: 250px; /* Adjusted for smaller screens */
+        }
+
+        .world-map-container {
+          height: auto; /* Natural height */
+        }
+
+        .world-map {
+          height: auto; /* Natural scaling */
+          max-height: 250px; /* Cap image height for smaller screens */
         }
 
         .hero-content-about h1,
@@ -653,11 +717,11 @@ export default function AboutUsPage() {
         }
 
         .stat-item h3 {
-          font-size: 50px;
+          font-size: 28px;
         }
 
         .stat-item p {
-          font-size: 35px;
+          font-size: 28px;
         }
 
         .working-card {

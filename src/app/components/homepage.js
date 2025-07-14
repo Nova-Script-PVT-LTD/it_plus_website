@@ -394,7 +394,7 @@ export default function Home() {
 }
 
         
-       /* News Section Styles - With Images */
+/* News Section Styles - With Images */
 .news-image {
   width: 100%;
   height: 316px;
