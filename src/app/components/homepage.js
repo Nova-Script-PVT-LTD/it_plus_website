@@ -337,7 +337,7 @@ export default function Home() {
 }
         
         .clients-container {
-  background: #F1F1F1;
+  background: #f1f1f1ff;
   border-radius: 30px;
   padding: 80px;
   width: 100%; /* or set a larger fixed width like 1200px */
@@ -1638,11 +1638,13 @@ export default function Home() {
   .clients-section {
     padding: 40px 0;
     margin-top: 5px;
+    margin-bottom:0 !important;
   }
   
   .clients-container {
     padding: 30px 15px;
     border-radius: 20px;
+    margin-bottom: 20px;
   }
   
   .client-logo {
@@ -1654,6 +1656,7 @@ export default function Home() {
   /* News Section */
   .news-section {
     padding: 40px 0;
+    margin-top: 5px !important;
   }
   
   .news-image {
