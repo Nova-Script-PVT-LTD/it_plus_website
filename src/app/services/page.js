@@ -1,48 +1,61 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Footer from '../components/footer';
-import Header from '../components/header';
+import { useEffect, useState, useRef } from "react";
+import Footer from "../components/footer";
+import Header from "../components/header";
+
+const useHeadingAnimation = () => {
+  const ref = useRef(null);
+  const [animated, setAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !animated) {
+          entry.target.classList.add("animate");
+          setAnimated(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => {
+      if (ref.current) observer.unobserve(ref.current);
+    };
+  }, [animated]);
+
+  return ref;
+};
 
 export default function ServicesPage() {
-  const [activeSection, setActiveSection] = useState('technology');
+  const [activeSection, setActiveSection] = useState("technology");
 
   // Enhanced scroll function with better positioning
-  const scrollToSection = (sectionId) => {
-    console.log('Attempting to scroll to:', sectionId);
-
-    // Wait for DOM to be ready
+  const scrollToSection = (sectionId, isInitialLoad = false) => {
     setTimeout(() => {
       const element = document.getElementById(sectionId);
-      console.log('Found element:', element);
-
       if (element) {
-        const headerHeight = 148; // Header + green bar height
+        // Don't scroll if this is initial page load
+        if (isInitialLoad && window.location.hash) return;
+
+        const headerHeight = 148;
         const extraPadding = 20;
+        const elementTop =
+          element.getBoundingClientRect().top + window.pageYOffset;
+        const finalPosition = Math.max(
+          0,
+          elementTop - headerHeight - extraPadding
+        );
 
-        // Get element position
-        const rect = element.getBoundingClientRect();
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const elementTop = rect.top + scrollTop;
-        const finalPosition = Math.max(0, elementTop - headerHeight - extraPadding);
-
-        console.log('Scrolling to position:', finalPosition);
-
-        // Scroll to the calculated position
         window.scrollTo({
           top: finalPosition,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
 
-        // Update active section
         setActiveSection(sectionId);
-
-        // Ensure hash is updated
-        if (window.location.hash !== `#${sectionId}`) {
-          window.history.replaceState(null, null, `#${sectionId}`);
-        }
-      } else {
-        console.log('Element not found:', sectionId);
       }
     }, 200);
   };
@@ -51,39 +64,56 @@ export default function ServicesPage() {
   useEffect(() => {
     const handleHashNavigation = () => {
       const hash = window.location.hash.substring(1);
-      console.log('Hash change detected:', hash);
-
       if (hash) {
-        // Wait for component to be fully rendered
         setTimeout(() => {
-          scrollToSection(hash);
+          scrollToSection(hash, true); // Pass true for initial load
         }, 300);
       }
     };
 
-    // Handle initial load
     if (window.location.hash) {
       handleHashNavigation();
     }
 
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashNavigation);
-
-    return () => window.removeEventListener('hashchange', handleHashNavigation);
+    window.addEventListener("hashchange", handleHashNavigation);
+    return () => window.removeEventListener("hashchange", handleHashNavigation);
   }, []);
 
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
       const sections = [
-        'technology', 'enterprise-networking', 'managed-wifi-solutions', 'ip-pbx-solutions',
-        'firewall-solutions', 'information-security', 'servers-virtualization', 'storage-solutions',
-        'vpn-brand-connectivity', 'video-conferencing', 'cctv-solutions',
-        'cloud', 'itplus-cloud-vps', 'itplus-shield-cloud-protect', 'itplus-backup-cloud-backup', 'itplus-virtual-cloud-virtual',
-        'software', 'custom-software-development', 'web-application-development', 'mobile-app-development',
-        'erp-systems', 'payroll-hr-systems', 'pos-solutions', 'api-integration-services', 'software-maintenance-support',
-        'it-support', 'onsite-remote-support', 'it-helpdesk', 'annual-maintenance-service',
-        'it-consultant-project-management', 'it-staff-outsourcing'
+        "technology",
+        "enterprise-networking",
+        "managed-wifi-solutions",
+        "ip-pbx-solutions",
+        "firewall-solutions",
+        "information-security",
+        "servers-virtualization",
+        "storage-solutions",
+        "vpn-brand-connectivity",
+        "video-conferencing",
+        "cctv-solutions",
+        "cloud",
+        "itplus-cloud-vps",
+        "itplus-shield-cloud-protect",
+        "itplus-backup-cloud-backup",
+        "itplus-virtual-cloud-virtual",
+        "software",
+        "custom-software-development",
+        "web-application-development",
+        "mobile-app-development",
+        "erp-systems",
+        "payroll-hr-systems",
+        "pos-solutions",
+        "api-integration-services",
+        "software-maintenance-support",
+        "it-support",
+        "onsite-remote-support",
+        "it-helpdesk",
+        "annual-maintenance-service",
+        "it-consultant-project-management",
+        "it-staff-outsourcing",
       ];
 
       const scrollPosition = window.scrollY + 200;
@@ -92,7 +122,10 @@ export default function ServicesPage() {
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
             setActiveSection(section);
             break;
           }
@@ -100,182 +133,235 @@ export default function ServicesPage() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const technologyServices = [
     {
-      id: 'enterprise-networking',
-      title: 'Enterprise Networking',
-      description: 'Comprehensive network infrastructure solutions designed to support your business growth with scalable, secure, and high-performance networking systems.',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1440&h=400&fit=crop', // Wider image for banner
+      id: "enterprise-networking",
+      title: "Enterprise Networking",
+      description:
+        "Comprehensive network infrastructure solutions designed to support your business growth with scalable, secure, and high-performance networking systems.",
+      image:
+        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1440&h=400&fit=crop", // Wider image for banner
     },
     {
-      id: 'managed-wifi-solutions',
-      title: 'Wi-Fi Solutions', // Changed to match image
-      description: 'Professional wireless network management ensuring seamless connectivity, optimal performance, and enterprise-grade security for your organization.',
-      image: 'https://images.unsplash.com/photo-1606868306217-dbf5046868d2?w=1440&h=400&fit=crop',
+      id: "managed-wifi-solutions",
+      title: "Wi-Fi Solutions", // Changed to match image
+      description:
+        "Professional wireless network management ensuring seamless connectivity, optimal performance, and enterprise-grade security for your organization.",
+      image:
+        "https://images.unsplash.com/photo-1606868306217-dbf5046868d2?w=1440&h=400&fit=crop",
     },
     {
-      id: 'ip-pbx-solutions',
-      title: 'IP PBX Solutions',
-      description: 'Modern telecommunication systems that integrate voice, video, and data communications to streamline your business communications.',
-      image: 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=1440&h=400&fit=crop',
+      id: "ip-pbx-solutions",
+      title: "IP PBX Solutions",
+      description:
+        "Modern telecommunication systems that integrate voice, video, and data communications to streamline your business communications.",
+      image:
+        "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=1440&h=400&fit=crop",
     },
     {
-      id: 'firewall-solutions',
-      title: 'Firewall Solutions',
-      description: 'Advanced network security solutions protecting your digital assets from cyber threats with next-generation firewall technology.',
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1440&h=400&fit=crop',
+      id: "firewall-solutions",
+      title: "Firewall Solutions",
+      description:
+        "Advanced network security solutions protecting your digital assets from cyber threats with next-generation firewall technology.",
+      image:
+        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1440&h=400&fit=crop",
     },
     {
-      id: 'information-security',
-      title: 'Information Security',
-      description: 'Comprehensive cybersecurity services safeguarding your sensitive data and ensuring compliance with industry security standards.',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1440&h=400&fit=crop',
+      id: "information-security",
+      title: "Information Security",
+      description:
+        "Comprehensive cybersecurity services safeguarding your sensitive data and ensuring compliance with industry security standards.",
+      image:
+        "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1440&h=400&fit=crop",
     },
     {
-      id: 'servers-virtualization',
-      title: 'Servers & Virtualization',
-      description: 'Optimize your IT infrastructure with server virtualization solutions that reduce costs and improve resource utilization.',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1440&h=400&fit=crop',
+      id: "servers-virtualization",
+      title: "Servers & Virtualization",
+      description:
+        "Optimize your IT infrastructure with server virtualization solutions that reduce costs and improve resource utilization.",
+      image:
+        "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1440&h=400&fit=crop",
     },
     {
-      id: 'storage-solutions',
-      title: 'Storage Solutions',
-      description: 'Scalable data storage systems ensuring your business data is secure, accessible, and efficiently managed across all platforms.',
-      image: 'https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=1440&h=400&fit=crop',
+      id: "storage-solutions",
+      title: "Storage Solutions",
+      description:
+        "Scalable data storage systems ensuring your business data is secure, accessible, and efficiently managed across all platforms.",
+      image:
+        "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?w=1440&h=400&fit=crop",
     },
     {
-      id: 'vpn-brand-connectivity',
-      title: 'VPN and Branch Connectivity',
-      description: 'Secure remote access solutions connecting your distributed workforce and branch offices with enterprise-grade VPN technology.',
-      image: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1440&h=400&fit=crop',
+      id: "vpn-brand-connectivity",
+      title: "VPN and Branch Connectivity",
+      description:
+        "Secure remote access solutions connecting your distributed workforce and branch offices with enterprise-grade VPN technology.",
+      image:
+        "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=1440&h=400&fit=crop",
     },
     {
-      id: 'video-conferencing',
-      title: 'Video Conferencing',
-      description: 'Professional video communication solutions enabling seamless collaboration and meetings across global teams and clients.',
-      image: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1440&h=400&fit=crop',
+      id: "video-conferencing",
+      title: "Video Conferencing",
+      description:
+        "Professional video communication solutions enabling seamless collaboration and meetings across global teams and clients.",
+      image:
+        "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1440&h=400&fit=crop",
     },
     {
-      id: 'cctv-solutions',
-      title: 'CCTV Solutions',
-      description: 'Advanced surveillance systems providing comprehensive security monitoring and protection for your business premises.',
-      image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1440&h=400&fit=crop',
-    }
+      id: "cctv-solutions",
+      title: "CCTV Solutions",
+      description:
+        "Advanced surveillance systems providing comprehensive security monitoring and protection for your business premises.",
+      image:
+        "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1440&h=400&fit=crop",
+    },
   ];
 
   const cloudServices = [
     {
-      id: 'itplus-cloud-vps',
-      title: 'ITPlus Cloud - Cloud VPS',
-      description: 'Powerful virtual private servers with guaranteed resources, high availability, and scalable infrastructure for your applications.',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1440&h=400&fit=crop',
+      id: "itplus-cloud-vps",
+      title: "ITPlus Cloud - Cloud VPS",
+      description:
+        "Powerful virtual private servers with guaranteed resources, high availability, and scalable infrastructure for your applications.",
+      image:
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1440&h=400&fit=crop",
     },
     {
-      id: 'itplus-shield-cloud-protect',
-      title: 'ITPlus Shield - Cloud Protect',
-      description: 'Comprehensive cloud security services protecting your data and applications with advanced threat detection and prevention.',
-      image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1440&h=400&fit=crop',
+      id: "itplus-shield-cloud-protect",
+      title: "ITPlus Shield - Cloud Protect",
+      description:
+        "Comprehensive cloud security services protecting your data and applications with advanced threat detection and prevention.",
+      image:
+        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1440&h=400&fit=crop",
     },
     {
-      id: 'itplus-backup-cloud-backup',
-      title: 'ITPlus Backup - Cloud Backup',
-      description: 'Reliable automated backup solutions ensuring your critical business data is safely stored and easily recoverable.',
-      image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1440&h=400&fit=crop',
+      id: "itplus-backup-cloud-backup",
+      title: "ITPlus Backup - Cloud Backup",
+      description:
+        "Reliable automated backup solutions ensuring your critical business data is safely stored and easily recoverable.",
+      image:
+        "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=1440&h=400&fit=crop",
     },
     {
-      id: 'itplus-virtual-cloud-virtual',
-      title: 'ITPlus Virtual - Cloud Virtual',
-      description: 'Flexible cloud virtualization services enabling rapid deployment and scaling of your IT infrastructure.',
-      image: 'images/services/cloudvirtual.jpg', // Keep local image if preferred for this one
-    }
+      id: "itplus-virtual-cloud-virtual",
+      title: "ITPlus Virtual - Cloud Virtual",
+      description:
+        "Flexible cloud virtualization services enabling rapid deployment and scaling of your IT infrastructure.",
+      image: "images/services/cloudvirtual.jpg", // Keep local image if preferred for this one
+    },
   ];
 
   const softwareServices = [
     {
-      id: 'custom-software-development',
-      title: 'Custom Software Development',
-      description: 'Tailored software solutions designed specifically for your business needs, built with modern technologies and best practices.',
-      image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1440&h=400&fit=crop',
+      id: "custom-software-development",
+      title: "Custom Software Development",
+      description:
+        "Tailored software solutions designed specifically for your business needs, built with modern technologies and best practices.",
+      image:
+        "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1440&h=400&fit=crop",
     },
     {
-      id: 'web-application-development',
-      title: 'Web Application Development',
-      description: 'Responsive, scalable web applications that deliver exceptional user experiences across all devices and platforms.',
-      image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=1440&h=400&fit=crop',
+      id: "web-application-development",
+      title: "Web Application Development",
+      description:
+        "Responsive, scalable web applications that deliver exceptional user experiences across all devices and platforms.",
+      image:
+        "https://images.unsplash.com/photo-1547658719-da2b51169166?w=1440&h=400&fit=crop",
     },
     {
-      id: 'mobile-app-development',
-      title: 'Mobile App Development',
-      description: 'Native and cross-platform mobile applications that engage users and drive business growth on iOS and Android.',
-      image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1440&h=400&fit=crop',
+      id: "mobile-app-development",
+      title: "Mobile App Development",
+      description:
+        "Native and cross-platform mobile applications that engage users and drive business growth on iOS and Android.",
+      image:
+        "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1440&h=400&fit=crop",
     },
     {
-      id: 'erp-systems',
-      title: 'ERP Systems',
-      description: 'Enterprise resource planning solutions that integrate and streamline your business processes for improved efficiency.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1440&h=400&fit=crop',
+      id: "erp-systems",
+      title: "ERP Systems",
+      description:
+        "Enterprise resource planning solutions that integrate and streamline your business processes for improved efficiency.",
+      image:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1440&h=400&fit=crop",
     },
     {
-      id: 'payroll-hr-systems',
-      title: 'Payroll & HR Systems',
-      description: 'Comprehensive human resource management systems automating payroll, attendance, and employee management processes.',
-      image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1440&h=400&fit=crop',
+      id: "payroll-hr-systems",
+      title: "Payroll & HR Systems",
+      description:
+        "Comprehensive human resource management systems automating payroll, attendance, and employee management processes.",
+      image:
+        "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1440&h=400&fit=crop",
     },
     {
-      id: 'pos-solutions',
-      title: 'POS Solutions',
-      description: 'Point-of-sale systems that streamline transactions, inventory management, and customer relationship management.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1440&h=400&fit=crop',
+      id: "pos-solutions",
+      title: "POS Solutions",
+      description:
+        "Point-of-sale systems that streamline transactions, inventory management, and customer relationship management.",
+      image:
+        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1440&h=400&fit=crop",
     },
     {
-      id: 'api-integration-services',
-      title: 'API Integration Services',
-      description: 'Seamless integration solutions connecting your existing systems with third-party applications and services.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1440&h=400&fit=crop',
+      id: "api-integration-services",
+      title: "API Integration Services",
+      description:
+        "Seamless integration solutions connecting your existing systems with third-party applications and services.",
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1440&h=400&fit=crop",
     },
     {
-      id: 'software-maintenance-support',
-      title: 'Software Maintenance & Support',
-      description: 'Ongoing technical support and maintenance services ensuring your software systems remain secure and up-to-date.',
-      image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1440&h=400&fit=crop',
-    }
+      id: "software-maintenance-support",
+      title: "Software Maintenance & Support",
+      description:
+        "Ongoing technical support and maintenance services ensuring your software systems remain secure and up-to-date.",
+      image:
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1440&h=400&fit=crop",
+    },
   ];
 
   const itSupportServices = [
     {
-      id: 'onsite-remote-support',
-      title: 'Onsite & Remote Support',
-      description: 'Professional technical support services available both on-site and remotely to resolve IT issues quickly and efficiently.',
-      image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=1440&h=400&fit=crop',
+      id: "onsite-remote-support",
+      title: "Onsite & Remote Support",
+      description:
+        "Professional technical support services available both on-site and remotely to resolve IT issues quickly and efficiently.",
+      image:
+        "https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=1440&h=400&fit=crop",
     },
     {
-      id: 'it-helpdesk',
-      title: 'IT Helpdesk',
-      description: '24/7 helpdesk services providing immediate technical assistance and problem resolution for your IT infrastructure.',
-      image: 'https://images.unsplash.com/photo-1553484771-371a605b060b?w=1440&h=400&fit=crop',
+      id: "it-helpdesk",
+      title: "IT Helpdesk",
+      description:
+        "24/7 helpdesk services providing immediate technical assistance and problem resolution for your IT infrastructure.",
+      image:
+        "https://images.unsplash.com/photo-1553484771-371a605b060b?w=1440&h=400&fit=crop",
     },
     {
-      id: 'annual-maintenance-service',
-      title: 'Annual Maintenance Service',
-      description: 'Comprehensive maintenance contracts ensuring your IT systems operate optimally with preventive care and regular updates.',
-      image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1440&h=400&fit=crop',
+      id: "annual-maintenance-service",
+      title: "Annual Maintenance Service",
+      description:
+        "Comprehensive maintenance contracts ensuring your IT systems operate optimally with preventive care and regular updates.",
+      image:
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1440&h=400&fit=crop",
     },
     {
-      id: 'it-consultant-project-management',
-      title: 'IT Consultant & Project Management',
-      description: 'Expert consulting and project management services guiding your technology initiatives from conception to completion.',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1440&h=400&fit=crop',
+      id: "it-consultant-project-management",
+      title: "IT Consultant & Project Management",
+      description:
+        "Expert consulting and project management services guiding your technology initiatives from conception to completion.",
+      image:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1440&h=400&fit=crop",
     },
     {
-      id: 'it-staff-outsourcing',
-      title: 'IT Staff Outsourcing',
-      description: 'Professional IT staff augmentation services providing skilled resources to meet your technology and project requirements.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1440&h=400&fit=crop',
-    }
+      id: "it-staff-outsourcing",
+      title: "IT Staff Outsourcing",
+      description:
+        "Professional IT staff augmentation services providing skilled resources to meet your technology and project requirements.",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1440&h=400&fit=crop",
+    },
   ];
 
   const ServiceCard = ({ service }) => {
@@ -297,37 +383,46 @@ export default function ServicesPage() {
     );
   };
 
-  const SectionHeader = ({ id, title, description, icon }) => (
-    <div className="section-header" id={id}>
-      <div className="section-header-content">
-        <div className="section-icon">
-          <i className={icon}></i>
+  const SectionHeader = ({ id, title, description, icon }) => {
+    // Add this line ▼
+    const headingRef = useHeadingAnimation();
+
+    return (
+      // Add ref and className like this ▼
+      <div className="section-header" ref={headingRef} id={id}>
+        <div className="section-header-content">
+          <div className="section-icon">
+            <i className={icon}></i>
+          </div>
+          <div className="section-text">
+            <h2>{title}</h2>
+            <p>{description}</p>
+          </div>
         </div>
-        <div className="section-text">
-          <h2>{title}</h2>
-          <p>{description}</p>
+        <div className="section-divider">
+          <div className="divider-line"></div>
+          <div className="divider-dot"></div>
+          <div className="divider-line"></div>
         </div>
       </div>
-      <div className="section-divider">
-        <div className="divider-line"></div>
-        <div className="divider-dot"></div>
-        <div className="divider-line"></div>
-      </div>
-    </div>
-  );
+    );
+  };
 
   // Inject CSS using useEffect
   useEffect(() => {
     // Load Font Awesome if not already loaded
-    const fontAwesomeLink = document.querySelector('link[href*="font-awesome"]');
+    const fontAwesomeLink = document.querySelector(
+      'link[href*="font-awesome"]'
+    );
     if (!fontAwesomeLink) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href =
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css";
       document.head.appendChild(link);
     }
 
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.textContent = `
       .services-page {
         font-family: 'Outfit', sans-serif;
@@ -561,6 +656,25 @@ export default function ServicesPage() {
         margin-top: 10px; /* Space between description and arrow */
       }
 
+      @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .section-header {
+    opacity: 0;
+  }
+
+  .section-header.animate {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
       /* Responsive Design */
       @media (max-width: 1200px) {
         .services-container {
@@ -785,10 +899,7 @@ export default function ServicesPage() {
       <section className="services-section">
         <div className="services-container">
           {technologyServices.map((service) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-            />
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </section>
@@ -803,10 +914,7 @@ export default function ServicesPage() {
       <section className="services-section">
         <div className="services-container">
           {cloudServices.map((service) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-            />
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </section>
@@ -821,10 +929,7 @@ export default function ServicesPage() {
       <section className="services-section">
         <div className="services-container">
           {softwareServices.map((service) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-            />
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </section>
@@ -839,10 +944,7 @@ export default function ServicesPage() {
       <section className="services-section">
         <div className="services-container">
           {itSupportServices.map((service) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-            />
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </section>
